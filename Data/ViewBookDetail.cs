@@ -51,5 +51,5 @@ public partial class ViewBookDetail
 
     public decimal Price { get; set; }
 
-    public decimal? Discount { get; set; }
+    public decimal Discount { get; set; } = 0;
 }

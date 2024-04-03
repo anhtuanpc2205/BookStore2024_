@@ -1,22 +1,23 @@
 ﻿@{
     Layout = "_MainLayout";
 }
+@model IEnumerable<BookStore2024.ViewModels.CartItem>
 
-    <div class="tg-innerbanner tg-haslayout tg-parallax tg-bginnerbanner" data-z-index="-100" data-appear-top-offset="600" data-parallax="scroll" data-image-src="../images/parallax/bgparallax-07.jpg">
-        <div class="container">
-            <div class="row">
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                    <div class="tg-innerbannercontent">
-                        <h1>All Products</h1>
-                        <ol class="tg-breadcrumb">
-                            <li><a href="javascript:void(0);">home</a></li>
-                            <li class="tg-active">Cart</li>
-                        </ol>
-                    </div>
+<div class="tg-innerbanner tg-haslayout tg-parallax tg-bginnerbanner" data-z-index="-100" data-appear-top-offset="600" data-parallax="scroll" data-image-src="../images/parallax/bgparallax-07.jpg">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="tg-innerbannercontent">
+                    <h1>All Products</h1>
+                    <ol class="tg-breadcrumb">
+                        <li><a href="javascript:void(0);">home</a></li>
+                        <li class="tg-active">Cart</li>
+                    </ol>
                 </div>
             </div>
         </div>
     </div>
+</div>
 
 <div class="container">
     <div class="row">
@@ -25,45 +26,48 @@
                 <table class="table">
                     <thead>
                         <tr>
-                            <th style="width: 10%;">Products</th>
+                            <th style="width: 8%;">Products</th>
                             <th style="width: 50%;">Name</th>
                             <th style="width: 10%;">Price</th>
-                            <th style="width: 10%;">Quantity</th>
+                            <th style="width: 12%;">Quantity</th>
                             <th style="width: 10%;">Total</th>
                             <th style="width: 10%;"></th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>
-                                <img src="img/vegetable-item-3.png" class="img-responsive" style="width: 80px; height: 80px;" alt="">
-                            </td>
-                            <td style="vertical-align: middle;">
-                                <p class="mt-4" style="margin-left: 20px;">Big Banana</p>
-                            </td>
-                            <td style="vertical-align: middle;">
-                                <p class="mt-4">2.99 $</p>
-                            </td>
-                            <td style="vertical-align: middle;">
-                                <div class="input-group mt-4" style="width: 100px;">
-                                    <div class="input-group-btn">
-                                        <button class="btn btn-sm btn-minus rounded-circle bg-light border" style="border-radius: 50% !important;">-</button>
+                        @foreach(var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    <img src="@item.ProductImg" class="img-responsive" style="width: 80px; height: 80px;" alt="ProductImg">
+                                </td>
+                                <td style="vertical-align: middle;">
+                                    <p class="mt-4" style="margin-left: 20px;">@item.ProductName</p>
+                                </td>
+                                <td style="vertical-align: middle;">
+                                    <p class="mt-4">$ @item.Price</p>
+                                </td>
+                                <td style="vertical-align: middle; ">
+                                    <div class="input-group mt-4" style="width: 100%;">
+                                        <div class="input-group-btn">
+                                            <button class="btn btn-sm rounded-circle bg-light border" onclick="changeNumber(-1)" style="border-radius: 50% !important;">-</button>
+                                        </div>
+                                        <input type="text" class="form-control input-sm text-center" id="number" value="@item.Quantity">
+                                        <div class="input-group-btn">
+                                            <button class="btn btn-sm rounded-circle bg-light border" onclick="changeNumber(1)" style="border-radius: 50% !important;">+</button>
+                                        </div>
                                     </div>
-                                    <input type="text" class="form-control input-sm text-center" value="1">
-                                    <div class="input-group-btn">
-                                        <button class="btn btn-sm btn-plus rounded-circle bg-light border" style="border-radius: 50% !important;">+</button>
-                                    </div>
-                                </div>
-                            </td>
-                            <td style="vertical-align: middle;">
-                                <p class="mt-4">2.99 $</p>
-                            </td>
-                            <td style="vertical-align: middle;">
-                                <button class="btn btn-danger btn-sm mt-4">
-                                    <span class="glyphicon glyphicon-remove"></span>
-                                </button>
-                            </td>
-                        </tr>
+                                </td>
+                                <td style="vertical-align: middle;">
+                                    <p class="mt-4">$ @item.Amount</p>
+                                </td>
+                                <td style="vertical-align: middle;">
+                                    <button class="btn btn-danger btn-sm mt-4">
+                                        <span class="glyphicon glyphicon-remove"></span>
+                                    </button>
+                                </td>
+                            </tr>
+                        }
                     </tbody>
                 </table>
             </div>
@@ -81,7 +85,7 @@
                         <h3 style="margin: 0;">Subtotal:</h3>
                     </div>
                     <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                        <p style="margin: 0;">$96.00</p>
+                        <p style="margin: 0;">$@Model.Sum(p => p.Amount)</p>
                     </div>
                 </div>
                 <div class="row">
@@ -104,5 +108,10 @@
 
 @section externalScripts {
     <script>
+        function changeNumber(change) {
+            var numberInput = document.getElementById("number");
+            var currentValue = parseInt(numberInput.value);
+            numberInput.value = currentValue + change >= 0 ? currentValue + change : currentValue;
+        }
     </script>
 }
