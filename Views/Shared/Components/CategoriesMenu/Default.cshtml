@@ -1,0 +1,19 @@
+﻿@model IEnumerable<BookStore2024.ViewModels.CategoriesMenuVM>
+
+<div class="tg-widget tg-catagories">
+	<div class="tg-widgettitle">
+		<h3>Categories</h3>
+	</div>
+	<div class="tg-widgetcontent">
+		<ul>
+			@foreach(var item in Model)
+			{
+				<li>
+					<a asp-controller="Products" asp-action="Index" asp-route-category="@item.CategoryId">
+						<span>@item.CategoryName</span><em>@item.Quantity</em>
+					</a>
+				</li>
+			}
+		</ul>
+	</div>
+</div>

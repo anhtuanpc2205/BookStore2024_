@@ -1,0 +1,23 @@
+﻿@model IEnumerable<BookStore2024.ViewModels.TopBlogersVM>
+
+<div class="tg-widget tg-widgetblogers">
+    <div class="tg-widgettitle">
+        <h3>Top Bloogers</h3>
+    </div>
+    <div class="tg-widgetcontent">
+        <ul>
+            @foreach (var item in Model)
+            {
+                <li>
+                    <div class="tg-author">
+                        <figure><a><img src=@item.AuthorImgURL alt="AuthorImgURL"></a></figure>
+                        <div class="tg-authorcontent">
+                            <h2><a>@item.AuthorName</a></h2>
+                            <span>@item.NumbersOfPost Published Blogs</span>
+                        </div>
+                    </div>
+                </li>
+            }
+        </ul>
+    </div>
+</div>
