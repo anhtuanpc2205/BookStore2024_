@@ -35,7 +35,7 @@
                         </tr>
                     </thead>
                     <tbody class="cart-items">
-                        @foreach(var item in Model)
+                        @* @foreach(var item in Model)
                         {
                             <tr class="cart-row">
                                 <td>
@@ -67,7 +67,67 @@
                                     </button>
                                 </td>
                             </tr>
-                        }
+                        } *@
+                        <tr class="cart-row">
+                            <td>
+                                <img src="img" class="img-responsive" style="width: 80px; height: 80px;" alt="ProductImg">
+                            </td>
+                            <td style="vertical-align: middle;" class="product-name">
+                                <p class="mt-4" style="margin-left: 20px;">product1</p>
+                            </td>
+                            <td style="vertical-align: middle;">
+                                <p class="mt-4 cart-item-price">55</p>
+                            </td>
+                            <td style="vertical-align: middle; ">
+                                <div class="input-group cart-item-quantity" style="width: 100%;">
+                                    <div class="input-group-btn">
+                                        <button class="btn btn-sm button-minus rounded-circle bg-light border" style="border-radius: 50% !important;">-</button>
+                                    </div>
+                                    <input type="text" class="form-control input-sm text-center cart-item-quantity-value" value="1">
+                                    <div class="input-group-btn">
+                                        <button class="btn btn-sm button-plus rounded-circle bg-light border" style="border-radius: 50% !important;">+</button>
+                                    </div>
+                                </div>
+                            </td>
+                            <td style="vertical-align: middle;" class="amount">
+                                <p class="cart-item-amount-price">$1"</p>
+                            </td>
+                            <td style="vertical-align: middle;">
+                                <button class="btn btn-danger btn-sm">
+                                    <span class="glyphicon glyphicon-remove"></span>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr class="cart-row">
+                            <td>
+                                <img src="img" class="img-responsive" style="width: 80px; height: 80px;" alt="ProductImg">
+                            </td>
+                            <td style="vertical-align: middle;" class="product-name">
+                                <p class="mt-4" style="margin-left: 20px;">product2</p>
+                            </td>
+                            <td style="vertical-align: middle;">
+                                <p class="mt-4 cart-item-price">55</p>
+                            </td>
+                            <td style="vertical-align: middle; ">
+                                <div class="input-group cart-item-quantity" style="width: 100%;">
+                                    <div class="input-group-btn">
+                                        <button class="btn btn-sm button-minus rounded-circle bg-light border" style="border-radius: 50% !important;">-</button>
+                                    </div>
+                                    <input type="text" class="form-control input-sm text-center cart-item-quantity-value" value="1">
+                                    <div class="input-group-btn">
+                                        <button class="btn btn-sm button-plus rounded-circle bg-light border" style="border-radius: 50% !important;">+</button>
+                                    </div>
+                                </div>
+                            </td>
+                            <td style="vertical-align: middle;" class="amount">
+                                <p class="cart-item-amount-price">$1"</p>
+                            </td>
+                            <td style="vertical-align: middle;">
+                                <button class="btn btn-danger btn-sm">
+                                    <span class="glyphicon glyphicon-remove"></span>
+                                </button>
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
@@ -108,23 +168,49 @@
 
 @section externalScripts {
     <script>
-        function changeNumber(change) {
-            var numberInput = document.getElementById("number");
-            var currentValue = parseInt(numberInput.value);
-            numberInput.value = currentValue + change >= 0 ? currentValue + change : currentValue;
+        var quantitiesItems = document.getElementsByClassName("cart-item-quantity")
+        for (var i = 0; i < quantitiesItems.length; i++) {
+            var buttons = quantitiesItems[i].getElementsByClassName("input-group-btn")
+            var buttonPlus = buttons[1]
+            var buttonMinus = buttons[0]
+
+            buttonPlus.addEventListener('click', function (event) {
+                console.log("button + clicked")
+                var numberInput = event.target.parentElement.parentElement.getElementsByClassName("cart-item-quantity-value")[0]
+                var currentValue = parseInt(event.target.parentElement.parentElement.getElementsByClassName("cart-item-quantity-value")[0].value)
+                numberInput.value = currentValue + 1
+            })
+            buttonMinus.addEventListener('click', function (event) {
+                console.log("button - clicked")
+                var numberInput = event.target.parentElement.parentElement.getElementsByClassName("cart-item-quantity-value")[0]
+                var currentValue = parseInt(event.target.parentElement.parentElement.getElementsByClassName("cart-item-quantity-value")[0].value)
+                if (currentValue > 0) {
+                    numberInput.value = currentValue - 1
+                }
+                else { }
+            })
         }
+        
         var removeCartItemButtons = document.getElementsByClassName("btn-danger")
         console.log(removeCartItemButtons)
         for (var i = 0; i < removeCartItemButtons.length; i++) {
             var button = removeCartItemButtons[i]
-            button.addEventListener('click', function(event) {
+            button.addEventListener('click', function (event) {
                 var buttonClicked = event.target
-                buttonClicked.parentElement.parentElement.parentElement.remove()
+                console.log("remove - clicked")
+                console.log(buttonClicked.parentElement.parentElement)
+                buttonClicked.parentElement.parentElement.remove()
             })
         }
+        ////////////////////////////////////////////////
         function autoUpdateCartTotal() {
-
+            var cartItemContainer = document.getElementsByClassName("cart-items")[0]
+            var cartRows = cartItemContainer.getElementsByClassName("cart-row")
+            for (var i = 0; i < cartRows.length; i++) {
+                var cartRow = cartRows[i];
+                var priceElement = cartRow.getElementsByClassName("")
+            }
         }
     </script>
-    
+
 }
