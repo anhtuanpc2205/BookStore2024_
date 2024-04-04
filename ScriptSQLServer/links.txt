@@ -1,1 +1,35 @@
 ﻿https://www.youtube.com/watch?v=YeFzkC2awTM 12
+
+  @* @foreach(var item in Model)
+                        {
+                            <tr class="cart-row">
+                                <td>
+                                    <img src="@item.ProductImg" class="img-responsive" style="width: 80px; height: 80px;" alt="ProductImg">
+                                </td>
+                                <td style="vertical-align: middle;">
+                                    <p class="mt-4" style="margin-left: 20px;">@item.ProductName</p>
+                                </td>
+                                <td style="vertical-align: middle;">
+                                    <p class="mt-4">$@item.Price</p>
+                                </td>
+                                <td style="vertical-align: middle; ">
+                                    <div class="input-group" style="width: 100%;">
+                                        <div class="input-group-btn">
+                                            <button class="btn btn-sm rounded-circle bg-light border" onclick="changeNumber(-1)" style="border-radius: 50% !important;">-</button>
+                                        </div>
+                                        <input type="text" class="form-control input-sm text-center" id="number" value="@item.Quantity">
+                                        <div class="input-group-btn">
+                                            <button class="btn btn-sm rounded-circle bg-light border" onclick="changeNumber(1)" style="border-radius: 50% !important;">+</button>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td style="vertical-align: middle;" class="amount">
+                                    <p class="amount-price">$@item.Amount"</p>
+                                </td>
+                                <td style="vertical-align: middle;">
+                                    <button class="btn btn-danger btn-sm">
+                                        <span class="glyphicon glyphicon-remove"></span>
+                                    </button>
+                                </td>
+                            </tr>
+                        } *@
