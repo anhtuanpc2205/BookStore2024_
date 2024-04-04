@@ -34,10 +34,10 @@
                             <th style="width: 10%;"></th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody class="cart-items">
                         @foreach(var item in Model)
                         {
-                            <tr>
+                            <tr class="cart-row">
                                 <td>
                                     <img src="@item.ProductImg" class="img-responsive" style="width: 80px; height: 80px;" alt="ProductImg">
                                 </td>
@@ -45,10 +45,10 @@
                                     <p class="mt-4" style="margin-left: 20px;">@item.ProductName</p>
                                 </td>
                                 <td style="vertical-align: middle;">
-                                    <p class="mt-4">$ @item.Price</p>
+                                    <p class="mt-4">$@item.Price</p>
                                 </td>
                                 <td style="vertical-align: middle; ">
-                                    <div class="input-group mt-4" style="width: 100%;">
+                                    <div class="input-group" style="width: 100%;">
                                         <div class="input-group-btn">
                                             <button class="btn btn-sm rounded-circle bg-light border" onclick="changeNumber(-1)" style="border-radius: 50% !important;">-</button>
                                         </div>
@@ -58,11 +58,11 @@
                                         </div>
                                     </div>
                                 </td>
-                                <td style="vertical-align: middle;">
-                                    <p class="mt-4">$ @item.Amount</p>
+                                <td style="vertical-align: middle;" class="amount">
+                                    <p class="amount-price">$@item.Amount"</p>
                                 </td>
                                 <td style="vertical-align: middle;">
-                                    <button class="btn btn-danger btn-sm mt-4">
+                                    <button class="btn btn-danger btn-sm">
                                         <span class="glyphicon glyphicon-remove"></span>
                                     </button>
                                 </td>
@@ -74,7 +74,7 @@
         </div>
     </div>
 
-    <div class="row">
+    <div class="row cart-total">
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-md-offset-3 col-lg-offset-3">
             <div class="bg-info text-center" style="padding: 10px;">
                 <h2 style="margin: 0;">Cart Total</h2>
@@ -113,5 +113,18 @@
             var currentValue = parseInt(numberInput.value);
             numberInput.value = currentValue + change >= 0 ? currentValue + change : currentValue;
         }
+        var removeCartItemButtons = document.getElementsByClassName("btn-danger")
+        console.log(removeCartItemButtons)
+        for (var i = 0; i < removeCartItemButtons.length; i++) {
+            var button = removeCartItemButtons[i]
+            button.addEventListener('click', function(event) {
+                var buttonClicked = event.target
+                buttonClicked.parentElement.parentElement.parentElement.remove()
+            })
+        }
+        function autoUpdateCartTotal() {
+
+        }
     </script>
+    
 }
