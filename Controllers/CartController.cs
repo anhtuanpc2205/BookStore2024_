@@ -36,7 +36,7 @@ namespace BookStore2024.Controllers
                     BookDetailId = productDetailId,
                     ProductName = product.BookTitle,
                     ProductImg = product.BookImageUrl,
-                    Price = product.Price - product.Discount //
+                    Price = product.Price - product.Discount //gía được truyền vào view là giá sau khi đã chiết khấu (discount rồi)
                 };
 
                 Cart.Add(item);

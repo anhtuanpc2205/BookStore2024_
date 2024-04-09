@@ -1,35 +1,225 @@
 ﻿https://www.youtube.com/watch?v=YeFzkC2awTM 12
+@{
+    Layout = "_MainLayout";
+}
+@model IEnumerable<BookStore2024.ViewModels.CartItem>
 
-  @* @foreach(var item in Model)
-                        {
-                            <tr class="cart-row">
-                                <td>
-                                    <img src="@item.ProductImg" class="img-responsive" style="width: 80px; height: 80px;" alt="ProductImg">
-                                </td>
-                                <td style="vertical-align: middle;">
-                                    <p class="mt-4" style="margin-left: 20px;">@item.ProductName</p>
-                                </td>
-                                <td style="vertical-align: middle;">
-                                    <p class="mt-4">$@item.Price</p>
-                                </td>
-                                <td style="vertical-align: middle; ">
-                                    <div class="input-group" style="width: 100%;">
-                                        <div class="input-group-btn">
-                                            <button class="btn btn-sm rounded-circle bg-light border" onclick="changeNumber(-1)" style="border-radius: 50% !important;">-</button>
-                                        </div>
-                                        <input type="text" class="form-control input-sm text-center" id="number" value="@item.Quantity">
-                                        <div class="input-group-btn">
-                                            <button class="btn btn-sm rounded-circle bg-light border" onclick="changeNumber(1)" style="border-radius: 50% !important;">+</button>
-                                        </div>
+<div class="tg-innerbanner tg-haslayout tg-parallax tg-bginnerbanner" data-z-index="-100" data-appear-top-offset="600" data-parallax="scroll" data-image-src="../images/parallax/bgparallax-07.jpg">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="tg-innerbannercontent">
+                    <h1>All Products</h1>
+                    <ol class="tg-breadcrumb">
+                        <li><a href="javascript:void(0);">home</a></li>
+                        <li class="tg-active">Cart</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="table-responsive cart">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th style="width: 8%;">Products</th>
+                            <th style="width: 50%;">Name</th>
+                            <th style="width: 10%;">Price</th>
+                            <th style="width: 12%;">Quantity</th>
+                            <th style="width: 10%;">Total</th>
+                            <th style="width: 10%;"></th>
+                        </tr>
+                    </thead>
+                    <tbody class="cart-data">
+                        <tr class="cart-row" id="1">
+                            <td class="product-img">
+                                <img src="img" class="img-responsive" style="width: 80px; height: 80px;" alt="ProductImg">
+                            </td>
+                            <td style="vertical-align: middle;" class="product-name">
+                                <p class="mt-4" style="margin-left: 20px;">product1</p>
+                            </td>
+                            <td style="vertical-align: middle;" class="product-price">
+                                <p class="mt-4 product-price-value">$55</p>
+                            </td>
+                            <td style="vertical-align: middle; " class="product-quantity">
+                                <div class="input-group" style="width: 100%;">
+                                    <div class="input-group-btn">
+                                        <button class="btn btn-sm button-minus bg-light border glyphicon glyphicon-minus" style="border-radius: 50% !important;"></button>
                                     </div>
-                                </td>
-                                <td style="vertical-align: middle;" class="amount">
-                                    <p class="amount-price">$@item.Amount"</p>
-                                </td>
-                                <td style="vertical-align: middle;">
-                                    <button class="btn btn-danger btn-sm">
-                                        <span class="glyphicon glyphicon-remove"></span>
-                                    </button>
-                                </td>
-                            </tr>
-                        } *@
+                                    <input type="text" class="form-control input-sm text-center product-quantity-value" value="1">
+                                    <div class="input-group-btn">
+                                        <button class="btn btn-sm button-plus bg-light border glyphicon glyphicon-plus" style="border-radius: 50% !important;"></button>
+                                    </div>
+                                </div>
+                            </td>
+                            <td style="vertical-align: middle;" class="row-amount">
+                                <p class="row-amount-value">$1</p>
+                            </td>
+                            <td style="vertical-align: middle;" class="hanlde">
+                                <button class="btn btn-danger btn-sm glyphicon glyphicon-remove"></button>
+                            </td>
+                        </tr>
+                        <tr class="cart-row" id="2">
+                            <td class="product-img">
+                                <img src="img" class="img-responsive" style="width: 80px; height: 80px;" alt="ProductImg">
+                            </td>
+                            <td style="vertical-align: middle;" class="product-name">
+                                <p class="mt-4" style="margin-left: 20px;">product2</p>
+                            </td>
+                            <td style="vertical-align: middle;" class="product-price">
+                                <p class="mt-4 product-price-value">$55</p>
+                            </td>
+                            <td style="vertical-align: middle; " class="product-quantity">
+                                <div class="input-group" style="width: 100%;">
+                                    <div class="input-group-btn">
+                                        <button class="btn btn-sm button-minus bg-light border glyphicon glyphicon-minus" style="border-radius: 50% !important;"></button>
+                                    </div>
+                                    <input type="text" class="form-control input-sm text-center product-quantity-value" value="1" readonly>
+                                    <div class="input-group-btn">
+                                        <button class="btn btn-sm button-plus bg-light border glyphicon glyphicon-plus" style="border-radius: 50% !important;"></button>
+                                    </div>
+                                </div>
+                            </td>
+                            <td style="vertical-align: middle;" class="row-amount">
+                                <p class="row-amount-value">$1</p>
+                            </td>
+                            <td style="vertical-align: middle;" class="hanlde">
+                                <button class="btn btn-danger btn-sm glyphicon glyphicon-remove"></button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="row cart-total">
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-md-offset-3 col-lg-offset-3">
+            <div class="bg-info text-center" style="padding: 10px;">
+                <h2 style="margin: 0;">Cart Total</h2>
+            </div>
+            <div class="well" style="margin-top: 10px; padding: 10px;">
+                <div class="row">
+                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                        <h3 style="margin: 0;">Subtotal:</h3>
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                        <p style="margin: 0;" class="subTotal-value">$0</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                        <h3 style="margin: 0;">Shipping</h3>
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                        <p style="margin: 0;" class="shippingFee">$3.00</p>
+                    </div>
+                </div>
+                <p class="text-right" style="margin: 0;">Shipping to Ukraine.</p>
+            </div>
+            <div class="text-center" style="margin-top: 10px;">
+                <h2 style="margin: 0;" class="total">Total: $99.00</h2>
+                <button type="button" class="btn btn-primary btn-lg" style="margin-top: 10px;">Proceed Checkout</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section externalScripts {
+    <script>
+        if (document.readyState == "loading") {
+            document.addEventListener("DOMContentLoaded", ready)
+        } else {
+            ready()
+        }
+    
+        function ready() {
+            //2 nút chỉnh số lượng
+            var quantitiesItems = document.getElementsByClassName("product-quantity")
+            //console.log(document.getElementsByClassName("product-quantity"))
+            for (var i = 0; i < quantitiesItems.length; i++) {
+                var buttons = quantitiesItems[i].getElementsByClassName("input-group-btn")
+
+                var buttonPlus = buttons[1]
+                var buttonMinus = buttons[0]
+    
+                buttonPlus.addEventListener('click', quantityButtonClick)
+                buttonMinus.addEventListener('click', quantityButtonClick)
+    
+            }
+            // nút xóa
+            var removeCartItemButtons = document.getElementsByClassName("btn-danger")
+            //console.log(removeCartItemButtons)
+            for (var i = 0; i < removeCartItemButtons.length; i++) {
+                var button = removeCartItemButtons[i]
+                button.addEventListener('click', removeCartRowEvent)
+            }
+        }
+        
+
+        ////////////////////////////////////////////////
+        function quantityButtonClick(event){
+            var numberInput = event.target.parentElement.parentElement.getElementsByClassName("product-quantity-value")[0]
+            var currentValue = parseInt(numberInput.value)
+            
+            if(isNaN(currentValue)||currentValue < 1) 
+            {
+                numberInput.value = 1
+                //console.log("x")
+                return
+            }
+            switch (event.target.classList.contains('glyphicon-plus')) {
+                case true: //console.log("button plus clicked")
+                numberInput.value = currentValue + 1
+                break
+                case false: //console.log("button minus clicked")
+                if (currentValue > 1) {
+                        numberInput.value = currentValue - 1
+                    }
+                else { 
+
+                }
+                break
+                default: console.log("button clicked is: " + event.target)
+            }
+            updateCart()                    
+        }
+        ////////////////////////////////////////////////
+        function removeCartRowEvent(event){
+            var buttonClicked = event.target
+            buttonClicked.parentElement.parentElement.remove()
+        }
+        ////////////////////////////////////////////////
+        function updateCart(){
+            var total = 0
+            var subTotal = 0
+            var shippingFee = parseFloat(document.getElementsByClassName("shippingFee")[0].innerText.replace('$','')) 
+            var cartRows = document.getElementsByClassName("cart-row")
+            for(var i = 0; i <cartRows.length; i++){
+                var row = cartRows[i]
+                var price = parseFloat(row.getElementsByClassName("product-price")[0].getElementsByClassName("product-price-value")[0].innerText.replace('$',''))
+                var quantity = parseFloat(row.getElementsByClassName("product-quantity")[0].getElementsByClassName("input-group")[0].getElementsByClassName("product-quantity-value")[0].value)
+                var rowAmountElement = row.getElementsByClassName("row-amount")[0].getElementsByClassName("row-amount-value")[0]
+                var rowAmountValue = parseFloat(rowAmountElement.innerText.replace('$','') )
+                var rowAmountValue = price * quantity
+                subTotal += rowAmountValue
+                
+                rowAmountElement.innerText = '$'+rowAmountValue
+                console.log('price is:'+price)
+                console.log('quantity is:' +quantity)
+                console.log('row amount is:' +rowAmountValue)
+                console.log('---------------------------------------------------------------------')
+            }
+            total = subTotal + shippingFee
+            document.getElementsByClassName("subTotal-value")[0].innerText = '$' + subTotal
+            document.getElementsByClassName("total")[0].innerText = '$' + total
+            console.log('--------------subtotal is: '+subTotal+'-------------------')
+            console.log('---------------------------------------------------------------------')
+        }
+    </script>
+}
