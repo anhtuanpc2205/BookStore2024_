@@ -55,12 +55,14 @@
                         }
                         
                     </ul>
-                    <div class="tg-quantityholder">
-                        <em class="minus">-</em>
-                            <input type="text" class="result" value="0" id="quantity1" name="quantity">
-                        <em class="plus">+</em>
-                    </div>
-                    <a class="tg-btn tg-active tg-btn-lg" href="javascript:void(0);">Add To Basket</a>
+                    <form asp-action="AddtoCart" asp-controller="Cart" asp-route-productDetailId="@Model.BookDetailId">
+                        <div class="tg-quantityholder">
+                            <em class="minus">-</em>
+                                <input type="text" class="result" value="1" id="quantity1" name="quantity">
+                            <em class="plus">+</em>
+                        </div>
+                        <button class="tg-btn tg-active tg-btn-lg">Add To Cart</button>
+                    </form>
                     <a class="tg-btnaddtowishlist" href="javascript:void(0);">
                         <span>add to wishlist</span>
                     </a>

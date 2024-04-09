@@ -29,9 +29,9 @@
                             <th style="width: 8%;">Products</th>
                             <th style="width: 50%;">Name</th>
                             <th style="width: 10%;">Price</th>
-                            <th style="width: 12%;">Quantity</th>
+                            <th style="width: 14%;">Quantity</th>
                             <th style="width: 10%;">Total</th>
-                            <th style="width: 10%;"></th>
+                            <th style="width: 8%;"></th>
                         </tr>
                     </thead>
                     <tbody class="cart-data">
@@ -48,13 +48,13 @@
                                     <p class="mt-4 product-price-value">$@item.Price</p>
                                 </td>
                                 <td style="vertical-align: middle; " class="product-quantity">
-                                    <div class="input-group" style="width: 100%;">
+                                    <div class="input-group" style="min-width: 100%;">
                                         <div class="input-group-btn">
-                                            <button class="btn btn-sm button-minus bg-light border glyphicon glyphicon-minus" style="border-radius: 50% !important;"></button>
+                                            <a class="btn btn-sm button-minus glyphicon glyphicon-minus"></a>
                                         </div>
-                                        <input type="text" class="form-control input-sm text-center product-quantity-value" value="1" readonly style="box-decoration-break">
+                                        <input type="text" class="form-control input-sm text-center product-quantity-value" value="@item.Quantity" readonly>
                                         <div class="input-group-btn">
-                                            <button class="btn btn-sm button-plus bg-light border glyphicon glyphicon-plus" style="border-radius: 50% !important;"></button>
+                                            <a class="btn btn-sm button-plus glyphicon glyphicon-plus"></a>
                                         </div>
                                     </div>
                                 </td>
@@ -62,7 +62,7 @@
                                     <p class="row-amount-value">$@item.Amount</p>
                                 </td>
                                 <td style="vertical-align: middle;" class="hanlde">
-                                    <button class="btn btn-danger btn-sm glyphicon glyphicon-remove"></button>
+                                    <a class="btn btn-danger btn-sm glyphicon glyphicon-remove" asp-action="RemoveItem" asp-controller="Cart" asp-route-productDetailId="@item.BookDetailId"></a>
                                 </td>
                             </tr>
                         }
@@ -83,7 +83,7 @@
                         <h3 style="margin: 0;">Subtotal:</h3>
                     </div>
                     <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                        <p style="margin: 0;" class="subTotal-value">$0</p>
+                        <p style="margin: 0;" class="subTotal-value">$</p>
                     </div>
                 </div>
                 <div class="row">
@@ -156,9 +156,7 @@
                 if (currentValue > 1) {
                         numberInput.value = currentValue - 1
                     }
-                else {
-
-                }
+                else { }
                 break
                 default: console.log("button clicked is: " + event.target)
             }
@@ -169,7 +167,7 @@
             var buttonClicked = event.target
             buttonClicked.parentElement.parentElement.remove()
             updateCart()
-            console.log('a cart-item has been delete')
+            console.log('---------a cart-item has been delete-----------------')
         }
         ////////////////////////////////////////////////
         function updateCart(){
@@ -186,15 +184,15 @@
                 var rowAmountValue = price * quantity
                 subTotal += rowAmountValue
 
-                rowAmountElement.innerText = '$'+rowAmountValue
+                rowAmountElement.innerText = '$'+rowAmountValue.toFixed(2)
                 console.log('price is:'+price)
                 console.log('quantity is:' +quantity)
                 console.log('row amount is:' +rowAmountValue)
                 console.log('---------------------------------------------------------------------')
             }
             total = subTotal + shippingFee
-            document.getElementsByClassName("subTotal-value")[0].innerText = '$' + subTotal
-            document.getElementsByClassName("total")[0].innerText = '$' + total
+            document.getElementsByClassName("subTotal-value")[0].innerText = '$' + subTotal.toFixed(2)
+            document.getElementsByClassName("total")[0].innerText = '$' + total.toFixed(2)
             console.log('--------------subtotal is: '+subTotal+'-------------------')
             console.log('---------------------------------------------------------------------')
         }

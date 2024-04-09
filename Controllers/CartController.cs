@@ -17,7 +17,7 @@ namespace BookStore2024.Controllers
         {
             return View(ListProductsInCart);
         }
-        public IActionResult AddtoCart(int productDetailId)
+        public IActionResult AddtoCart(int productDetailId, int quantity = 1)
         {
             var Cart = ListProductsInCart;
 
@@ -31,12 +31,13 @@ namespace BookStore2024.Controllers
                     TempData["Message"] = $"Could not find product have id: {productDetailId} or product does not exist";
                     return Redirect("/404");
                 }
-                
+
                 item = new CartItem { // nếu tồn tại thì tạo mới và thêm vào giỏ hàng
                     BookDetailId = productDetailId,
                     ProductName = product.BookTitle,
                     ProductImg = product.BookImageUrl,
-                    Price = product.Price - product.Discount //gía được truyền vào view là giá sau khi đã chiết khấu (discount rồi)
+                    Price = product.Price - product.Discount, //gía được truyền vào view là giá sau khi đã chiết khấu (discount rồi)
+                    Quantity = quantity
                 };
 
                 Cart.Add(item);
@@ -44,6 +45,34 @@ namespace BookStore2024.Controllers
             else { }//nếu tồn tại sp trong giỏ hàng rồi thì không cần add vào nữa
             HttpContext.Session.Set(Constants.SESSION_KEY, Cart);
 
+            return RedirectToAction("Index");
+        }
+        public IActionResult RemoveItem(int productDetailId)
+        {
+            var Cart = ListProductsInCart;
+
+            var item = Cart.SingleOrDefault(p => p.BookDetailId == productDetailId);
+
+            if (item != null) 
+            {
+                Cart.Remove(item);
+                HttpContext.Session.Set(Constants.SESSION_KEY, Cart);
+            }
+            return RedirectToAction("Index");
+        }
+        public IActionResult ChangeQuantity(int productDetailId ,int actionType = 1)
+        {
+            var Cart = ListProductsInCart;
+            var item = Cart.SingleOrDefault(p => p.BookDetailId == productDetailId);
+            if (item != null)
+            {
+                switch (actionType)
+                {
+                    case 1: item.Quantity++; break;
+                    case 2: item.Quantity--; break;
+                    default: break;
+                }
+            }
             return RedirectToAction("Index");
         }
     }
