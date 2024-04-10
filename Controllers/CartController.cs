@@ -60,20 +60,29 @@ namespace BookStore2024.Controllers
             }
             return RedirectToAction("Index");
         }
-        public IActionResult ChangeQuantity(int productDetailId ,int actionType = 1)
+        //public IActionResult ChangeQuantity(int productDetailId ,int actionType = 1)
+        //{
+        //    var Cart = ListProductsInCart;
+        //    var item = Cart.SingleOrDefault(p => p.BookDetailId == productDetailId);
+        //    if (item != null)
+        //    {
+        //        switch (actionType)
+        //        {
+        //            case 1: item.Quantity++; break;
+        //            case 2: item.Quantity--; break;
+        //            default: break;
+        //        }
+        //    }
+        //    return RedirectToAction("Index");
+        //}
+		public IActionResult ClearCart()
         {
-            var Cart = ListProductsInCart;
-            var item = Cart.SingleOrDefault(p => p.BookDetailId == productDetailId);
-            if (item != null)
-            {
-                switch (actionType)
-                {
-                    case 1: item.Quantity++; break;
-                    case 2: item.Quantity--; break;
-                    default: break;
-                }
-            }
+			var Cart = new List<CartItem>();
+			HttpContext.Session.Set(Constants.SESSION_KEY, Cart);
             return RedirectToAction("Index");
-        }
-    }
+			//return Json(new { success = true, message = "Cập nhật giỏ hàng thành công!" });
+		}
+	}
+
+	
 }

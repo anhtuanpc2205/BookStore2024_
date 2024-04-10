@@ -1,28 +1,44 @@
 ﻿@model IEnumerable<BookStore2024.ViewModels.CartItem>
 
-<div class="dropdown-menu tg-themedropdownmenu" aria-labelledby="tg-minicart">
-	<div class="tg-minicartbody">
-		@foreach (var item in Model){
-			<div class="tg-minicarproduct">
-				<figure>
-					<img src="@item.ProductImg" alt="ProductImg">
-				</figure>
-				<div class="tg-minicarproductdata">
-					<h5><a class="img-responsive" style="width: 80px; height: 80px;">@item.ProductName</a></h5>
-					<h6><a href="javascript:void(0);">$ $@item.Price</a></h6>
+<div class="dropdown tg-themedropdown tg-minicartdropdown">
+	<a href="javascript:void(0);" id="tg-minicart" class="tg-btnthemedropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		<span class="tg-themebadge">@Model.Count()</span>
+		<i class="icon-cart"></i>
+		<span>$@Model.Sum(p => p.Amount)</span>
+	</a>
+	<div class="dropdown-menu tg-themedropdownmenu" aria-labelledby="tg-minicart">
+		@if (Model != null && Model.Any())
+		{
+			<div class="tg-minicartbody">
+				@foreach (var item in Model)
+				{
+					<div class="tg-minicarproduct">
+						<figure>
+							<img src="@item.ProductImg" alt="ProductImg" style="width: 80px; height: 80px;">
+						</figure>
+						<div class="tg-minicarproductdata">
+							<h5><a>@item.ProductName</a></h5>
+							<h6><a href="javascript:void(0);">$@item.Price</a></h6>
+						</div>
+					</div>
+				}
+			</div>
+			<div class="tg-minicartfoot">
+				<a class="tg-btnemptycart" asp-action="ClearCart" asp-controller="Cart">
+					<i class="fa fa-trash-o"></i>
+					<span>Clear Your Cart</span>
+				</a>
+				<span class="tg-subtotal">Subtotal: <strong>@Model.Sum(p => p.Amount)</strong></span>
+				<div class="tg-btns">
+					<a class="tg-btn tg-active" asp-action="Index" asp-controller="Cart">View Cart</a>
+					<a class="tg-btn" href="javascript:void(0);">Checkout</a>
 				</div>
 			</div>
 		}
+		else
+		{
+			<div class="tg-description"><p>No products were added to the cart!</p></div>
+		}
 	</div>
-	<div class="tg-minicartfoot">
-		<a class="tg-btnemptycart" href="javascript:void(0);">
-			<i class="fa fa-trash-o"></i>
-			<span>Clear Your Cart</span>
-		</a>
-		<span class="tg-subtotal">Subtotal: <strong>35.78</strong></span>
-		<div class="tg-btns">
-			<a class="tg-btn tg-active" asp-action="Index" asp-controller="Cart">View Cart</a>
-			<a class="tg-btn" href="javascript:void(0);">Checkout</a>
-		</div>
-	</div>
+
 </div>

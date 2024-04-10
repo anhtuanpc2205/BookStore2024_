@@ -20,88 +20,110 @@
 </div>
 
 <div class="container">
-    <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-            <div class="table-responsive cart">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th style="width: 8%;">Products</th>
-                            <th style="width: 50%;">Name</th>
-                            <th style="width: 10%;">Price</th>
-                            <th style="width: 14%;">Quantity</th>
-                            <th style="width: 10%;">Total</th>
-                            <th style="width: 8%;"></th>
-                        </tr>
-                    </thead>
-                    <tbody class="cart-data">
-                        @foreach(var item in Model)
-                        {
-                            <tr class="cart-row" id="@item.BookDetailId">
-                                <td class="product-img">
-                                    <img src="@item.ProductImg" class="img-responsive" style="width: 80px; height: 80px;" alt="ProductImg">
-                                </td>
-                                <td style="vertical-align: middle;" class="product-name">
-                                    <p class="mt-4" style="margin-left: 20px;">@item.ProductName</p>
-                                </td>
-                                <td style="vertical-align: middle;" class="product-price">
-                                    <p class="mt-4 product-price-value">$@item.Price</p>
-                                </td>
-                                <td style="vertical-align: middle; " class="product-quantity">
-                                    <div class="input-group" style="min-width: 100%;">
-                                        <div class="input-group-btn">
-                                            <a class="btn btn-sm button-minus glyphicon glyphicon-minus"></a>
-                                        </div>
-                                        <input type="text" class="form-control input-sm text-center product-quantity-value" value="@item.Quantity" readonly>
-                                        <div class="input-group-btn">
-                                            <a class="btn btn-sm button-plus glyphicon glyphicon-plus"></a>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td style="vertical-align: middle;" class="row-amount">
-                                    <p class="row-amount-value">$@item.Amount</p>
-                                </td>
-                                <td style="vertical-align: middle;" class="hanlde">
-                                    <a class="btn btn-danger btn-sm glyphicon glyphicon-remove" asp-action="RemoveItem" asp-controller="Cart" asp-route-productDetailId="@item.BookDetailId"></a>
-                                </td>
+    @if (Model != null && Model.Any())
+    {
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="table-responsive cart">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th style="width: 8%;">Products</th>
+                                <th style="width: 50%;">Name</th>
+                                <th style="width: 10%;">Price</th>
+                                <th style="width: 14%;">Quantity</th>
+                                <th style="width: 10%;">Total</th>
+                                <th style="width: 8%;"></th>
                             </tr>
-                        }
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody class="cart-data">
+                            @foreach (var item in Model)
+                            {
+                                <tr class="cart-row" id="@item.BookDetailId">
+                                    <td class="product-img">
+                                        <img src="@item.ProductImg" class="img-responsive" style="width: 80px; height: 80px;" alt="ProductImg">
+                                    </td>
+                                    <td style="vertical-align: middle;" class="product-name">
+                                        <p class="mt-4" style="margin-left: 20px;">@item.ProductName</p>
+                                    </td>
+                                    <td style="vertical-align: middle;" class="product-price">
+                                        <p class="mt-4 product-price-value">$@item.Price</p>
+                                    </td>
+                                    <td style="vertical-align: middle; " class="product-quantity">
+                                        <div class="input-group" style="min-width: 100%;">
+                                            <div class="input-group-btn">
+                                                <a class="btn btn-sm button-minus glyphicon glyphicon-minus"></a>
+                                            </div>
+                                            <input type="text" class="form-control input-sm text-center product-quantity-value" value="@item.Quantity" readonly>
+                                            <div class="input-group-btn">
+                                                <a class="btn btn-sm button-plus glyphicon glyphicon-plus"></a>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td style="vertical-align: middle;" class="row-amount">
+                                        <p class="row-amount-value">$@item.Amount</p>
+                                    </td>
+                                    <td style="vertical-align: middle;" class="hanlde">
+                                        <a class="btn btn-danger btn-sm glyphicon glyphicon-remove" asp-action="RemoveItem" asp-controller="Cart" asp-route-productDetailId="@item.BookDetailId"></a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
-    </div>
-
-    <div class="row cart-total">
-        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-md-offset-3 col-lg-offset-3">
-            <div class="bg-info text-center" style="padding: 10px;">
-                <h2 style="margin: 0;">Cart Total</h2>
-            </div>
-            <div class="well" style="margin-top: 10px; padding: 10px;">
-                <div class="row">
-                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                        <h3 style="margin: 0;">Subtotal:</h3>
-                    </div>
-                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                        <p style="margin: 0;" class="subTotal-value">$</p>
-                    </div>
+        <div class="row cart-total">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-md-offset-3 col-lg-offset-3">
+                <div class="bg-info text-center" style="padding: 10px;">
+                    <h2 style="margin: 0;">Cart Total</h2>
                 </div>
-                <div class="row">
-                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                        <h3 style="margin: 0;">Shipping</h3>
+                <div class="well" style="margin-top: 10px; padding: 10px;">
+                    <div class="row">
+                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                            <h3 style="margin: 0;">Subtotal:</h3>
+                        </div>
+                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                            <p style="margin: 0;" class="subTotal-value">$</p>
+                        </div>
                     </div>
-                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                        <p style="margin: 0;" class="shippingFee">$3.00</p>
+                    <div class="row">
+                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                            <h3 style="margin: 0;">Shipping</h3>
+                        </div>
+                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                            <p style="margin: 0;" class="shippingFee">$3.00</p>
+                        </div>
                     </div>
+                    <p class="text-right" style="margin: 0;">Shipping to Ukraine.</p>
                 </div>
-                <p class="text-right" style="margin: 0;">Shipping to Ukraine.</p>
-            </div>
-            <div class="text-center" style="margin-top: 10px;">
-                <h2 style="margin: 0;" class="total">Total: $99.00</h2>
-                <button type="button" class="btn btn-primary btn-lg" style="margin-top: 10px;">Proceed Checkout</button>
+                <div class="text-center" style="margin-top: 10px;">
+                    <h2 style="margin: 0;" class="total">Total: $99.00</h2>
+                    <button type="button" class="btn btn-primary btn-lg" style="margin-top: 10px;">Proceed Checkout</button>
+                </div>
             </div>
         </div>
-    </div>
+    }
+    else
+    {
+        <main id="tg-main" class="tg-main tg-haslayout">
+            <div class="tg-sectionspace tg-haslayout">
+                <div class="container">
+                    <div class="row">
+                        <div class="tg-404error">
+                            <div class="col-xs-12 col-sm-12 col-md-8 col-md-push-2 col-lg-6 col-lg-push-3">
+                                <div class="tg-404errorcontent">
+                                    <h3>There're not thing in cart</h3>
+                                    <span>404</span>
+                                </div>
+                                @await Html.PartialAsync("_Search")
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    }
 </div>
 
 @section externalScripts {
@@ -167,7 +189,7 @@
             var buttonClicked = event.target
             buttonClicked.parentElement.parentElement.remove()
             updateCart()
-            console.log('---------a cart-item has been delete-----------------')
+            // console.log('---------a cart-item has been delete-----------------')
         }
         ////////////////////////////////////////////////
         function updateCart(){
@@ -185,16 +207,16 @@
                 subTotal += rowAmountValue
 
                 rowAmountElement.innerText = '$'+rowAmountValue.toFixed(2)
-                console.log('price is:'+price)
-                console.log('quantity is:' +quantity)
-                console.log('row amount is:' +rowAmountValue)
-                console.log('---------------------------------------------------------------------')
+                // console.log('price is:'+price)
+                // console.log('quantity is:' +quantity)
+                // console.log('row amount is:' +rowAmountValue)
+                // console.log('---------------------------------------------------------------------')
             }
             total = subTotal + shippingFee
             document.getElementsByClassName("subTotal-value")[0].innerText = '$' + subTotal.toFixed(2)
             document.getElementsByClassName("total")[0].innerText = '$' + total.toFixed(2)
-            console.log('--------------subtotal is: '+subTotal+'-------------------')
-            console.log('---------------------------------------------------------------------')
+            // console.log('--------------subtotal is: '+subTotal+'-------------------')
+            // console.log('---------------------------------------------------------------------')
         }
     </script>
 }
