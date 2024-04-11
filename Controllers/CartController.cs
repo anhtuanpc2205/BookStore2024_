@@ -45,13 +45,13 @@ namespace BookStore2024.Controllers
             }
             else { }//nếu tồn tại sp trong giỏ hàng rồi thì không cần add vào nữa
             HttpContext.Session.Set(Constants.SESSION_KEY, CartList);
-            //return ViewComponent("Minicart");
-
-            return RedirectToAction("Index", "Products");
-
-			return NoContent();
-        }
-        public ActionResult RemoveItem(int productDetailId)
+			
+			//return View(ListProductsInCart);
+			return RedirectToAction("Index", "Products");
+			//return NoContent();
+			//return ViewComponent("Minicart");
+		}
+		public ActionResult RemoveItem(int productDetailId)
         {
             var CartList = ListProductsInCart;
 
@@ -64,22 +64,32 @@ namespace BookStore2024.Controllers
             }
             return NoContent();
         }
-        //public IActionResult ChangeQuantity(int productDetailId ,int actionType = 1)
-        //{
-        //    var Cart = ListProductsInCart;
-        //    var item = Cart.SingleOrDefault(p => p.BookDetailId == productDetailId);
-        //    if (item != null)
-        //    {
-        //        switch (actionType)
-        //        {
-        //            case 1: item.Quantity++; break;
-        //            case 2: item.Quantity--; break;
-        //            default: break;
-        //        }
-        //    }
-        //    return RedirectToAction("Index");
-        //}
-		public IActionResult ClearCart()
+        
+        public IActionResult increaseQuantity(int productDetailId)
+        {
+            var CartList = ListProductsInCart;
+            var item = CartList.SingleOrDefault(p => p.BookDetailId == productDetailId);
+            if (item != null)
+            {
+                item.Quantity ++;
+            }
+            HttpContext.Session.Set(Constants.SESSION_KEY, CartList);
+            return NoContent();
+        }
+
+        public IActionResult decreaseQuantity(int productDetailId)
+        {
+            var CartList = ListProductsInCart;
+            var item = CartList.SingleOrDefault(p => p.BookDetailId == productDetailId);
+            if (item != null)
+            {
+                if(item.Quantity > 1) { item.Quantity--; }
+            }
+            HttpContext.Session.Set(Constants.SESSION_KEY, CartList);
+            return NoContent();
+        }
+
+        public IActionResult ClearCart()
         {
 			var CartList = new List<CartItem>();
 			HttpContext.Session.Set(Constants.SESSION_KEY, CartList);
@@ -87,5 +97,11 @@ namespace BookStore2024.Controllers
             //return NoContent();
             return RedirectToAction("Index");
         }
+
+		//public IActionResult GetMinicart()
+		//{
+		//	// Trả về phản hồi HTML của Minicart
+		//	return ViewComponent("Minicart");
+		//}
 	}
 }
