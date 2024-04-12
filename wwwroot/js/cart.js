@@ -95,7 +95,8 @@ function updateCart() {
 }
 function addToCartClick() {
     alert("added to cart!")
-    
+    window.location.reload();
+    //alert(location.href)
 }
 
 //function addToCartClick() {

@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using BookStore2024.Helpers;
 using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.Blazor;
 using System.ComponentModel;
+using System.Linq;
 
 namespace BookStore2024.Controllers
 {
@@ -43,14 +44,13 @@ namespace BookStore2024.Controllers
 
                 CartList.Add(item);
             }
-            else { }//nếu tồn tại sp trong giỏ hàng rồi thì không cần add vào nữa
+            else { item.Quantity += quantity; }//nếu tồn tại sp trong giỏ hàng rồi thì cập nhật lại số lượng
             HttpContext.Session.Set(Constants.SESSION_KEY, CartList);
-			
-			//return View(ListProductsInCart);
-			return RedirectToAction("Index", "Products");
-			//return NoContent();
-			//return ViewComponent("Minicart");
-		}
+
+            return Redirect(Request.Headers["Referer"].ToString());
+            //return NoContent();
+           
+        }
 		public ActionResult RemoveItem(int productDetailId)
         {
             var CartList = ListProductsInCart;
@@ -93,11 +93,12 @@ namespace BookStore2024.Controllers
         {
 			var CartList = new List<CartItem>();
 			HttpContext.Session.Set(Constants.SESSION_KEY, CartList);
-            //return Json(new { success = true });
-            //return NoContent();
-            return RedirectToAction("Index");
-        }
 
+            return Redirect(Request.Headers["Referer"].ToString());
+            //return NoContent();
+            //return RedirectToAction("Index");
+        }
+        
 		//public IActionResult GetMinicart()
 		//{
 		//	// Trả về phản hồi HTML của Minicart
