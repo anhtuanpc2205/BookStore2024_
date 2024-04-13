@@ -39,12 +39,12 @@ namespace BookStore2024.Controllers
                     ProductName = product.BookTitle,
                     ProductImg = product.BookImageUrl,
                     Price = product.Price - product.Discount, //gía được truyền vào view là giá sau khi đã chiết khấu (discount rồi)
-                    Quantity = quantity
+                    Quantity = (quantity > 0) ? quantity : 1,
                 };
 
                 CartList.Add(item);
             }
-            else { item.Quantity += quantity; }//nếu tồn tại sp trong giỏ hàng rồi thì cập nhật lại số lượng
+            else { item.Quantity += (quantity > 0) ? quantity : 1; }//nếu tồn tại sp trong giỏ hàng rồi thì cập nhật lại số lượng
             HttpContext.Session.Set(Constants.SESSION_KEY, CartList);
 
             return Redirect(Request.Headers["Referer"].ToString());
