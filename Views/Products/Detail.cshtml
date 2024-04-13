@@ -57,9 +57,9 @@
                     </ul>
                     <form asp-action="AddtoCart" asp-controller="Cart" asp-route-productDetailId="@Model.BookDetailId">
                         <div class="tg-quantityholder">
-                            <em class="minus">-</em>
+                            <button type="button" style="background-color: transparent"><em class="minus">-</em></button>
                                 <input type="text" class="result" value="1" id="quantity1" name="quantity">
-                            <em class="plus">+</em>
+                            <button type="button" style="background-color: transparent"><em class="plus">+</em></button>
                         </div>
                         <button class="tg-btn tg-active tg-btn-lg btn-add-tocart">Add To Cart</button>
                     </form>
