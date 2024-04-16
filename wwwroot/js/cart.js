@@ -42,7 +42,7 @@ function quantityButtonClick(event) {
 
     if (isNaN(currentValue) || currentValue < 1) {
         numberInput.value = 1
-        //console.log("x")
+       
         return
     }
     switch (event.target.classList.contains('glyphicon-plus')) {
@@ -82,31 +82,13 @@ function updateCart() {
         subTotal += rowAmountValue
 
         rowAmountElement.innerText = '$' + rowAmountValue.toFixed(2)
-        // console.log('price is:'+price)
-        // console.log('quantity is:' +quantity)
-        // console.log('row amount is:' +rowAmountValue)
-        // console.log('---------------------------------------------------------------------')
+ 
     }
     total = subTotal + shippingFee
     document.getElementsByClassName("subTotal-value")[0].innerText = '$' + subTotal.toFixed(2)
     document.getElementsByClassName("total")[0].innerText = '$' + total.toFixed(2)
-    // console.log('--------------subtotal is: '+subTotal+'-------------------')
-    // console.log('---------------------------------------------------------------------')
 }
 function addToCartClick() {
     alert("added to cart!")
-    window.location.reload();
-    //alert(location.href)
 }
 
-//function addToCartClick() {
-//    $.ajax({
-//        url: '@Url.Action("Index", "Products")',
-//        data: {
-//            minicart: document.getElementsByClassName(tg-minicartdropdown").checked
-//        },
-//        success: function (data) {
-//            $("#minicart").html(data);
-//        }
-//    })
-//} 

@@ -49,7 +49,6 @@ namespace BookStore2024.Controllers
 
             return Redirect(Request.Headers["Referer"].ToString());
             //return NoContent();
-           
         }
 		public ActionResult RemoveItem(int productDetailId)
         {
@@ -98,11 +97,5 @@ namespace BookStore2024.Controllers
             //return NoContent();
             //return RedirectToAction("Index");
         }
-        
-		//public IActionResult GetMinicart()
-		//{
-		//	// Trả về phản hồi HTML của Minicart
-		//	return ViewComponent("Minicart");
-		//}
 	}
 }
