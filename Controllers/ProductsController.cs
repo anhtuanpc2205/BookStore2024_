@@ -1,6 +1,7 @@
 ﻿using BookStore2024.Data;
 using BookStore2024.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.Blazor;
 using System.Security.Policy;
 
 namespace BookStore2024.Controllers
@@ -54,7 +55,6 @@ namespace BookStore2024.Controllers
 
             return View(data);
         }
-
         public IActionResult Detail(int DetailId)
         {
             var record = DBContext.ViewBookDetails.Where(p => p.BookDetailId == DetailId).SingleOrDefault();
@@ -90,5 +90,61 @@ namespace BookStore2024.Controllers
 
             return View(data);
         }
-    }
+        public IActionResult BestSelling()
+        {
+            var Query = DBContext.ViewBestSelling.AsQueryable();
+
+			if (Query == null)
+			{
+				TempData["Message"] = $"Could not find product or product does not exist";
+				return Redirect("/404");
+			}
+
+			var data = Query.Select(p => new ProductVM
+            {
+                BookDetailId = p.BookDetailId,
+                CategoryId = p.CategoryId,
+                CategoryName = p.CategoryName,
+                ProductName = p.BookTitle,
+                ProductImg = p.BookImageUrl ?? "",
+                AuthorName = p.AuthorName,
+                Price = p.Price,
+                Discount = p.Discount,
+                FormatName = p.FormatName
+            });
+
+            return View(data);
+        }
+
+		public IActionResult WeeklySale()
+        {
+			var Query = DBContext.ViewBookDetails.AsQueryable();
+
+			if (Query == null)
+			{
+				TempData["Message"] = $"Could not find product or product does not exist";
+				return Redirect("/404");
+            }
+            else
+            {
+                Query = Query.Where(p => p.Discount != 0);
+			}
+
+			var data = Query.Select(p => new ProductVM
+			{
+				BookDetailId = p.BookDetailId,
+				CategoryId = p.CategoryId,
+				CategoryName = p.CategoryName,
+				ProductName = p.BookTitle,
+				ProductImg = p.BookImageUrl ?? "",
+				AuthorName = p.AuthorName,
+				Price = p.Price,
+				Discount = p.Discount,
+				FormatName = p.FormatName
+			});
+
+			return View(data);
+        }
+
+	}
 }

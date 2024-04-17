@@ -48,6 +48,8 @@ public partial class BookStoreContext : DbContext
     public virtual DbSet<ViewTopBloger> ViewTopBloger { get; set; }
 
     public virtual DbSet<ViewBookAlert> ViewBookAlert { get; set; }
+
+    public virtual DbSet<ViewBestSelling> ViewBestSelling { get; set; }
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
         => optionsBuilder.UseSqlServer("Data Source=.;Initial Catalog=BookStore;Integrated Security=True;Trust Server Certificate=True");
@@ -476,7 +478,68 @@ public partial class BookStoreContext : DbContext
             entity.Property(e => e.Price).HasColumnName("price");
             entity.Property(e => e.Discount).HasColumnName("discount");
         });
+        modelBuilder.Entity<ViewBestSelling>(entity =>
+        {
+            entity.HasNoKey().ToView("Top20BestSellingBooks");
 
+            entity.Property(e => e.BookDetailId).HasColumnName("Book_Detail_id");
+            entity.Property(e => e.AuthorDescription).HasColumnName("author_description_");
+            entity.Property(e => e.AuthorId).HasColumnName("author_id");
+            entity.Property(e => e.AuthorName)
+                .HasMaxLength(255)
+                .HasColumnName("author_name");
+            entity.Property(e => e.BookDescription).HasColumnName("book_description_");
+            entity.Property(e => e.BookId).HasColumnName("book_id");
+            entity.Property(e => e.BookImageUrl)
+                .HasMaxLength(255)
+                .IsUnicode(false)
+                .HasColumnName("book_image_url");
+            entity.Property(e => e.BookTitle)
+                .HasMaxLength(255)
+                .HasColumnName("book_title");
+            entity.Property(e => e.CategoryId).HasColumnName("category_id");
+            entity.Property(e => e.CategoryName)
+                .HasMaxLength(50)
+                .HasColumnName("category_name");
+            entity.Property(e => e.Discount)
+                .HasColumnType("decimal(5, 2)")
+                .HasColumnName("discount");
+            entity.Property(e => e.FormatId).HasColumnName("format_id");
+            entity.Property(e => e.FormatName)
+                .HasMaxLength(50)
+                .HasColumnName("format_name");
+            entity.Property(e => e.GenreId).HasColumnName("genre_id");
+            entity.Property(e => e.GenreName)
+                .HasMaxLength(50)
+                .HasColumnName("genre_name");
+            entity.Property(e => e.IllustrationsNote)
+                .HasMaxLength(255)
+                .HasColumnName("Illustrations_note");
+            entity.Property(e => e.Isbn10)
+                .HasMaxLength(10)
+                .IsUnicode(false)
+                .IsFixedLength()
+                .HasColumnName("ISBN10");
+            entity.Property(e => e.Isbn13)
+                .HasMaxLength(13)
+                .IsUnicode(false)
+                .IsFixedLength()
+                .HasColumnName("ISBN13");
+            entity.Property(e => e.Language)
+                .HasMaxLength(30)
+                .HasColumnName("language_");
+            entity.Property(e => e.Price)
+                .HasColumnType("decimal(10, 2)")
+                .HasColumnName("price");
+            entity.Property(e => e.ProfileImageUrl)
+                .HasMaxLength(255)
+                .IsUnicode(false)
+                .HasColumnName("profile_image_url");
+            entity.Property(e => e.Publisher).HasMaxLength(255);
+            entity.Property(e => e.StockQuantity).HasColumnName("stock_quantity");
+            entity.Property(e => e.Views).HasColumnName("views_");
+            entity.Property(e => e.TotalQuantitySold).HasColumnName("total_quantity_sold");
+        });
         /////////////////////////////////////////////////////////////////////////////////////////////
         OnModelCreatingPartial(modelBuilder);
     }
