@@ -980,25 +980,71 @@ WHERE VOD.total_quantity_sold = (
     ) AS VOD
 );
 GO
+
 ---View best selling tìm top 20 cuốn sách có lượt mua lớn nhất
 -- Tạo view để lấy thông tin về 20 cuốn sách có số lượng bán nhiều nhất
+GO
 CREATE VIEW Top20BestSellingBooks AS
 SELECT TOP 20
+    BD.book_Detail_id,
     B.book_id,
     B.book_title,
+    B.author_id,
+    A.author_name,
+    A.author_description_,
+    A.profile_image_url,
     B.book_image_url,
+    B.book_description_,
+    B.Publisher,
+    B.language_,
+    B.Illustrations_note,
+    B.Pages,
+    B.genre_id,
+    G.genre_name,
+    B.category_id,
+    C.category_name,
+    BD.ISBN10,
     BD.ISBN13,
-    SUM(OD.quantity) AS total_quantity_sold
-FROM 
-    tbl_Book B
-JOIN 
-    tbl_Book_Detail BD ON B.book_id = BD.book_id
-JOIN 
-    tbl_order_detail OD ON BD.Book_Detail_id = OD.Book_Detail_id
+    BD.format_id,
+    F.format_name,
+    BD.stock_quantity,
+    BD.views_,
+    BD.price,
+    BD.discount,
+	SUM(OD.quantity) AS total_quantity_sold
+FROM tbl_Book B
+JOIN tbl_Author A ON B.author_id = A.author_id
+JOIN tbl_Book_Detail BD ON B.book_id = BD.book_id
+JOIN tbl_Genre G ON B.genre_id = G.genre_id
+JOIN tbl_Category C ON B.category_id = C.category_id
+JOIN tbl_Format F ON BD.format_id = F.format_id
+JOIN tbl_Order_Detail OD ON OD.book_Detail_id = BD.book_Detail_id
 GROUP BY 
+BD.book_Detail_id,
     B.book_id,
     B.book_title,
+    B.author_id,
+    A.author_name,
+    A.author_description_,
+    A.profile_image_url,
     B.book_image_url,
-    BD.ISBN13
+    B.book_description_,
+    B.Publisher,
+    B.language_,
+    B.Illustrations_note,
+    B.Pages,
+    B.genre_id,
+    G.genre_name,
+    B.category_id,
+    C.category_name,
+    BD.ISBN10,
+    BD.ISBN13,
+    BD.format_id,
+    F.format_name,
+    BD.stock_quantity,
+    BD.views_,
+    BD.price,
+    BD.discount
 ORDER BY 
     total_quantity_sold DESC;
+GO
