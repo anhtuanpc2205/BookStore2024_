@@ -1,0 +1,24 @@
+﻿@model IEnumerable<BookStore2024.ViewModels.ProductVM>
+
+<section class="tg-sectionspace tg-haslayout">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="tg-sectionhead">
+                    <h2><span>People’s Choice</span>Bestselling Books</h2>
+                    <a class="tg-btn" asp-action="BestSelling" asp-controller="Products">View All</a>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div id="tg-bestsellingbooksslider" class="tg-bestsellingbooksslider tg-bestsellingbooks owl-carousel">
+                    @foreach (var item in Model)
+                    {
+                        <div class="item">
+                            @await Html.PartialAsync("../Products/ProductItem", item)
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
