@@ -980,4 +980,25 @@ WHERE VOD.total_quantity_sold = (
     ) AS VOD
 );
 GO
-
+---View best selling tìm top 20 cuốn sách có lượt mua lớn nhất
+-- Tạo view để lấy thông tin về 20 cuốn sách có số lượng bán nhiều nhất
+CREATE VIEW Top20BestSellingBooks AS
+SELECT TOP 20
+    B.book_id,
+    B.book_title,
+    B.book_image_url,
+    BD.ISBN13,
+    SUM(OD.quantity) AS total_quantity_sold
+FROM 
+    tbl_Book B
+JOIN 
+    tbl_Book_Detail BD ON B.book_id = BD.book_id
+JOIN 
+    tbl_order_detail OD ON BD.Book_Detail_id = OD.Book_Detail_id
+GROUP BY 
+    B.book_id,
+    B.book_title,
+    B.book_image_url,
+    BD.ISBN13
+ORDER BY 
+    total_quantity_sold DESC;
