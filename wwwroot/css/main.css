@@ -1,5 +1,5 @@
 
-@import url(https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700|Playfair+Display:400,700|Work+Sans:300,400,500,600,700);
+/*@import url(https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700|Playfair+Display:400,700|Work+Sans:300,400,500,600,700);
 * {
 	margin: 0px;
 	padding: 0px;
@@ -114,12 +114,12 @@ textarea.form-control{
 	resize: none;
 	height: 210px;
 }
-.form-control::-webkit-input-placeholder { color: #666; } /* WebKit, Blink, Edge */
-.form-control:-moz-placeholder { color: #666; } /* Mozilla Firefox 4 to 18 */
-.form-control::-moz-placeholder { color: #666; } /* Mozilla Firefox 19+ */
-.form-control:-ms-input-placeholder { color: #666; } /* Internet Explorer 10-11 */
-.form-control::-ms-input-placeholder { color:#66; } /* Microsoft Edge */
-input:focus,
+.form-control::-webkit-input-placeholder { color: #666; }*/ /* WebKit, Blink, Edge */
+/*.form-control:-moz-placeholder { color: #666; }*/ /* Mozilla Firefox 4 to 18 */
+/*.form-control::-moz-placeholder { color: #666; }*/ /* Mozilla Firefox 19+ */
+/*.form-control:-ms-input-placeholder { color: #666; }*/ /* Internet Explorer 10-11 */
+/*.form-control::-ms-input-placeholder { color:#66; }*/ /* Microsoft Edge */
+/*input:focus,
 .select select:focus,
 .form-control:focus {
 	color: #666;
@@ -216,11 +216,11 @@ table > tbody + tbody { border-top: 2px solid #dbdbdb; }
 .table > tfoot > tr > td { padding: 6px 10px; }
 p ins { color: #666; }
 dl dd { margin-left: 20px; }
-address { font-style: italic; }
+address { font-style: italic; }*/
 /* =============================================
 			Theme Custom Select					
 ============================================= */
-.tg-select {
+/*.tg-select {
 	color:#666;
 	float:left;
 	width: 100%;
@@ -248,11 +248,11 @@ address { font-style: italic; }
 	-moz-appearance: none;
 	-webkit-appearance: none;
 }
-.tg-select select option { color:#666; }
+.tg-select select option { color:#666; }*/
 /* =============================================
 		Theme Custom CheckBox Radio				
 ============================================= */
-.tg-radio,
+/*.tg-radio,
 .tg-radio label,
 .tg-checkbox,
 .tg-checkbox label {
@@ -282,11 +282,11 @@ address { font-style: italic; }
 }
 .tg-radio input[type=radio] + label:before { content:'';}
 .tg-radio input[type=radio]:checked + label:before,
-.tg-checkbox input[type=checkbox]:checked + label:before {content:'\f046';}
+.tg-checkbox input[type=checkbox]:checked + label:before {content:'\f046';}*/
 /* =============================================
 			Theme Global Elements				
 ============================================= */
-.tg-haslayout {
+/*.tg-haslayout {
 	width:100%;
 	float:left;
 }
@@ -484,11 +484,11 @@ li.tg-rss a { background:#ff6600; }
 .tg-alignleft{
 	float:left;
 	margin:0 30px 30px 0;
-}
+}*/
 /* =============================================
 			Theme Pagination Style				
 ============================================= */
-.tg-pagination {
+/*.tg-pagination {
 	width:100%;
 	float: left;
 	font:14px/24px 'Work Sans', Arial, Helvetica, sans-serif;
@@ -545,11 +545,11 @@ li.tg-rss a { background:#ff6600; }
 	visibility:visible;
 }
 .tg-pagination ul li.tg-nextpage a:hover:after { right:2px; }
-.tg-pagination ul li.tg-prevpage a:hover:after { left:2px; }
+.tg-pagination ul li.tg-prevpage a:hover:after { left:2px; }*/
 /* =============================================
 			Theme BreadCrumb Style				
 ============================================= */
-.tg-breadcrumb {
+/*.tg-breadcrumb {
 	width:auto;
 	padding: 0;
 	color: #fff;
@@ -580,11 +580,11 @@ li.tg-rss a { background:#ff6600; }
 .tg-breadcrumb li a {
 	display:block;
 	color:#fff;
-}
+}*/
 /* =============================================
 			Theme Styling						
 ============================================= */
-.tg-themetabnav {
+/*.tg-themetabnav {
 	width: 100%;
 	float: left;
 	list-style: none;
@@ -705,11 +705,11 @@ body.tg-comingsoonpage .tg-wrapper{overflow:visible;}
 	font-size: 8px;
 	line-height: inherit;
 }
-.tg-open > .tg-dropdowarrow i:before{content: '\f107';}
+.tg-open > .tg-dropdowarrow i:before{content: '\f107';}*/
 /* =============================================
 			Theme Header Style					
 ============================================= */
-.tg-header {
+/*.tg-header {
 	z-index: 3;
 	position: relative;
 }
@@ -1293,11 +1293,11 @@ li.menu-item-has-mega-menu { position: static; }
 	float: left;
 	padding: 0 25px;
 	border-radius: 20px;
-}
+}*/
 /* =============================================
 			Theme Header V Two Style			
 ============================================= */
-.tg-headervtwo .tg-navigation > ul{position: static;}
+/*.tg-headervtwo .tg-navigation > ul{position: static;}
 .tg-navigationholder{
 	width: 100%;
 	float: left;
@@ -1385,11 +1385,11 @@ li.menu-item-has-mega-menu { position: static; }
 .tg-headervtwo .tg-themebadge{
 	background:#fff;
 	color:#666 !important;
-}
+}*/
 /* =============================================
 			Home Slider Style					
 ============================================= */
-.tg-homeslider {
+/*.tg-homeslider {
 	z-index: 1;
 	width: 100%;
 	float: left;
@@ -1492,11 +1492,11 @@ li.menu-item-has-mega-menu { position: static; }
 .tg-homeslider .owl-nav .tg-btnround:hover{border-color:#484848;}
 .tg-homeslider .owl-nav .tg-btnround:hover i{color:#484848;}
 .tg-homeslider .owl-nav .tg-btnround.tg-btnprev{left:60px;}
-.tg-homeslider .owl-nav .tg-btnround.tg-btnnext{right:60px;}
+.tg-homeslider .owl-nav .tg-btnround.tg-btnnext{right:60px;}*/
 /* =============================================
 			Home Slider V Two Style				
 ============================================= */
-.tg-homeslidervtwo .item{
+/*.tg-homeslidervtwo .item{
 	padding:0;
 	background: rgba(0, 0, 0, 0.20);
 }
@@ -1535,11 +1535,11 @@ li.menu-item-has-mega-menu { position: static; }
 	color:#fff;
 	background:none;
 	border-width:2px;
-}
+}*/
 /* =============================================
 			Home Slider V Three Style			
 ============================================= */
-.tg-homeslidervthree .tg-slidercontent{
+/*.tg-homeslidervthree .tg-slidercontent{
 	top:0;
 	right:0;
 	width:55%;
@@ -1588,11 +1588,11 @@ li.menu-item-has-mega-menu { position: static; }
 .tg-homeslidervthree .tg-slidercontent h1 span{display:block;}
 .tg-homeslidervthree .tg-slidercontent .tg-description{color:#fff;}
 .tg-homeslidervthree .tg-slidercontent .tg-btns{text-align:left;}
-.tg-slidercontent .tg-btns .tg-btn:first-child{margin-left:0;}
+.tg-slidercontent .tg-btns .tg-btn:first-child{margin-left:0;}*/
 /* =============================================
 			Status Style						
 ============================================= */
-.tg-allstatus {
+/*.tg-allstatus {
 	z-index: 2;
 	width: 100%;
 	float: left;
@@ -1647,11 +1647,11 @@ li.menu-item-has-mega-menu { position: static; }
 	display: block;
 	padding: 10px 0 0;
 	text-align: center;
-}
+}*/
 /* =============================================
 			Best Selling Book Style				
 ============================================= */
-.tg-bestsellingbooksslider .owl-nav{
+/*.tg-bestsellingbooksslider .owl-nav{
 	right: 0;
 	top: -86px;
 	width: auto;
@@ -1899,11 +1899,11 @@ li.menu-item-has-mega-menu { position: static; }
 	color: inherit;
 	font-size: 10px;
 	line-height: inherit;
-}
+}*/
 /* =============================================
 			Featured Item Container				
 ============================================= */
-.tg-featureditm{
+/*.tg-featureditm{
 	width: 100%;
 	float: left;
 }
@@ -1970,11 +1970,11 @@ li.menu-item-has-mega-menu { position: static; }
 	float: none;
 	display: block;
 	overflow: hidden;
-}
+}*/
 /* =============================================
 			New Release Style					
 ============================================= */
-.tg-newrelease,
+/*.tg-newrelease,
 .tg-newreleasebooks{
 	width: 100%;
 	float: left;
@@ -1984,11 +1984,11 @@ li.menu-item-has-mega-menu { position: static; }
 .tg-btns .tg-btn{
 	float: left;
 	margin: 0 30px 0 0;
-}
+}*/
 /* =============================================
 			Books Collection Counter			
 ============================================= */
-.tg-collectioncount{padding: 80px 0;}
+/*.tg-collectioncount{padding: 80px 0;}
 .tg-collectioncounters{
 	width: 100%;
 	float: left;
@@ -2047,11 +2047,11 @@ li.menu-item-has-mega-menu { position: static; }
 .tg-titlepluscounter h3{
 	margin: 0;
 	font:400 16px/16px 'Open Sans', Arial, Helvetica, sans-serif;
-}
+}*/
 /* =============================================
 			Picked By Authores					
 ============================================= */
-.tg-pickedbyauthorslider .item{
+/*.tg-pickedbyauthorslider .item{
 	width:100%;
 	float:left;
 	padding: 0 15px;
@@ -2184,11 +2184,11 @@ li.menu-item-has-mega-menu { position: static; }
 	left: 0;
 	opacity: 1;
 	visibility: visible;
-}
+}*/
 /* =============================================
 			Testimonials Style					
 ============================================= */
-.tg-testimonials{
+/*.tg-testimonials{
 	width: 100%;
 	float: left;
 }
@@ -2268,11 +2268,11 @@ li.menu-item-has-mega-menu { position: static; }
 	position: absolute;
 }
 .tg-testimonialsslider .tg-btnnext{ right: -60px; }
-.tg-testimonialsslider .tg-btnprev{ left: -60px; }
+.tg-testimonialsslider .tg-btnprev{ left: -60px; }*/
 /* =============================================
 			Authors Style						
 ============================================= */
-.tg-authorsslider .owl-nav {
+/*.tg-authorsslider .owl-nav {
 	top: -86px;
 	right: 15px;
 	width: auto;
@@ -2343,11 +2343,11 @@ li.menu-item-has-mega-menu { position: static; }
 .tg-author:hover .tg-authorcontent .tg-socialicons li a i{color: #fff;}
 .tg-author:hover .tg-authorcontent .tg-socialicons li.tg-facebook a{background: #3b5999;}
 .tg-author:hover .tg-authorcontent .tg-socialicons li.tg-twitter a{background: #55acee;}
-.tg-author:hover .tg-authorcontent .tg-socialicons li.tg-linkedin a{background: #0077B5;}
+.tg-author:hover .tg-authorcontent .tg-socialicons li.tg-linkedin a{background: #0077B5;}*/
 /* =============================================
 			Call to Action Style				
 ============================================= */
-.tg-calltoaction{
+/*.tg-calltoaction{
 	width: 100%;
 	float: left;
 	position: relative;
@@ -2370,11 +2370,11 @@ li.menu-item-has-mega-menu { position: static; }
 	right: 0;
 	margin: -20px 0 0;
 	position: absolute;
-}
+}*/
 /* =============================================
 			latest News Style					
 ============================================= */
-.tg-postslider .owl-nav {
+/*.tg-postslider .owl-nav {
 	top: -86px;
 	right: 15px;
 	width: auto;
@@ -2458,11 +2458,11 @@ li.menu-item-has-mega-menu { position: static; }
 	border-color:#fff;
 	-webkit-box-shadow: 0 0 10px 2px rgba(0,0,0,0.20);
 	box-shadow: 0 0 10px 2px rgba(0,0,0,0.20);
-}
+}*/
 /* =============================================
 			Footer Style						
 ============================================= */
-.tg-footer{
+/*.tg-footer{
 	background: #f7f7f7;
 	border-top: 2px solid;
 }
@@ -2856,14 +2856,14 @@ li.menu-item-has-mega-menu { position: static; }
 	display: block;
 	color: #484848;
 	line-height: inherit;
-}
+}*/
 /* ==========================================================================
 			Inner Pages Style												
 ========================================================================== */
 /* =============================================
 			Inner Banner Style					
 ============================================= */
-.tg-innerbanner{
+/*.tg-innerbanner{
 	height:300px;
 	text-align:center;
 	-webkit-box-align: center;
@@ -2888,11 +2888,11 @@ li.menu-item-has-mega-menu { position: static; }
 	font-size:50px;
 	line-height:40px;
 	font-weight:bold;
-}
+}*/
 /* =============================================
 			About Us Style						
 ============================================= */
-.tg-aboutus,
+/*.tg-aboutus,
 .tg-aboutusshortcode{
 	width:100%;
 	float:left;
@@ -2927,11 +2927,11 @@ li.menu-item-has-mega-menu { position: static; }
 }
 
 .tg-member .tg-authorcontent{padding:20px 0 0;}
-.tg-member .tg-authorcontent span{padding:15px 0 20px;}
+.tg-member .tg-authorcontent span{padding:15px 0 20px;}*/
 /* =============================================
 			Success Journey Style				
 ============================================= */
-.tg-successstory{
+/*.tg-successstory{
 	width:100%;
 	float:left;
 }
@@ -2964,19 +2964,19 @@ li.menu-item-has-mega-menu { position: static; }
 	width: auto;
 	float: none;
 	position: absolute;
-}
+}*/
 /* =============================================
 			Author Grid Style					
 ============================================= */
-.tg-authorsgrid{
+/*.tg-authorsgrid{
 	width:100%;
 	float:left;
 	padding:80px 0 65px;
-}
+}*/
 /* =============================================
 			404 Error Style						
 ============================================= */
-.tg-404error{
+/*.tg-404error{
 	width:100%;
 	float:left;
 }
@@ -3021,11 +3021,11 @@ li.menu-item-has-mega-menu { position: static; }
 .tg-gobackhome span{
 	font-size:13px;
 	line-height:13px;
-}
+}*/
 /* =============================================
 			Contact Us Style					
 ============================================= */
-.tg-contactus{
+/*.tg-contactus{
 	width:100%;
 	float:left;
 }
@@ -3073,19 +3073,19 @@ li.menu-item-has-mega-menu { position: static; }
 .tg-contactdetail .tg-socialicons{
 	width:100%;
 	float:left;
-}
+}*/
 /* =============================================
 			News Grid Style						
 ============================================= */
-.tg-newsgrid{
+/*.tg-newsgrid{
 	width:100%;
 	float:left;
 }
-.tg-newsgrid .tg-post{min-height:390px;}
+.tg-newsgrid .tg-post{min-height:390px;}*/
 /* =============================================
 			News List Style						
 ============================================= */
-.tg-newslist{
+/*.tg-newslist{
 	width:100%;
 	float:left;
 }
@@ -3101,11 +3101,11 @@ li.menu-item-has-mega-menu { position: static; }
 	float:left;
 	padding:0 0 0 30px;
 }
-.tg-newslist .tg-post .tg-postcontent .tg-description p a{text-decoration:none;}
+.tg-newslist .tg-post .tg-postcontent .tg-description p a{text-decoration:none;}*/
 /* =============================================
 			News Detail Style					
 ============================================= */
-.tg-newsdetailimg{
+/*.tg-newsdetailimg{
 	width:100%;
 	float:left;
 	margin:0 0 30px;
@@ -3385,11 +3385,11 @@ blockquote .tg-bookwriter{
 	height:210px;
 }
 .tg-formleavecomment .form-group:last-child{margin:0;}
-.tg-formleavecomment .form-group .tg-btn{padding:0 60px;}
+.tg-formleavecomment .form-group .tg-btn{padding:0 60px;}*/
 /* =============================================
 			Products Style						
 ============================================= */
-.tg-products{
+/*.tg-products{
 	width:100%;
 	float:left;
 }
@@ -3499,11 +3499,11 @@ blockquote .tg-bookwriter{
 	width:auto;
 	margin:20px auto 0;
 }
-.tg-productgrid .tg-postbook {min-height: 536px;}
+.tg-productgrid .tg-postbook {min-height: 536px;}*/
 /* =============================================
 			Product Detail Style				
 ============================================= */
-.tg-productdetail{
+/*.tg-productdetail{
 	width:100%;
 	float:left;
 }
@@ -3954,11 +3954,11 @@ blockquote .tg-bookwriter{
 	width: auto;
 	float: none;
 	position: absolute;
-}
+}*/
 /* =============================================
 			Author Detail Style					
 ============================================= */
-.tg-authordetail{
+/*.tg-authordetail{
 	width:100%;
 	float:left;
 }
@@ -4003,11 +4003,11 @@ blockquote .tg-bookwriter{
 }
 .tg-booksfromauthor .tg-postbook .tg-btn{padding:0;}
 .tg-booksfromauthor .tg-postbook .tg-btn i,
-.tg-booksfromauthor .tg-postbook .tg-btn em{float:none;}
+.tg-booksfromauthor .tg-postbook .tg-btn em{float:none;}*/
 /* =============================================
 			Comingsoon Style					
 ============================================= */
-body.tg-comingsoonpage{
+/*body.tg-comingsoonpage{
 	height:auto;
 	position:static;
 	overflow-x: hidden;
@@ -4140,4 +4140,4 @@ body.tg-comingsoonpage:before{
 .tg-comingsoonholder .tg-formnewsletter input{margin:0;}
 body.tg-comingsoonpage .tg-footer{border:0;}
 body.tg-comingsoonpage .tg-footerbar{position:static;}
-.tg-userlogin  figure a img {width: 50px; height: 50px;}
+.tg-userlogin  figure a img {width: 50px; height: 50px;}*/
