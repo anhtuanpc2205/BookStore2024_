@@ -2,55 +2,55 @@
 @model BookStore2024.ViewModels.ProductVM
 
 
-    <div class="tg-postbook">
-        <figure class="tg-featureimg">
-            <a asp-action="Detail" asp-controller="Products" asp-route-DetailId="@Model.BookDetailId">
-                <div class="tg-bookimg">
-                    <div class="tg-frontcover"><img src="@Model.ProductImg" alt="ProductImg"></div>
-                    <div class="tg-backcover"><img src="@Model.ProductImg" alt="ProductImg"></div>
-                </div>
-            </a>
-                <a class="tg-btnaddtowishlist" href="javascript:void(0);">
-                    <i class="icon-heart"></i>
-                    <span>add to wishlist</span>
+<div class="tg-postbook">
+    <figure class="tg-featureimg">
+        <a asp-action="Detail" asp-controller="Products" asp-route-DetailId="@Model.BookDetailId">
+            <div class="tg-bookimg">
+                <div class="tg-frontcover"><img src="@Model.ProductImg" alt="ProductImg"></div>
+                <div class="tg-backcover"><img src="@Model.ProductImg" alt="ProductImg"></div>
+            </div>
+        </a>
+        <a class="tg-btnaddtowishlist" href="javascript:void(0);">
+            <i class="icon-heart"></i>
+            <span>add to wishlist</span>
+        </a>
+
+    </figure>
+    <div class="tg-postbookcontent">
+        <ul class="tg-bookscategories">
+            <li><a href="javascript:void(0);">@Model.CategoryName</a></li>
+        </ul>
+        @if (Model.Discount != 0)
+        {
+            <div class="tg-themetagbox">
+                <span class="tg-themetag">sale</span>
+            </div>
+        }
+        <div class="tg-booktitle">
+            <h3>
+                <a asp-action="Detail" asp-controller="Products" asp-route-DetailId="@Model.BookDetailId">
+                    @Model.ProductName - [@Model.FormatName]
                 </a>
-            
-        </figure>
-        <div class="tg-postbookcontent">
-            <ul class="tg-bookscategories">
-                <li><a href="javascript:void(0);">@Model.CategoryName</a></li>
-            </ul>
+            </h3>
+        </div>
+        <span class="tg-bookwriter">By: <a href="javascript:void(0);">@Model.AuthorName</a></span>
+        <span class="tg-stars"><span></span></span>
+        <span class="tg-bookprice">
             @if (Model.Discount != 0)
             {
-                <div class="tg-themetagbox">
-                    <span class="tg-themetag">sale</span>
-                </div>
+                <ins>$@(Model.Price - Model.Discount)</ins>
+                <del>$@Model.Price</del>
             }
-            <div class="tg-booktitle">
-                <h3>
-                    <a asp-action="Detail" asp-controller="Products" asp-route-DetailId="@Model.BookDetailId">
-                        @Model.ProductName - [@Model.FormatName]
-                    </a>
-                </h3>
-            </div>
-            <span class="tg-bookwriter">By: <a href="javascript:void(0);">@Model.AuthorName</a></span>
-            <span class="tg-stars"><span></span></span>
-            <span class="tg-bookprice">
-                @if (Model.Discount != 0)
-                {
-                    <ins>$@(Model.Price - Model.Discount)</ins>
-                    <del>$@Model.Price</del>
-                }
-                @if (Model.Discount == 0)
-                {
-                    <ins>$@Model.Price</ins>
-                }
-            </span>
-            <a class="tg-btn tg-btnstyletwo btn-add-tocart" asp-action="AddtoCart" asp-controller="Cart" asp-route-productDetailId="@Model.BookDetailId">
-                <i class="fa fa-shopping-basket"></i>
-                <em>Add To Cart</em>
-            </a>
-        </div>
+            @if (Model.Discount == 0)
+            {
+                <ins>$@Model.Price</ins>
+            }
+        </span>
+        <a class="tg-btn tg-btnstyletwo btn-add-tocart" asp-action="AddtoCart" asp-controller="Cart" asp-route-productDetailId="@Model.BookDetailId">
+            <i class="fa fa-shopping-basket"></i>
+            <em>Add To Cart</em>
+        </a>
     </div>
+</div>
 
 

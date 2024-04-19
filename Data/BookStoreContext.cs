@@ -472,9 +472,12 @@ public partial class BookStoreContext : DbContext
                 .HasMaxLength(255)
                 .HasColumnName("book_title");
             entity.Property(e => e.AuthorName).HasColumnName("author_name").HasMaxLength(255);
-            entity.Property(e => e.BookImageUrl).HasMaxLength(255)
+            entity.Property(e => e.HomeBannerImageUrl).HasMaxLength(255)
                 .IsUnicode(false)
-                .HasColumnName("book_image_url");
+                .HasColumnName("img_home_banner");
+            entity.Property(e => e.ProductsBannerImageUrl).HasMaxLength(255)
+                .IsUnicode(false)
+                .HasColumnName("img_products_banner");
             entity.Property(e => e.Price).HasColumnName("price");
             entity.Property(e => e.Discount).HasColumnName("discount");
         });

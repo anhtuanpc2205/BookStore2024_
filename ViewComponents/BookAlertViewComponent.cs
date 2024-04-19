@@ -11,16 +11,18 @@ namespace BookStore2024.ViewComponents
         private readonly BookStoreContext DBContext;
         public BookAlertViewComponent(BookStoreContext DatabaseContext) => DBContext = DatabaseContext;
 
-        public IViewComponentResult Invoke()
+        public IViewComponentResult Invoke(int? pg_num = 1)
         {
             var data = DBContext.ViewBookAlert.Select(BA => new BookAlertVM
             {
                 BookTitle = BA.BookTitle,
                 BookDetailId = BA.BookDetailId,
-                BookImageUrl = BA.BookImageUrl,
+                HomeBannerImageUrl = BA.HomeBannerImageUrl,
+                ProductsBannerImageUrl = BA.ProductsBannerImageUrl,
                 AuthorName = BA.AuthorName,
                 Price = BA.Price,
-                Discount = BA.Discount
+                Discount = BA.Discount,
+                PageNumber = pg_num
             }).FirstOrDefault();
             return View("Default",data);
         }

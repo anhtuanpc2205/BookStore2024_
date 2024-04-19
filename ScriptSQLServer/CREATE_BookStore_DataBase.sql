@@ -107,6 +107,13 @@ CREATE TABLE tbl_User_wishlist(
     user_id_ INT NOT NULL, -- Khóa ngoại: ID của người dùng
     book_Detail_id INT NOT NULL, -- Khóa ngoại: ID của chi tiết cuốn sách
 );
+
+CREATE TABLE tbl_book_alert(
+	alert_id INT IDENTITY(1,1) PRIMARY KEY,
+    book_Detail_id INT,
+    img_products_banner VARCHAR(255),
+    img_home_banner VARCHAR(255)
+);
 GO
 ---------------------------------------------------------------------------------------------------------------------------------------------
 --INSERT BEGIN
@@ -777,6 +784,10 @@ VALUES
 (3, 8, 3),
 (3, 9, 3);
 
+-- bảng book_alert
+INSERT INTO tbl_book_alert (book_Detail_id, img_products_banner, img_home_banner)
+VALUES (1, '../images/banners/img-04.png', '../images/banners/img-02.png');
+
 
 UPDATE tbl_Book_Detail
 SET discount = price/5
@@ -825,6 +836,11 @@ ALTER TABLE tbl_User_wishlist
 ADD CONSTRAINT fk_user_wishlist_user_id FOREIGN KEY (user_id_) REFERENCES tbl_User(user_id_); 
 ALTER TABLE tbl_User_wishlist
 ADD CONSTRAINT fk_user_wishlist_Book_Detail FOREIGN KEY (Book_Detail_id) REFERENCES tbl_Book_Detail(Book_Detail_id);
+
+--tbl_book_alert
+ALTER TABLE tbl_book_alert
+ADD CONSTRAINT FK_book_alert FOREIGN KEY (book_Detail_id)
+REFERENCES tbl_Book_Detail(book_Detail_id);
 --FOREIGN KEY END
 ---------------------------------------------------------------------------------------------------------------------------------------------
 GO
@@ -945,44 +961,63 @@ GROUP BY
     A.author_id, A.author_name,A.profile_image_url
 GO
 ---View tìm cuốn sách có số lượng mua lớn nhất
+--CREATE VIEW ViewBookAlert AS
+--SELECT 
+--    VOD.Book_Detail_id,
+--    VOD.book_title,
+--    VOD.total_quantity_sold,
+--    B.book_image_url,
+--    A.author_name,
+--    BD.price,
+--    BD.discount
+--FROM (
+--    SELECT 
+--        Book_Detail_id,
+--        book_title,
+--        SUM(quantity) AS total_quantity_sold
+--    FROM 
+--        ViewOrderDetails
+--    GROUP BY 
+--        Book_Detail_id, book_title
+--) AS VOD 
+--JOIN tbl_Book_Detail BD ON VOD.Book_Detail_id = BD.Book_Detail_id
+--JOIN tbl_Book B ON BD.book_id = B.book_id
+--JOIN tbl_Author A ON B.author_id = A.author_id
+--WHERE VOD.total_quantity_sold = (
+--    SELECT MAX(total_quantity_sold)
+--    FROM (
+--        SELECT 
+--            Book_Detail_id,
+--            SUM(quantity) AS total_quantity_sold
+--        FROM 
+--            ViewOrderDetails
+--        GROUP BY 
+--            Book_Detail_id
+--    ) AS VOD
+--);
+--GO
+--VIEW ViewBookAlert dùng cho banner book alert
 CREATE VIEW ViewBookAlert AS
 SELECT 
-    VOD.Book_Detail_id,
-    VOD.book_title,
-    VOD.total_quantity_sold,
+    BA.book_Detail_id,
+    book_title,
     B.book_image_url,
     A.author_name,
     BD.price,
-    BD.discount
-FROM (
-    SELECT 
-        Book_Detail_id,
-        book_title,
-        SUM(quantity) AS total_quantity_sold
-    FROM 
-        ViewOrderDetails
-    GROUP BY 
-        Book_Detail_id, book_title
-) AS VOD 
-JOIN tbl_Book_Detail BD ON VOD.Book_Detail_id = BD.Book_Detail_id
-JOIN tbl_Book B ON BD.book_id = B.book_id
-JOIN tbl_Author A ON B.author_id = A.author_id
-WHERE VOD.total_quantity_sold = (
-    SELECT MAX(total_quantity_sold)
-    FROM (
-        SELECT 
-            Book_Detail_id,
-            SUM(quantity) AS total_quantity_sold
-        FROM 
-            ViewOrderDetails
-        GROUP BY 
-            Book_Detail_id
-    ) AS VOD
-);
-GO
+    BD.discount,
+	BA.img_home_banner,
+	BA.img_products_banner
+FROM 
+	tbl_book_alert BA
+JOIN
+	tbl_Book_Detail BD ON BA.book_Detail_id = bd.book_Detail_id
+JOIN
+	tbl_Book B ON B.book_id = BD.book_Detail_id
+JOIN
+	tbl_Author A ON B.author_id = A.author_id
+
 
 ---View best selling tìm top 20 cuốn sách có lượt mua lớn nhất
--- Tạo view để lấy thông tin về 20 cuốn sách có số lượng bán nhiều nhất
 GO
 CREATE VIEW Top20BestSellingBooks AS
 SELECT TOP 20
