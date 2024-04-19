@@ -3438,9 +3438,9 @@ blockquote .tg-bookwriter{
 	text-align:left;
 }
 .tg-featurebook .tg-featureditmcontent .tg-btn{margin:10px 0 0;}
-.tg-productgrid {
-	width: 93%; /*x*/
-	float: left;
+.tg-productgrid{
+	width:100%;
+	float:left;
 }
 .tg-refinesearch {
 	width: 100%;
@@ -3583,7 +3583,7 @@ blockquote .tg-bookwriter{
 .tg-quantityholder .minus{margin:0 6px 0 0;}
 .tg-quantityholder .plus{margin:0 0 0 7px;}
 .tg-quantityholder input{
-	width: 61%; /*x*/
+	width: 9.26em;
 	text-align:center;
 }
 .tg-quantityholder .minus,
