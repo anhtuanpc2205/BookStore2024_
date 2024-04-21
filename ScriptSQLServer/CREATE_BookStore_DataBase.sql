@@ -108,11 +108,18 @@ CREATE TABLE tbl_User_wishlist(
     book_Detail_id INT NOT NULL, -- Khóa ngoại: ID của chi tiết cuốn sách
 );
 
-CREATE TABLE tbl_book_alert(
+-- bảng này lưu thông tin book alert
+CREATE TABLE tbl_book_alert( 
 	alert_id INT IDENTITY(1,1) PRIMARY KEY,
     book_Detail_id INT,
     img_products_banner VARCHAR(255),
     img_home_banner VARCHAR(255)
+);
+GO
+
+CREATE TABLE tbl_new_release_books(
+    new_release_id INT IDENTITY(1,1) PRIMARY KEY,
+    book_Detail_id INT
 );
 GO
 ---------------------------------------------------------------------------------------------------------------------------------------------
@@ -788,6 +795,13 @@ VALUES
 INSERT INTO tbl_book_alert (book_Detail_id, img_products_banner, img_home_banner)
 VALUES (1, '../images/banners/img-04.png', '../images/banners/img-02.png');
 
+-- bảng tbl_new_release_books
+INSERT INTO tbl_new_release_books (book_Detail_id)
+VALUES
+(2),
+(5),
+(18);
+
 
 UPDATE tbl_Book_Detail
 SET discount = price/5
@@ -840,6 +854,11 @@ ADD CONSTRAINT fk_user_wishlist_Book_Detail FOREIGN KEY (Book_Detail_id) REFEREN
 --tbl_book_alert
 ALTER TABLE tbl_book_alert
 ADD CONSTRAINT FK_book_alert FOREIGN KEY (book_Detail_id)
+REFERENCES tbl_Book_Detail(book_Detail_id);
+
+--tbl_new_release_books
+ALTER TABLE tbl_new_release_books
+ADD CONSTRAINT FK_new_release FOREIGN KEY (book_Detail_id)
 REFERENCES tbl_Book_Detail(book_Detail_id);
 --FOREIGN KEY END
 ---------------------------------------------------------------------------------------------------------------------------------------------
@@ -1082,4 +1101,25 @@ BD.book_Detail_id,
     BD.discount
 ORDER BY 
     total_quantity_sold DESC;
+GO
+
+CREATE VIEW NewReleaseBooks
+AS
+SELECT 
+    BD.book_Detail_id,
+    B.book_title,
+    A.author_name,
+    B.book_image_url,
+    B.book_description_,
+    G.genre_name,
+    B.category_id,
+    C.category_name,
+    F.format_name
+FROM tbl_Book B
+JOIN tbl_Author A ON B.author_id = A.author_id
+JOIN tbl_Book_Detail BD ON B.book_id = BD.book_id
+JOIN tbl_Genre G ON B.genre_id = G.genre_id
+JOIN tbl_Category C ON B.category_id = C.category_id
+JOIN tbl_Format F ON BD.format_id = F.format_id
+JOIN tbl_new_release_books NR ON NR.book_Detail_id = BD.book_Detail_id;
 GO

@@ -36,8 +36,12 @@ public partial class BookStoreContext : DbContext
     public virtual DbSet<TblUser> TblUsers { get; set; }
 
     public virtual DbSet<TblUserWishlist> TblUserWishlists { get; set; }
+    /////////////////////////////////////////////////////////////////
+    public virtual DbSet<TblBookAlert> TblBookAlerts { get; set; }
 
-    public virtual DbSet<UserWishlist> UserWishlists { get; set; }
+    public virtual DbSet<tblNewRelease> TblNewReleases { get; set; }
+    /////////////////////////////////////////////////////////////////
+    public virtual DbSet<ViewUserWishlist> ViewUserWishlist { get; set; }
 
     public virtual DbSet<ViewBookDetail> ViewBookDetails { get; set; }
 
@@ -50,6 +54,8 @@ public partial class BookStoreContext : DbContext
     public virtual DbSet<ViewBookAlert> ViewBookAlert { get; set; }
 
     public virtual DbSet<ViewBestSelling> ViewBestSelling { get; set; }
+
+    public virtual DbSet<ViewNewReleaseBooks> ViewNewReleaseBooks { get; set; }
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
         => optionsBuilder.UseSqlServer("Data Source=.;Initial Catalog=BookStore;Integrated Security=True;Trust Server Certificate=True");
@@ -322,8 +328,40 @@ public partial class BookStoreContext : DbContext
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("fk_user_wishlist_user_id");
         });
+        ////////////////////////
+        modelBuilder.Entity<TblBookAlert>(entity =>
+        {
+            entity.HasKey(e => e.alertId).HasName("PK__tbl_Book__3975A1DF3612F115");
 
-        modelBuilder.Entity<UserWishlist>(entity =>
+            entity.ToTable("tbl_book_alert");
+
+            entity.Property(e => e.alertId).HasColumnName("alert_id");
+            entity.Property(e => e.BookDetailId).HasColumnName("book_Detail_id");
+            entity.Property(e => e.HomeBannerImageUrl).HasColumnName("img_home_banner");
+            entity.Property(e => e.ProductsBannerImageUrl).HasColumnName("img_products_banner");
+
+            entity.HasOne(d => d.BookDetail).WithMany(p => p.TblBookAlerts)
+                .HasForeignKey(d => d.BookDetailId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_book_alert");
+
+        });
+        modelBuilder.Entity<tblNewRelease>(entity => 
+        {
+            entity.HasKey(e => e.newReleaseID).HasName("PK__tbl_Newr__4975A1DF3612F115");
+
+            entity.ToTable("tbl_new_release_books");
+
+            entity.Property(e => e.newReleaseID).HasColumnName("new_release_id");
+            entity.Property(e => e.BookDetailId).HasColumnName("book_Detail_id");
+
+            entity.HasOne(d => d.BookDetail).WithMany(p => p.TblNewReleases)
+                .HasForeignKey(d => d.BookDetailId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_new_release");
+        });
+        ////////////////////////
+        modelBuilder.Entity<ViewUserWishlist>(entity =>
         {
             entity
                 .HasNoKey()
@@ -543,6 +581,36 @@ public partial class BookStoreContext : DbContext
             entity.Property(e => e.Views).HasColumnName("views_");
             entity.Property(e => e.TotalQuantitySold).HasColumnName("total_quantity_sold");
         });
+
+        modelBuilder.Entity<ViewNewReleaseBooks>(entity =>
+        {
+            entity
+                .HasNoKey()
+                .ToView("NewReleaseBooks");
+            entity.Property(e => e.BookDetailId).HasColumnName("Book_Detail_id");
+            entity.Property(e => e.AuthorName)
+                .HasMaxLength(255)
+                .HasColumnName("author_name");
+            entity.Property(e => e.BookDescription).HasColumnName("book_description_");
+            entity.Property(e => e.BookImageUrl)
+                .HasMaxLength(255)
+                .IsUnicode(false)
+                .HasColumnName("book_image_url");
+            entity.Property(e => e.BookTitle)
+                .HasMaxLength(255)
+                .HasColumnName("book_title");
+            entity.Property(e => e.CategoryId).HasColumnName("category_id");
+            entity.Property(e => e.CategoryName)
+                .HasMaxLength(50)
+                .HasColumnName("category_name");
+            entity.Property(e => e.FormatName)
+                .HasMaxLength(50)
+                .HasColumnName("format_name");
+            entity.Property(e => e.GenreName)
+                .HasMaxLength(50)
+                .HasColumnName("genre_name");
+        });
+
         /////////////////////////////////////////////////////////////////////////////////////////////
         OnModelCreatingPartial(modelBuilder);
     }
