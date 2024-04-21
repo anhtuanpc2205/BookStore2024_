@@ -521,7 +521,7 @@ public partial class BookStoreContext : DbContext
         });
         modelBuilder.Entity<ViewBestSelling>(entity =>
         {
-            entity.HasNoKey().ToView("Top20BestSellingBooks");
+            entity.HasNoKey().ToView("ViewTop20BestSellingBooks");
 
             entity.Property(e => e.BookDetailId).HasColumnName("Book_Detail_id");
             entity.Property(e => e.AuthorDescription).HasColumnName("author_description_");
@@ -586,7 +586,7 @@ public partial class BookStoreContext : DbContext
         {
             entity
                 .HasNoKey()
-                .ToView("NewReleaseBooks");
+                .ToView("ViewNewReleaseBooks");
             entity.Property(e => e.BookDetailId).HasColumnName("Book_Detail_id");
             entity.Property(e => e.AuthorName)
                 .HasMaxLength(255)

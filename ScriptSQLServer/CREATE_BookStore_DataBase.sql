@@ -967,17 +967,20 @@ GO
 ---View cho biết số lượng blog mà 1 tác giả viết
 GO
 CREATE VIEW ViewTopBloger AS
-SELECT 
+SELECT
 	A.author_id,
 	A.author_name,
 	A.profile_image_url,
 	COUNT(B.blog_id) AS num_blogs
 FROM
 	tbl_Author A
-JOIN 
+LEFT JOIN 
 	tbl_Blog B ON A.author_id = B.author_id
 GROUP BY 
     A.author_id, A.author_name,A.profile_image_url
+ORDER BY num_blogs DESC
+
+
 GO
 ---View tìm cuốn sách có số lượng mua lớn nhất
 --CREATE VIEW ViewBookAlert AS
@@ -1038,7 +1041,8 @@ JOIN
 
 ---View best selling tìm top 20 cuốn sách có lượt mua lớn nhất
 GO
-CREATE VIEW Top20BestSellingBooks AS
+CREATE VIEW ViewTop20BestSellingBooks AS
+
 SELECT TOP 20
     BD.book_Detail_id,
     B.book_id,
@@ -1065,14 +1069,14 @@ SELECT TOP 20
     BD.views_,
     BD.price,
     BD.discount,
-	SUM(OD.quantity) AS total_quantity_sold
-FROM tbl_Book B
-JOIN tbl_Author A ON B.author_id = A.author_id
-JOIN tbl_Book_Detail BD ON B.book_id = BD.book_id
-JOIN tbl_Genre G ON B.genre_id = G.genre_id
-JOIN tbl_Category C ON B.category_id = C.category_id
-JOIN tbl_Format F ON BD.format_id = F.format_id
-JOIN tbl_Order_Detail OD ON OD.book_Detail_id = BD.book_Detail_id
+	ISNULL(SUM(OD.quantity) , 0)AS total_quantity_sold
+FROM tbl_Book_Detail BD
+LEFT JOIN tbl_Book B ON B.book_id = BD.book_id
+LEFT JOIN tbl_Author A ON B.author_id = A.author_id
+LEFT JOIN tbl_Genre G ON B.genre_id = G.genre_id
+LEFT JOIN tbl_Category C ON B.category_id = C.category_id
+LEFT JOIN tbl_Format F ON BD.format_id = F.format_id
+LEFT JOIN tbl_Order_Detail OD ON OD.book_Detail_id = BD.book_Detail_id
 GROUP BY 
 BD.book_Detail_id,
     B.book_id,
@@ -1103,7 +1107,9 @@ ORDER BY
     total_quantity_sold DESC;
 GO
 
-CREATE VIEW NewReleaseBooks
+
+--- View NewReleaseBooks xem những cuốn sách trong banner new release
+CREATE VIEW ViewNewReleaseBooks
 AS
 SELECT 
     BD.book_Detail_id,
@@ -1122,4 +1128,21 @@ JOIN tbl_Genre G ON B.genre_id = G.genre_id
 JOIN tbl_Category C ON B.category_id = C.category_id
 JOIN tbl_Format F ON BD.format_id = F.format_id
 JOIN tbl_new_release_books NR ON NR.book_Detail_id = BD.book_Detail_id;
+GO
+
+--- View AuthorDetail xem chi tiết thông tin của 1 tác giả (có thêm phần đếm số sách đã viết của tác giả đó) 
+CREATE VIEW ViewAuthorDetail
+AS
+SELECT 
+	   A.author_id
+      ,author_name
+      ,author_description_
+      ,profile_image_url
+	  ,count(book_id) As published_books
+  FROM tbl_Author A
+  LEFT OUTER JOIN tbl_Book B ON A.author_id = B.author_id
+  GROUP BY A.author_id
+      ,author_name
+      ,author_description_
+      ,profile_image_url
 GO
