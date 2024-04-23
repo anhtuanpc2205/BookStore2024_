@@ -3,48 +3,45 @@
 }
 
 @RenderSection("BreadCrumb", required: false)
+<div class="tg-sectionspace tg-haslayout">
+    <div class="container">
+        <div class="row">
+            <div id="tg-twocolumns" class="tg-twocolumns">
+                <div class="col-xs-12 col-sm-8 col-md-8 col-lg-9 pull-right">
+                    <div id="tg-content" class="tg-content">
+                        <div class="tg-products">
+                            @{
+                                var showContent = true;
+                                var currentUrl = Context.Request.Path;
 
-<main id="tg-main" class="tg-main tg-haslayout">
-
-    <div class="tg-sectionspace tg-haslayout">
-        <div class="container">
-            <div class="row">
-                <div id="tg-twocolumns" class="tg-twocolumns">
-                    <div class="col-xs-12 col-sm-8 col-md-8 col-lg-9 pull-right">
-                        <div id="tg-content" class="tg-content">
-                            <div class="tg-products">
-                                @{
-                                    var showContent = true;
-                                    var currentUrl = Context.Request.Path;
-
-                                    // Kiểm tra nếu URL có thêm bất kỳ tham số query nào
-                                    if (Context.Request.QueryString.HasValue)
-                                    {
-                                        showContent = false;
-                                    }
-                                }
-                                @if (showContent)
+                                // Kiểm tra nếu URL có thêm bất kỳ tham số query nào
+                                if (Context.Request.QueryString.HasValue)
                                 {
-                                    @await Component.InvokeAsync("BookAlert")
+                                    showContent = false;
+                                }
+                            }
+                            @if (showContent)
+                            {
+                                @await Component.InvokeAsync("BookAlert")
 
-                                }@* //chỉ hiển thị Alert ở phần trang chính Products, những trang con không hiển thị phần này *@
-                                @RenderBody()
-                            </div>
+                            }@* //chỉ hiển thị Alert ở phần trang chính Products, những trang con không hiển thị phần này *@
+                            @RenderBody()
                         </div>
                     </div>
-                    <div class="col-xs-12 col-sm-4 col-md-4 col-lg-3 pull-left">
-                        <aside id="tg-sidebar" class="tg-sidebar">
-                            <div class="tg-widget tg-widgetsearch">
-                                @await Html.PartialAsync("_Search")
-                            </div>
-                            @await Component.InvokeAsync("CategoriesMenu")
-                            @await Component.InvokeAsync("TrendingPost")
-                            @await Component.InvokeAsync("TopBlogers")
-                        </aside>
-                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-4 col-md-4 col-lg-3 pull-left">
+                    <aside id="tg-sidebar" class="tg-sidebar">
+                        <div class="tg-widget tg-widgetsearch">
+                            @await Html.PartialAsync("_Search")
+                        </div>
+                        @await Component.InvokeAsync("CategoriesMenu")
+                        @await Component.InvokeAsync("TrendingPost")
+                        @await Component.InvokeAsync("TopBlogers")
+                    </aside>
                 </div>
             </div>
         </div>
     </div>
-</main>
+</div>
+
 

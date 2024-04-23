@@ -50,12 +50,14 @@ public partial class BookStoreContext : DbContext
     public virtual DbSet<ViewBlogDetail> ViewBlogDetail { get; set; }
 
     public virtual DbSet<ViewTopBloger> ViewTopBloger { get; set; }
-
+    /////////////////////////////////////////////////////////////////
     public virtual DbSet<ViewBookAlert> ViewBookAlert { get; set; }
 
     public virtual DbSet<ViewBestSelling> ViewBestSelling { get; set; }
 
     public virtual DbSet<ViewNewReleaseBooks> ViewNewReleaseBooks { get; set; }
+
+    public virtual DbSet<ViewAuthorDetail> ViewAuthorDetails { get; set; }
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
         => optionsBuilder.UseSqlServer("Data Source=.;Initial Catalog=BookStore;Integrated Security=True;Trust Server Certificate=True");
@@ -609,6 +611,24 @@ public partial class BookStoreContext : DbContext
             entity.Property(e => e.GenreName)
                 .HasMaxLength(50)
                 .HasColumnName("genre_name");
+        });
+
+        modelBuilder.Entity<ViewAuthorDetail>(entity =>
+        {
+            entity
+               .HasNoKey()
+               .ToView("ViewAuthorDetail");
+
+            entity.Property(e => e.AuthorId).HasColumnName("author_id");
+            entity.Property(e => e.AuthorDescription).HasColumnName("author_description_");
+            entity.Property(e => e.AuthorName)
+                .HasMaxLength(255)
+                .HasColumnName("author_name");
+            entity.Property(e => e.ProfileImageUrl)
+                .HasMaxLength(255)
+                .IsUnicode(false)
+                .HasColumnName("profile_image_url");
+            entity.Property(e => e.PublishedBook).HasColumnName("published_books");
         });
 
         /////////////////////////////////////////////////////////////////////////////////////////////
