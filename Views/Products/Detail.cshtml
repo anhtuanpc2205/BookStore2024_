@@ -4,6 +4,7 @@
 }
 @model BookStore2024.ViewModels.ProductVM
 
+@section BreadCrumb {
 <div class="tg-innerbanner tg-haslayout tg-parallax tg-bginnerbanner" data-z-index="-100" data-appear-top-offset="600" data-parallax="scroll" data-image-src="../images/parallax/bgparallax-07.jpg">
     <div class="container">
         <div class="row">
@@ -20,7 +21,7 @@
         </div>
     </div>
 </div>
-
+}
 <div class="tg-productdetail">
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
@@ -97,8 +98,7 @@
                     </ul>
                 </div>
                 <div class="tg-description">
-                    <p>Consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore etdoloreat magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laborisi nisi ut aliquip ex ea commodo consequat aute.</p>
-                    <p>Arure dolor in reprehenderit in voluptate velit esse cillum dolore fugiat nulla aetur excepteur sint occaecat cupidatat non proident, sunt in culpa quistan officia serunt mollit anim id est laborum sed ut perspiciatis unde omnis iste natus... <a href="javascript:void(0);">More</a></p>
+                    <p>@Model.ProductDescription</p>
                 </div>
                 <div class="tg-sectionhead">
                     <h2>Product Details</h2>

@@ -26,19 +26,19 @@ namespace BookStore2024.Controllers
 
 		public IActionResult Detail(int DetailId)
 		{
-			var record = DBContext.ViewAuthorDetails.Where(p => p.AuthorId == DetailId).SingleOrDefault();
-			if (record == null)
+			var AuthorQuery = DBContext.ViewAuthorDetails.Where(p => p.AuthorId == DetailId).SingleOrDefault();
+			if (AuthorQuery == null)
 			{
 				TempData["Message"] = $"Could not find author have id: {DetailId} or product does not exist";
 				return Redirect("/404");
 			}
 			var data = new AuthorVM
 			{
-				AuthorId = record.AuthorId,
-				AuthorName = record.AuthorName,
-				ProfileImageUrl = record.ProfileImageUrl,
-				AuthorDescription = record.AuthorDescription,
-				PublishedBook = record.PublishedBook
+				AuthorId = AuthorQuery.AuthorId,
+				AuthorName = AuthorQuery.AuthorName,
+				ProfileImageUrl = AuthorQuery.ProfileImageUrl,
+				AuthorDescription = AuthorQuery.AuthorDescription,
+				PublishedBook = AuthorQuery.PublishedBook
 			};
 
 			return View(data);
