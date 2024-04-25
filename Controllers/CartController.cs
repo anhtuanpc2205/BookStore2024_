@@ -2,9 +2,6 @@
 using BookStore2024.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using BookStore2024.Helpers;
-using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.Blazor;
-using System.ComponentModel;
-using System.Linq;
 
 namespace BookStore2024.Controllers
 {

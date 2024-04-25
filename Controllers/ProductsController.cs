@@ -1,44 +1,47 @@
 ﻿using BookStore2024.Data;
 using BookStore2024.ViewModels;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.Blazor;
-using System.Security.Policy;
 
 namespace BookStore2024.Controllers
 {
     public class ProductsController : Controller
     {
-		private readonly BookStoreContext DBContext;
-		public ProductsController(BookStoreContext DatabaseContext) => DBContext = DatabaseContext;
-		public IActionResult Index(int? category)
+        private readonly BookStoreContext DBContext;
+        public ProductsController(BookStoreContext DatabaseContext) => DBContext = DatabaseContext;
+        int pageSize = 8;
+        public async Task<IActionResult> Index(int? pageNumber, int? category)
         {
+
             var ProductsQuery = DBContext.ViewBookDetails.AsQueryable();
 
-            if(category.HasValue)
+            if (category.HasValue)
             {
-				ProductsQuery = ProductsQuery.Where(p => p.CategoryId == category.Value);
-			}
+                ProductsQuery = ProductsQuery.Where(p => p.CategoryId == category.Value);
+            }
 
             var data = ProductsQuery.Select(p => new ProductVM
             {
-				CategoryId = p.CategoryId,
-				CategoryName = p.CategoryName,
-				ProductName = p.BookTitle,
-				ProductImg = p.BookImageUrl ?? "",
-				AuthorName = p.AuthorName,
-				Price = p.Price,
-				Discount = p.Discount,
+                CategoryId = p.CategoryId,
+                CategoryName = p.CategoryName,
+                ProductName = p.BookTitle,
+                ProductImg = p.BookImageUrl ?? "",
+                AuthorName = p.AuthorName,
+                Price = p.Price,
+                Discount = p.Discount,
                 FormatName = p.FormatName,
                 BookDetailId = p.BookDetailId
             });
 
-            return View(data);
+            ViewBag.totalProduct = data.Count();
+            return View(await PaginatedList<ProductVM>.CreateAsync(data, pageNumber ?? 1, pageSize));
+            //return View(data);
         }
-        public IActionResult Search(String? searchString)
+        public IActionResult Search(string? searchString)
         {
             var ProductsQuery = DBContext.ViewBookDetails.AsQueryable();
-            if (searchString != null) {
-                ProductsQuery = ProductsQuery.Where(p => p.BookTitle.Contains(searchString));
+            if (searchString != null)
+            {
+                ProductsQuery = ProductsQuery.Where(p => p.BookTitle.ToLower().Contains(searchString.ToLower()));
             }
             var data = ProductsQuery.Select(p => new ProductVM
             {
@@ -64,7 +67,7 @@ namespace BookStore2024.Controllers
                 return Redirect("/404");
             }
             var data = new ProductVM
-            {   
+            {
                 BookDetailId = record.BookDetailId,
                 CategoryId = record.CategoryId,
                 CategoryName = record.CategoryName,
@@ -90,17 +93,18 @@ namespace BookStore2024.Controllers
 
             return View(data);
         }
-        public IActionResult BestSelling()
+
+        public async Task<IActionResult> BestSelling(int? pageNumber)
         {
             var Query = DBContext.ViewBestSelling.AsQueryable();
 
-			if (Query == null)
-			{
-				TempData["Message"] = $"Could not find product or product does not exist";
-				return Redirect("/404");
-			}
+            if (Query == null)
+            {
+                TempData["Message"] = $"Could not find product or product does not exist";
+                return Redirect("/404");
+            }
 
-			var data = Query.Select(p => new ProductVM
+            var data = Query.Select(p => new ProductVM
             {
                 BookDetailId = p.BookDetailId,
                 CategoryId = p.CategoryId,
@@ -112,39 +116,40 @@ namespace BookStore2024.Controllers
                 Discount = p.Discount,
                 FormatName = p.FormatName
             });
-
-            return View(data);
+            ViewBag.totalProduct = data.Count();
+            return View(await PaginatedList<ProductVM>.CreateAsync(data, pageNumber ?? 1, pageSize));
+            //return View(data);
         }
 
-		public IActionResult WeeklySale()
+        public async Task<IActionResult> WeeklySale(int? pageNumber)
         {
-			var Query = DBContext.ViewBookDetails.AsQueryable();
+            var Query = DBContext.ViewBookDetails.AsQueryable();
 
-			if (Query == null)
-			{
-				TempData["Message"] = $"Could not find product or product does not exist";
-				return Redirect("/404");
+            if (Query == null)
+            {
+                TempData["Message"] = $"Could not find product or product does not exist";
+                return Redirect("/404");
             }
             else
             {
                 Query = Query.Where(p => p.Discount != 0);
-			}
+            }
 
-			var data = Query.Select(p => new ProductVM
-			{
-				BookDetailId = p.BookDetailId,
-				CategoryId = p.CategoryId,
-				CategoryName = p.CategoryName,
-				ProductName = p.BookTitle,
-				ProductImg = p.BookImageUrl ?? "",
-				AuthorName = p.AuthorName,
-				Price = p.Price,
-				Discount = p.Discount,
-				FormatName = p.FormatName
-			});
-
-			return View(data);
+            var data = Query.Select(p => new ProductVM
+            {
+                BookDetailId = p.BookDetailId,
+                CategoryId = p.CategoryId,
+                CategoryName = p.CategoryName,
+                ProductName = p.BookTitle,
+                ProductImg = p.BookImageUrl ?? "",
+                AuthorName = p.AuthorName,
+                Price = p.Price,
+                Discount = p.Discount,
+                FormatName = p.FormatName
+            });
+            ViewBag.totalProduct = data.Count();
+            return View(await PaginatedList<ProductVM>.CreateAsync(data, pageNumber ?? 1, pageSize));
         }
 
-	}
+    }
 }

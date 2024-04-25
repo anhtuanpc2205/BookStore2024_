@@ -4,87 +4,89 @@
 }
 @using PagedList.Mvc;
 @* @model IEnumerable<BookStore2024.ViewModels.AuthorVM> *@
-@* @model PagedList.IPagedList<BookStore2024.ViewModels.AuthorVM> *@
 @model PaginatedList<BookStore2024.ViewModels.AuthorVM>
 
 <div class="tg-innerbanner tg-haslayout tg-parallax tg-bginnerbanner" data-z-index="-100" data-appear-top-offset="600" data-parallax="scroll" data-image-src="images/parallax/bgparallax-07.jpg">
-	<div class="container">
-		<div class="row">
-			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-				<div class="tg-innerbannercontent">
-					<h1>Authors</h1>
-					<ol class="tg-breadcrumb">
-						<li><a href="javascript:void(0);">home</a></li>
-						<li class="tg-active">Authors</li>
-					</ol>
-				</div>
-			</div>
-		</div>
-	</div>
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="tg-innerbannercontent">
+                    <h1>Authors</h1>
+                    <ol class="tg-breadcrumb">
+                        <li><a href="javascript:void(0);">home</a></li>
+                        <li class="tg-active">Authors</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 <div class="tg-authorsgrid">
-	<div class="container">
-		<div class="row">
-			<div class="tg-authors">
-				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-					<div class="tg-sectionhead">
-						<h2><span>Strong Minds Behind Us</span>Most Popular Authors</h2>
-					</div>
-				</div>
-				@foreach (var item in Model)
-				{
-					<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
-						<div class="tg-author">
-							<figure><a asp-action="Detail" asp-controller="Author" asp-route-DetailId="@item.AuthorId"><img src="@item.ProfileImageUrl" alt="ProfileImageUrl"></a></figure>
-							<div class="tg-authorcontent">
-								<h2><a href="javascript:void(0);">@item.AuthorName</a></h2>
-								<span>@item.PublishedBook Published Books</span>
-								<ul class="tg-socialicons">
-									<li class="tg-facebook"><a href="javascript:void(0);"><i class="fa fa-facebook"></i></a></li>
-									<li class="tg-twitter"><a href="javascript:void(0);"><i class="fa fa-twitter"></i></a></li>
-									<li class="tg-linkedin"><a href="javascript:void(0);"><i class="fa fa-linkedin"></i></a></li>
-								</ul>
-							</div>
-						</div>
-					</div>
-				}
-			</div>
-			<div class="Paging">
-				@if (Model.HasPreviousPage)
-				{
-					<a asp-action="Index"
-					   asp-route-sortOrder="@ViewData["CurrentSort"]"
-					   asp-route-pageNumber="@(Model.PageIndex - 1)"
-					   asp-route-currentFilter="@ViewData["CurrentFilter"]"
-					   class="btn btn-default">
-						Previous
-					</a>
-				}
-				
-				@for (var i = 1; i <= Model.TotalPages; i++)
-				{
-					<a asp-action="Index"
-					   asp-route-sortOrder="@ViewData["CurrentSort"]"
-					   asp-route-pageNumber=@i
-					   asp-route-currentFilter="@ViewData["CurrentFilter"]"
-					   class="btn btn-default">
-						@i
-					</a>
-					
-				}
+    <div class="container">
+        <div class="row">
+            <div class="tg-authors">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <div class="tg-sectionhead">
+                        <h2><span>Strong Minds Behind Us</span>Most Popular Authors</h2>
+                    </div>
+                </div>
+                <div style="margin-left: 1.5em">showing @Model.Count() of @ViewBag.totalAuthor total</div>
+                @foreach (var item in Model)
+                {
+                    <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+                        <div class="tg-author">
+                            <figure><a asp-action="Detail" asp-controller="Author" asp-route-DetailId="@item.AuthorId"><img src="@item.ProfileImageUrl" alt="ProfileImageUrl"></a></figure>
+                            <div class="tg-authorcontent">
+                                <h2><a href="javascript:void(0);">@item.AuthorName</a></h2>
+                                <span>@item.PublishedBook Published Books</span>
+                                <ul class="tg-socialicons">
+                                    <li class="tg-facebook"><a href="javascript:void(0);"><i class="fa fa-facebook"></i></a></li>
+                                    <li class="tg-twitter"><a href="javascript:void(0);"><i class="fa fa-twitter"></i></a></li>
+                                    <li class="tg-linkedin"><a href="javascript:void(0);"><i class="fa fa-linkedin"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+            <div class="Paging row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    @if (Model.HasPreviousPage)
+                    {
+                        <a asp-action="Index"
+                           asp-route-sortOrder="@ViewData["CurrentSort"]"
+                           asp-route-pageNumber="@(Model.PageIndex - 1)"
+                           asp-route-currentFilter="@ViewData["CurrentFilter"]"
+                           class="btn btn-default">
+                            Previous
+                        </a>
+                    }
 
-				@if (Model.HasNextPage)
-				{
-					<a asp-action="Index"
-					   asp-route-sortOrder="@ViewData["CurrentSort"]"
-					   asp-route-pageNumber="@(Model.PageIndex + 1)"
-					   asp-route-currentFilter="@ViewData["CurrentFilter"]"
-					   class="btn btn-default">
-						Next
-					</a>
-				}
-			</div>
-		</div>
-	</div>
+                    @for (var i = 1; i <= Model.TotalPages; i++)
+                    {
+                        <a asp-action="Index"
+                           asp-route-sortOrder="@ViewData["CurrentSort"]"
+                           asp-route-pageNumber=@i
+                           asp-route-currentFilter="@ViewData["CurrentFilter"]"
+                           class="btn btn-default">
+                            @i
+                        </a>
+
+                    }
+
+                    @if (Model.HasNextPage)
+                    {
+                        <a asp-action="Index"
+                           asp-route-sortOrder="@ViewData["CurrentSort"]"
+                           asp-route-pageNumber="@(Model.PageIndex + 1)"
+                           asp-route-currentFilter="@ViewData["CurrentFilter"]"
+                           class="btn btn-default">
+                            Next
+                        </a>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 

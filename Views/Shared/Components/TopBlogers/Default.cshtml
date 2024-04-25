@@ -10,9 +10,9 @@
             {
                 <li>
                     <div class="tg-author">
-                        <figure><a><img src=@item.AuthorImgURL alt="AuthorImgURL"></a></figure>
+                        <figure><a asp-action="Detail" asp-controller="Author" asp-route-DetailId="@item.AuthorId"><img src=@item.AuthorImgURL alt="AuthorImgURL"></a></figure>
                         <div class="tg-authorcontent">
-                            <h2><a>@item.AuthorName</a></h2>
+                            <h2><a asp-action="Detail" asp-controller="Author" asp-route-DetailId="@item.AuthorId">@item.AuthorName</a></h2>
                             <span>@item.NumbersOfPost Published Blogs</span>
                         </div>
                     </div>
