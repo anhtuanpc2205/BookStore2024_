@@ -1,6 +1,7 @@
 ﻿using BookStore2024.Data;
 using BookStore2024.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using PagedList;
 
 namespace BookStore2024.Controllers
 {
@@ -8,10 +9,19 @@ namespace BookStore2024.Controllers
     {
 		private readonly BookStoreContext DBContext;
 		public AuthorController(BookStoreContext DatabaseContext) => DBContext = DatabaseContext;
-		public IActionResult Index()
-        {
-            var AuthorQuery = DBContext.ViewAuthorDetails.AsQueryable();
+		public async Task<IActionResult> Index(string sortOrder,string currentFilter,string searchString,int? pageNumber)
+		{
+			if (searchString != null)
+			{
+				pageNumber = 1;
+			}
+			else
+			{
+				searchString = currentFilter;
+			}
 
+			var AuthorQuery = DBContext.ViewAuthorDetails.AsQueryable();
+			int pageSize = 18;
             var Data = AuthorQuery.Select(p => new AuthorVM
             {
 				AuthorId = p.AuthorId,
@@ -20,8 +30,8 @@ namespace BookStore2024.Controllers
                 AuthorDescription = p.AuthorDescription,
                 PublishedBook = p.PublishedBook
 			});
-
-            return View(Data);
+			ViewBag.PageSize = pageSize;
+			return View(await PaginatedList<AuthorVM>.CreateAsync(Data, pageNumber ?? 1, pageSize));
         }
 
 		public IActionResult Detail(int DetailId)

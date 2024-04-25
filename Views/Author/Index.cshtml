@@ -2,7 +2,10 @@
     ViewData["Title"] = "Home Page";
     Layout = "_MainLayout";
 }
-@model IEnumerable<BookStore2024.ViewModels.AuthorVM>
+@using PagedList.Mvc;
+@* @model IEnumerable<BookStore2024.ViewModels.AuthorVM> *@
+@* @model PagedList.IPagedList<BookStore2024.ViewModels.AuthorVM> *@
+@model PaginatedList<BookStore2024.ViewModels.AuthorVM>
 
 <div class="tg-innerbanner tg-haslayout tg-parallax tg-bginnerbanner" data-z-index="-100" data-appear-top-offset="600" data-parallax="scroll" data-image-src="images/parallax/bgparallax-07.jpg">
 	<div class="container">
@@ -46,6 +49,42 @@
 					</div>
 				}
 			</div>
+			<div class="Paging">
+				@if (Model.HasPreviousPage)
+				{
+					<a asp-action="Index"
+					   asp-route-sortOrder="@ViewData["CurrentSort"]"
+					   asp-route-pageNumber="@(Model.PageIndex - 1)"
+					   asp-route-currentFilter="@ViewData["CurrentFilter"]"
+					   class="btn btn-default">
+						Previous
+					</a>
+				}
+				
+				@for (var i = 1; i <= Model.TotalPages; i++)
+				{
+					<a asp-action="Index"
+					   asp-route-sortOrder="@ViewData["CurrentSort"]"
+					   asp-route-pageNumber=@i
+					   asp-route-currentFilter="@ViewData["CurrentFilter"]"
+					   class="btn btn-default">
+						@i
+					</a>
+					
+				}
+
+				@if (Model.HasNextPage)
+				{
+					<a asp-action="Index"
+					   asp-route-sortOrder="@ViewData["CurrentSort"]"
+					   asp-route-pageNumber="@(Model.PageIndex + 1)"
+					   asp-route-currentFilter="@ViewData["CurrentFilter"]"
+					   class="btn btn-default">
+						Next
+					</a>
+				}
+			</div>
 		</div>
 	</div>
 </div>
+
