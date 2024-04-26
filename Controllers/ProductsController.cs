@@ -33,6 +33,7 @@ namespace BookStore2024.Controllers
             });
             ViewBag.PageSize = pageSize;
             ViewBag.totalProduct = data.Count();
+            ViewBag.category = category;
             return View(await PaginatedList<ProductVM>.CreateAsync(data, pageNumber ?? 1, pageSize));
             //return View(data);
         }
@@ -94,7 +95,7 @@ namespace BookStore2024.Controllers
             return View(data);
         }
 
-        public async Task<IActionResult> BestSelling(int? pageNumber)
+        public async Task<IActionResult> BestSelling(int? pageNumber, int? category)
         {
             var Query = DBContext.ViewBestSelling.AsQueryable();
 
@@ -118,11 +119,12 @@ namespace BookStore2024.Controllers
             });
             ViewBag.PageSize = pageSize;
             ViewBag.totalProduct = data.Count();
+            ViewBag.category = category;
             return View(await PaginatedList<ProductVM>.CreateAsync(data, pageNumber ?? 1, pageSize));
             //return View(data);
         }
 
-        public async Task<IActionResult> WeeklySale(int? pageNumber)
+        public async Task<IActionResult> WeeklySale(int? pageNumber, int? category)
         {
             var Query = DBContext.ViewBookDetails.AsQueryable();
 
@@ -150,6 +152,7 @@ namespace BookStore2024.Controllers
             });
             ViewBag.PageSize = pageSize;
             ViewBag.totalProduct = data.Count();
+            ViewBag.category = category;
             return View(await PaginatedList<ProductVM>.CreateAsync(data, pageNumber ?? 1, pageSize));
         }
 

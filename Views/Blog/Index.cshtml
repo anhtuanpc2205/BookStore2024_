@@ -38,11 +38,11 @@
 							<li><a href="javascript:void(0);">@item.BlogDescription</a></li>
 						</ul>
 						<div class="tg-posttitle">
-							<h3><a href="javascript:void(0);">@item.BlogTitle</a></h3>
+							<h3><a asp-action="Detail" asp-controller="Blog" asp-route-DetailId="@item.BlogId">@item.BlogTitle</a></h3>
 						</div>
 						<span class="tg-bookwriter">By: <a href="javascript:void(0);">@item.AuthorName</a></span>
 						<ul class="tg-postmetadata">
-							<li><a href="javascript:void(0);"><i class="fa fa-eye"></i><i>@item.Views</i></a></li>
+							<li><a href="javascript:void(0);"><i class="fa fa-eye"></i><i>@item.Views Views</i></a></li>
 						</ul>
 					</div>
 				</article>

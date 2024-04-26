@@ -64,6 +64,7 @@
                    asp-route-sortOrder="@ViewData["CurrentSort"]"
                    asp-route-pageNumber="@(Model.PageIndex - 1)"
                    asp-route-currentFilter="@ViewData["CurrentFilter"]"
+                   asp-route-category="@ViewBag.category"
                    class="btn btn-default">
                     Previous
                 </a>
@@ -75,6 +76,7 @@
                    asp-route-sortOrder="@ViewData["CurrentSort"]"
                    asp-route-pageNumber=@i
                    asp-route-currentFilter="@ViewData["CurrentFilter"]"
+                   asp-route-category="@ViewBag.category"
                    class="btn btn-default">
                     @i
                 </a>
@@ -87,6 +89,7 @@
                    asp-route-sortOrder="@ViewData["CurrentSort"]"
                    asp-route-pageNumber="@(Model.PageIndex + 1)"
                    asp-route-currentFilter="@ViewData["CurrentFilter"]"
+                   asp-route-category="@ViewBag.category"
                    class="btn btn-default">
                     Next
                 </a>

@@ -10,12 +10,12 @@
             {
                 <li>
                     <article class="tg-post">
-                        <figure><a><img src= @item.ImgUrl alt="image description"></a></figure>
+                        <figure><a asp-action="Detail" asp-controller="Blog" asp-route-DetailId="@item.BlogId"><img src=@item.ImgUrl alt="image description"></a></figure>
                         <div class="tg-postcontent">
                             <div class="tg-posttitle">
-                                <h3><a>@item.BlogTitle</a></h3>
+                                <h3><a asp-action="Detail" asp-controller="Blog" asp-route-DetailId="@item.BlogId">@item.BlogTitle</a></h3>
                             </div>
-                            <span class="tg-bookwriter">By: <a>@item.AuthorName</a></span>
+                            <span class="tg-bookwriter">By: <a asp-action="Detail" asp-controller="Author" asp-route-DetailId="@item.AuthorId">@item.AuthorName</a></span>
                         </div>
                     </article>
                 </li>
