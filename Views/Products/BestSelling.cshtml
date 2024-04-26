@@ -24,7 +24,7 @@
 }
 <div class="tg-productgrid">
     <div class="tg-refinesearch">
-        <span>showing showing @Model.Count() of @ViewBag.totalProduct total</span>
+        <span>showing @(ViewBag.PageSize * (Model.PageIndex - 1) + 1) to @(ViewBag.PageSize * (Model.PageIndex - 1) + Model.Count()) of @ViewBag.totalProduct total</span>
         <form class="tg-formtheme tg-formsortshoitems">
             <fieldset>
                 <div class="form-group">

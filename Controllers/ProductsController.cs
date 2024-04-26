@@ -31,7 +31,7 @@ namespace BookStore2024.Controllers
                 FormatName = p.FormatName,
                 BookDetailId = p.BookDetailId
             });
-
+            ViewBag.PageSize = pageSize;
             ViewBag.totalProduct = data.Count();
             return View(await PaginatedList<ProductVM>.CreateAsync(data, pageNumber ?? 1, pageSize));
             //return View(data);
@@ -116,6 +116,7 @@ namespace BookStore2024.Controllers
                 Discount = p.Discount,
                 FormatName = p.FormatName
             });
+            ViewBag.PageSize = pageSize;
             ViewBag.totalProduct = data.Count();
             return View(await PaginatedList<ProductVM>.CreateAsync(data, pageNumber ?? 1, pageSize));
             //return View(data);
@@ -147,6 +148,7 @@ namespace BookStore2024.Controllers
                 Discount = p.Discount,
                 FormatName = p.FormatName
             });
+            ViewBag.PageSize = pageSize;
             ViewBag.totalProduct = data.Count();
             return View(await PaginatedList<ProductVM>.CreateAsync(data, pageNumber ?? 1, pageSize));
         }
