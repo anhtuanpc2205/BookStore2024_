@@ -22,8 +22,8 @@ namespace BookStore2024.ViewComponents
                 AuthorName = BA.AuthorName,
                 Price = BA.Price,
                 Discount = BA.Discount,
-                PageNumber = pg_num
-            }).FirstOrDefault();
+                PageNumber = pg_num //sử dụng để chỉ hiển thị ở các trang products, xem view sẽ biết 
+			}).FirstOrDefault();
             return View("Default",data);
         }
     }
