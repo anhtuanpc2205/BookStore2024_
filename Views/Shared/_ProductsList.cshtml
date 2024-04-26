@@ -3,6 +3,7 @@
 }
 
 @RenderSection("BreadCrumb", required: false)
+<main id="tg-main" class="tg-main tg-haslayout">
 <div class="tg-sectionspace tg-haslayout">
     <div class="container">
         <div class="row">
@@ -15,7 +16,7 @@
                                 var currentUrl = Context.Request.Path;
 
                                 // Kiểm tra nếu URL có thêm bất kỳ tham số query nào
-                                if (Context.Request.QueryString.HasValue)
+                                if (Context.Request.QueryString.HasValue || currentUrl.ToString().Contains("/Products") == false)
                                 {
                                     showContent = false;
                                 }
@@ -43,5 +44,4 @@
         </div>
     </div>
 </div>
-
-
+</main>
