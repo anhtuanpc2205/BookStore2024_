@@ -18,6 +18,7 @@ namespace BookStore2024.ViewComponents
 			}).Distinct().ToList();
 
 			ViewBag.cateID = cateID;
+			ViewBag.bookquantity = DBContext.ViewBookDetails.Where(p => p.CategoryId == cateID).Count();
 
 			return View(data);
 		}

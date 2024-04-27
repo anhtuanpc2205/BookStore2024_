@@ -56,49 +56,53 @@
             @await Html.PartialAsync("ProductItem", item)
         </div>
     }
-    <div class="Paging row">
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-            @if (Model.HasPreviousPage)
-            {
-                <a asp-action="Index"
-                   asp-route-sortOrder="@ViewData["CurrentSort"]"
-                   asp-route-pageNumber="@(Model.PageIndex - 1)"
-                   asp-route-currentFilter="@ViewData["CurrentFilter"]"
-                   asp-route-category="@ViewBag.category"
-                   asp-route-genre="@ViewBag.genre"
-                   class="btn btn-default">
-                    Previous
-                </a>
-            }
+    @if (Model.TotalPages >= 2)
+    {
+        <div class="Paging row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                @if (Model.HasPreviousPage)
+                {
+                    <a asp-action="Index"
+                       asp-route-sortOrder="@ViewData["CurrentSort"]"
+                       asp-route-pageNumber="@(Model.PageIndex - 1)"
+                       asp-route-currentFilter="@ViewData["CurrentFilter"]"
+                       asp-route-category="@ViewBag.category"
+                       asp-route-genre="@ViewBag.genre"
+                       class="btn btn-default">
+                        Previous
+                    </a>
+                }
 
-            @for (var i = 1; i <= Model.TotalPages; i++)
-            {
-                <a asp-action="Index"
-                   asp-route-sortOrder="@ViewData["CurrentSort"]"
-                   asp-route-pageNumber=@i
-                   asp-route-currentFilter="@ViewData["CurrentFilter"]"
-                   asp-route-category="@ViewBag.category"
-                   asp-route-genre="@ViewBag.genre"
-                   class="btn btn-default">
-                    @i
-                </a>
+                @for (var i = 1; i <= Model.TotalPages; i++)
+                {
+                    <a asp-action="Index"
+                       asp-route-sortOrder="@ViewData["CurrentSort"]"
+                       asp-route-pageNumber=@i
+                       asp-route-currentFilter="@ViewData["CurrentFilter"]"
+                       asp-route-category="@ViewBag.category"
+                       asp-route-genre="@ViewBag.genre"
+                       class="btn btn-default">
+                        @i
+                    </a>
 
-            }
+                }
 
-            @if (Model.HasNextPage)
-            {
-                <a asp-action="Index"
-                   asp-route-sortOrder="@ViewData["CurrentSort"]"
-                   asp-route-pageNumber="@(Model.PageIndex + 1)"
-                   asp-route-currentFilter="@ViewData["CurrentFilter"]"
-                   asp-route-category="@ViewBag.category"
-                   asp-route-genre="@ViewBag.genre"
-                   class="btn btn-default">
-                    Next
-                </a>
-            }
+                @if (Model.HasNextPage)
+                {
+                    <a asp-action="Index"
+                       asp-route-sortOrder="@ViewData["CurrentSort"]"
+                       asp-route-pageNumber="@(Model.PageIndex + 1)"
+                       asp-route-currentFilter="@ViewData["CurrentFilter"]"
+                       asp-route-category="@ViewBag.category"
+                       asp-route-genre="@ViewBag.genre"
+                       class="btn btn-default">
+                        Next
+                    </a>
+                }
+            </div>
         </div>
-    </div>
+    }
+    
 </div>
 
 

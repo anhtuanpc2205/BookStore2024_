@@ -14,6 +14,17 @@
 				<a class="tg-btnviewall" asp-controller="Products" asp-action="Index" asp-route-category="@ViewBag.cateID" asp-route-genre="@item.GenreId">View All</a>
 			</li>
 		}
-		
 	</ul>
 }
+<ul>
+	<li>
+		<figure><img src="../images/img-01.png" alt="image description"></figure>
+		<div class="tg-textbox">
+			<h3>More Than<span>@ViewBag.bookquantity</span>Books Collection</h3>
+			<div class="tg-description">
+				<p>Consectetur adipisicing elit sed doe eiusmod tempor incididunt laebore toloregna aliqua enim.</p>
+			</div>
+			<a class="tg-btn" asp-controller="Products" asp-action="Index" asp-route-category="@ViewBag.cateID">view all</a>
+		</div>
+	</li>
+</ul>
