@@ -15,7 +15,7 @@ namespace BookStore2024.ViewComponents
             {
                 CategoryId = Cate.CategoryId,
                 CategoryName = Cate.CategoryName
-            });
+            }).ToList();
 
             return View("Default", data);
         }

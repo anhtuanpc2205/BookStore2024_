@@ -11,13 +11,13 @@ namespace BookStore2024.ViewComponents
 
 		public IViewComponentResult Invoke(int cateID)
 		{
-			var data = DBContext.ViewBookDetails.Where(p => p.CategoryId == cateID).Select(p => new ProductVM
+			var data = DBContext.ViewBookDetails.Where(p => p.CategoryId == cateID).Select(p => new GenreVM
 			{
-				BookDetailId = p.BookDetailId,
-				ProductName = p.BookTitle
-			});
+				GenreId = p.GenreId,
+				GenreName = p.GenreName
+			}).Distinct().ToList();
 
-			//List<string> genre = DBContext.ViewBookDetails.Where(p => p.CategoryId == cateID).Select(p => p.GenreName);
+			ViewBag.cateID = cateID;
 
 			return View(data);
 		}

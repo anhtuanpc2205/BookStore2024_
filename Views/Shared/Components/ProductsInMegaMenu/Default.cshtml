@@ -1,0 +1,6 @@
+﻿@model IEnumerable<BookStore2024.ViewModels.ProductVM>
+
+@foreach (var item in Model)
+{
+    <li><a asp-action="Detail" asp-controller="Products" asp-route-DetailId="@item.BookDetailId">@item.ProductName|[@item.FormatName]</a></li>
+}

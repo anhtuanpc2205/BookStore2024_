@@ -1,5 +1,6 @@
 ﻿using BookStore2024.Data;
 using BookStore2024.ViewModels;
+using Humanizer.Localisation;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BookStore2024.Controllers
@@ -9,7 +10,7 @@ namespace BookStore2024.Controllers
         private readonly BookStoreContext DBContext;
         public ProductsController(BookStoreContext DatabaseContext) => DBContext = DatabaseContext;
         int pageSize = 8;
-        public async Task<IActionResult> Index(int? pageNumber, int? category)
+        public async Task<IActionResult> Index(int? pageNumber, int? category, int? genre)
         {
 
             var ProductsQuery = DBContext.ViewBookDetails.AsQueryable();
@@ -17,6 +18,10 @@ namespace BookStore2024.Controllers
             if (category.HasValue)
             {
                 ProductsQuery = ProductsQuery.Where(p => p.CategoryId == category.Value);
+            }
+            if (genre.HasValue)
+            {
+                ProductsQuery = ProductsQuery.Where(p => p.GenreId == genre.Value);
             }
 
             var data = ProductsQuery.Select(p => new ProductVM
@@ -34,7 +39,9 @@ namespace BookStore2024.Controllers
             ViewBag.PageSize = pageSize;
             ViewBag.totalProduct = data.Count();
             ViewBag.category = category;
-            return View(await PaginatedList<ProductVM>.CreateAsync(data, pageNumber ?? 1, pageSize));
+			ViewBag.genre = genre;
+
+			return View(await PaginatedList<ProductVM>.CreateAsync(data, pageNumber ?? 1, pageSize));
             //return View(data);
         }
         public IActionResult Search(string? searchString)
@@ -95,7 +102,7 @@ namespace BookStore2024.Controllers
             return View(data);
         }
 
-        public async Task<IActionResult> BestSelling(int? pageNumber, int? category)
+        public async Task<IActionResult> BestSelling(int? pageNumber, int? category, int? genre)
         {
             var Query = DBContext.ViewBestSelling.AsQueryable();
 
@@ -120,11 +127,12 @@ namespace BookStore2024.Controllers
             ViewBag.PageSize = pageSize;
             ViewBag.totalProduct = data.Count();
             ViewBag.category = category;
-            return View(await PaginatedList<ProductVM>.CreateAsync(data, pageNumber ?? 1, pageSize));
+			ViewBag.genre = genre;
+			return View(await PaginatedList<ProductVM>.CreateAsync(data, pageNumber ?? 1, pageSize));
             //return View(data);
         }
 
-        public async Task<IActionResult> WeeklySale(int? pageNumber, int? category)
+        public async Task<IActionResult> WeeklySale(int? pageNumber, int? category, int? genre)
         {
             var Query = DBContext.ViewBookDetails.AsQueryable();
 
@@ -153,7 +161,8 @@ namespace BookStore2024.Controllers
             ViewBag.PageSize = pageSize;
             ViewBag.totalProduct = data.Count();
             ViewBag.category = category;
-            return View(await PaginatedList<ProductVM>.CreateAsync(data, pageNumber ?? 1, pageSize));
+			ViewBag.genre = genre;
+			return View(await PaginatedList<ProductVM>.CreateAsync(data, pageNumber ?? 1, pageSize));
         }
 
     }
