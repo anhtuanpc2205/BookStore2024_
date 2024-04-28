@@ -56,7 +56,7 @@
             @await Html.PartialAsync("ProductItem", item)
         </div>
     }
-    @if (Model.TotalPages >= 2)
+    @if (Model.TotalPages >= 2) // phần paging
     {
         <div class="Paging row">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
