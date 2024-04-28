@@ -84,7 +84,7 @@
                 <div class="tg-booktitle">
                     <h3>@Model.ProductName</h3>
                 </div>
-                <span class="tg-bookwriter">By: <a href="javascript:void(0);">@Model.AuthorName</a></span>
+                <span class="tg-bookwriter">By: <a asp-action="Detail" asp-controller="Author" asp-route-DetailId="@Model.AuthorId">@Model.AuthorName</a></span>
                 <span class="tg-stars"><span></span></span>
                 <span class="tg-addreviews"><a href="javascript:void(0);">Add Your Review</a></span>
                 <div class="tg-share">
@@ -129,69 +129,7 @@
                 </div>
             </div>
         </div>
-        <div class="tg-productdescription">
-            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                <div class="tg-sectionhead">
-                    <h2>Product Description</h2>
-                </div>
-                <ul class="tg-themetabs" role="tablist">
-                    <li role="presentation" class="active"><a href="#description" data-toggle="tab">Description</a></li>
-                    <li role="presentation"><a href="#review" data-toggle="tab">Reviews</a></li>
-                </ul>
-                <div class="tg-tab-content tab-content">
-                    <div role="tabpanel" class="tg-tab-pane tab-pane active" id="description">
-                        <div class="tg-description">
-                            <p>
-                                Consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veni quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenden
-                                voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                            </p>
-                            <figure class="tg-alignleft">
-                                <img src="../images/placeholdervtwo.jpg" alt="image description">
-                                <iframe src="https://www.youtube.com/embed/aLwpuDpZm1k?rel=0&amp;controls=0&amp;showinfo=0"></iframe>
-                            </figure>
-                            <ul class="tg-liststyle">
-                                <li><span>Sed do eiusmod tempor incididunt ut labore et dolore</span></li>
-                                <li><span>Magna aliqua enim ad minim veniam</span></li>
-                                <li><span>Quis nostrud exercitation ullamco laboris nisi ut</span></li>
-                                <li><span>Aliquip ex ea commodo consequat aute dolor reprehenderit</span></li>
-                                <li><span>Voluptate velit esse cillum dolore eu fugiat nulla pariatur</span></li>
-                                <li><span>Magna aliqua enim ad minim veniam</span></li>
-                                <li><span>Quis nostrud exercitation ullamco laboris nisi ut</span></li>
-                            </ul>
-                            <p>
-                                Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam remmata aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enimsam
-                                voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos quistatoa.
-                            </p>
-                        </div>
-                    </div>
-                    <div role="tabpanel" class="tg-tab-pane tab-pane" id="review">
-                        <div class="tg-description">
-                            <p>
-                                Consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veni quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenden
-                                voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                            </p>
-                            <figure class="tg-alignleft">
-                                <img src="../images/placeholdervtwo.jpg" alt="image description">
-                                <iframe src="https://www.youtube.com/embed/aLwpuDpZm1k?rel=0&amp;controls=0&amp;showinfo=0"></iframe>
-                            </figure>
-                            <ul class="tg-liststyle">
-                                <li><span>Sed do eiusmod tempor incididunt ut labore et dolore</span></li>
-                                <li><span>Magna aliqua enim ad minim veniam</span></li>
-                                <li><span>Quis nostrud exercitation ullamco laboris nisi ut</span></li>
-                                <li><span>Aliquip ex ea commodo consequat aute dolor reprehenderit</span></li>
-                                <li><span>Voluptate velit esse cillum dolore eu fugiat nulla pariatur</span></li>
-                                <li><span>Magna aliqua enim ad minim veniam</span></li>
-                                <li><span>Quis nostrud exercitation ullamco laboris nisi ut</span></li>
-                            </ul>
-                            <p>
-                                Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam remmata aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enimsam
-                                voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos quistatoa.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        
         <div class="tg-aboutauthor">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                 <div class="tg-sectionhead">
