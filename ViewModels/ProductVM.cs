@@ -13,7 +13,9 @@
         public string? Publisher { get; set; }
         public string? ProductImg { get; set; }
         public string? ProductDescription { get; set; }
+        public int AuthorId { get; set; }
         public string? AuthorName { get; set; }
+        public string? ProfileImageUrl { get; set; }
         public string? Language { get; set; }
         public int? Pages { get; set; }
         public string? IllustrationsNote { get; set; }
