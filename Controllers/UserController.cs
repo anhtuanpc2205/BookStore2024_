@@ -11,6 +11,7 @@ namespace BookStore2024.Controllers
 
         public IActionResult Registering()
         {
+
             return View();
         }
     }

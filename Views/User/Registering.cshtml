@@ -10,31 +10,59 @@
             text-align: center;
         }
 
-        .icon {
-            padding: 10px;
-            min-width: 40px;
-            text-align: center;
-        }
-
-        .gender {
-            margin-bottom: 15px;
-        }
-
-        .radio {
-            display: inline-block;
-            margin-right: 20px;
-        }
-
-        .button {
-            display: block;
-            width: 60%;
-            padding: 10px;
-            margin-top: 20px;
+        .btn-primary {
             color: #fff;
-            text-align: center;
-            text-decoration: none;
-            border-radius: 5px;
-            align-content: center;
+            background-color: #77b748;
+            border-color: #77b748;
+        }
+
+            .btn-primary.focus, .btn-primary:focus {
+                color: #fff;
+                background-color: #71AD44;
+                border-color: #71AD44
+            }
+
+            .btn-primary:hover {
+                color: #fff;
+                background-color: #71AD44;
+                border-color: #71AD44
+            }
+
+        .wp-caption,
+        .wp-caption-text,
+        .gallery-caption,
+        .bypostauthor {
+        }
+
+            .wp-caption.alignleft,
+            .wp-caption.alignnone {
+                width: 100%;
+            }
+
+        button {
+            border: none;
+        }
+
+        textarea,
+        select,
+        .tg-select select,
+        .form-control,
+        input[type="text"],
+        input[type="password"],
+        input[type="datetime"],
+        input[type="datetime-local"],
+        input[type="date"],
+        input[type="month"],
+        input[type="time"],
+        input[type="week"],
+        input[type="number"],
+        input[type="email"],
+        input[type="url"],
+        input[type="search"],
+        input[type="tel"],
+        input[type="color"],
+        .uneditable-input {
+            text-transform: none !important;
         }
     </style>
 }
@@ -55,38 +83,44 @@
 </div>
 
 <div class="container">
-    <div class="testbox">
-        <h1>Registration</h1>
-        <form action="/" class="form-horizontal">
+    <div class="Registration">
+        <h1 class="text-center">Registration!</h1>
+        <form action="Registering" class="form-horizontal">
             <div class="form-group">
                 <label for="email" class="control-label col-sm-2 icon"><i class="glyphicon glyphicon-envelope"></i></label>
-                <div class="col-sm-10">
+                <div class="col-sm-9">
                     <input type="email" class="form-control" id="email" name="email" placeholder="Email" required>
                 </div>
             </div>
             <div class="form-group">
                 <label for="name" class="control-label col-sm-2 icon"><i class="glyphicon glyphicon-user"></i></label>
-                <div class="col-sm-10">
+                <div class="col-sm-9">
                     <input type="text" class="form-control" id="name" name="name" placeholder="Name" required>
                 </div>
             </div>
             <div class="form-group">
                 <label for="password" class="control-label col-sm-2 icon"><i class="glyphicon glyphicon-lock"></i></label>
-                <div class="col-sm-10">
+                <div class="col-sm-9">
                     <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
                 </div>
             </div>
-            <div class="form-group gender">
-                <label class="control-label col-sm-2">Gender</label>
-                <div class="col-sm-10">
-                    <label class="radio-inline"><input type="radio" name="gender" value="male" checked> Male</label>
-                    <label class="radio-inline"><input type="radio" name="gender" value="female"> Female</label>
+            <div class="form-group">
+                <label for="password" class="control-label col-sm-2 icon"><i class="glyphicon glyphicon-home"></i></label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="address" name="address" placeholder="Address">
                 </div>
             </div>
+            @* <div class="form-group gender">
+            <label class="control-label col-sm-2">Gender</label>
+            <div class="col-sm-10">
+            <label class="radio-inline"><input type="radio" name="gender" value="male" checked> Male</label>
+            <label class="radio-inline"><input type="radio" name="gender" value="female"> Female</label>
+            </div>
+            </div> *@
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
                     <p>By clicking Register, you agree to our <a href="#">terms and conditions</a>.</p>
-                    <button type="button" class="btn btn-primary btn-lg" style="margin-top: 10px;">Register</button>
+                    <button type="button" class="btn btn-primary btn-lg" style="margin-top: 10px; margin-left: 32rem;">Register</button>
                 </div>
             </div>
         </form>

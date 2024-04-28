@@ -3,6 +3,28 @@
 }
 @model IEnumerable<BookStore2024.ViewModels.CartItem>
 
+@section externalCSS {
+    <style>
+        .btn-primary {
+            color: #fff;
+            background-color: #77b748;
+            border-color: #77b748
+        }
+
+            .btn-primary.focus, .btn-primary:focus {
+                color: #fff;
+                background-color: #71AD44;
+                border-color: #71AD44
+            }
+
+            .btn-primary:hover {
+                color: #fff;
+                background-color: #71AD44;
+                border-color: #71AD44
+            }
+    </style>
+}
+
 <div class="tg-innerbanner tg-haslayout tg-parallax tg-bginnerbanner" data-z-index="-100" data-appear-top-offset="600" data-parallax="scroll" data-image-src="../images/parallax/bgparallax-07.jpg">
     <div class="container">
         <div class="row">
@@ -75,7 +97,7 @@
         </div>
         <div class="row cart-total">
             <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-md-offset-3 col-lg-offset-3">
-                <div class="bg-info text-center" style="padding: 10px;">
+                <div class="text-center" style="padding: 10px;">
                     <h2 style="margin: 0;">Cart Total</h2>
                 </div>
                 <div class="well" style="margin-top: 10px; padding: 10px;">
