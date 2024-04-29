@@ -1,6 +1,5 @@
 ﻿using BookStore2024.Data;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace BookStore2024.Controllers
 {
@@ -9,10 +8,11 @@ namespace BookStore2024.Controllers
         private readonly BookStoreContext DBContext;
         public UserController(BookStoreContext DatabaseContext) => DBContext = DatabaseContext;
 
-        public IActionResult Registering()
+        public IActionResult Register()
         {
 
             return View();
         }
+
     }
 }
