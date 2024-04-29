@@ -1,4 +1,5 @@
 ﻿using BookStore2024.Data;
+using BookStore2024.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BookStore2024.Controllers
@@ -8,9 +9,19 @@ namespace BookStore2024.Controllers
         private readonly BookStoreContext DBContext;
         public UserController(BookStoreContext DatabaseContext) => DBContext = DatabaseContext;
 
+        [HttpGet]
         public IActionResult Register()
         {
 
+            return View();
+        }
+        [HttpPost]
+        public IActionResult Register(RegisterVM regisData)
+        {
+            if(ModelState.IsValid)
+            {
+                var User = regisData;
+            }
             return View();
         }
 

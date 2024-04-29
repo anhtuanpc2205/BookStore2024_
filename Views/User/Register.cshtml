@@ -1,0 +1,142 @@
+﻿@model BookStore2024.ViewModels.RegisterVM
+@{
+    ViewData["Title"] = "Register";
+    Layout = "_MainLayout";
+}
+
+
+@section externalCSS {
+    <style>
+        .testbox h1 {
+            text-align: center;
+        }
+
+        .btn-primary {
+            color: #fff;
+            background-color: #77b748;
+            border-color: #77b748;
+        }
+
+            .btn-primary.focus, .btn-primary:focus {
+                color: #fff;
+                background-color: #71AD44;
+                border-color: #71AD44
+            }
+
+            .btn-primary:hover {
+                color: #fff;
+                background-color: #71AD44;
+                border-color: #71AD44
+            }
+
+        .wp-caption,
+        .wp-caption-text,
+        .gallery-caption,
+        .bypostauthor {
+        }
+
+            .wp-caption.alignleft,
+            .wp-caption.alignnone {
+                width: 100%;
+            }
+
+        button {
+            border: none;
+        }
+
+        textarea,
+        select,
+        .tg-select select,
+        .form-control,
+        input[type="text"],
+        input[type="password"],
+        input[type="datetime"],
+        input[type="datetime-local"],
+        input[type="date"],
+        input[type="month"],
+        input[type="time"],
+        input[type="week"],
+        input[type="number"],
+        input[type="email"],
+        input[type="url"],
+        input[type="search"],
+        input[type="tel"],
+        input[type="color"],
+        .uneditable-input {
+            text-transform: none !important;
+        }
+    </style>
+}
+<div class="tg-innerbanner tg-haslayout tg-parallax tg-bginnerbanner" data-z-index="-100" data-appear-top-offset="600" data-parallax="scroll" data-image-src="../images/parallax/bgparallax-07.jpg">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="tg-innerbannercontent">
+                    <h1>Registration</h1>
+                    <ol class="tg-breadcrumb">
+                        <li><a href="javascript:void(0);">home</a></li>
+                        <li class="tg-active">Registration</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="Registration">
+        <h1 class="text-center">Registration!</h1>
+        <form asp-action="Register" class="form-horizontal" enctype="multipart/form-data">
+            <div class="form-group">
+                <label class="control-label col-sm-2 icon"><i class="glyphicon glyphicon-envelope"></i></label>
+                <div class="col-sm-9">
+                    <input asp-for="Email" type="email" class="form-control" id="email" name="email" placeholder="Email">
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="name" class="control-label col-sm-2 icon"><i class="glyphicon glyphicon-user"></i></label>
+                <div class="col-sm-9">
+                    <input asp-for="UserName" type="text" class="form-control" id="name" name="name" placeholder="Name">
+                    <span asp-validation-for="UserName" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="password" class="control-label col-sm-2 icon"><i class="glyphicon glyphicon-lock"></i></label>
+                <div class="col-sm-9">
+                    <input asp-for="Password" type="password" class="form-control" id="password" name="password" placeholder="Password">
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="address" class="control-label col-sm-2 icon"><i class="glyphicon glyphicon-home"></i></label>
+                <div class="col-sm-9">
+                    <input asp-for="ShippingAddress" type="text" class="form-control" id="address" name="address" placeholder="Address">
+                    <span asp-validation-for="ShippingAddress" class="text-danger"></span>
+                </div>
+            </div>
+            @* <div class="form-group gender">
+            <label class="control-label col-sm-2">Gender</label>
+            <div class="col-sm-10">
+            <label class="radio-inline"><input type="radio" name="gender" value="male" checked> Male</label>
+            <label class="radio-inline"><input type="radio" name="gender" value="female"> Female</label>
+            </div>
+            </div> *@
+            <div class="form-group">
+                <label for="img" class="control-label col-sm-2 icon"><i class="glyphicon glyphicon-picture"></i></label>
+                <div class="col-sm-9">
+                    <input asp-for="ProfileImageUrl" type="file" class="form-control" id="ProfileImageUrl" name="ProfileImageUrl" placeholder="User image">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <p>By clicking Register, you agree to our <a href="#">terms and conditions</a>.</p>
+                    <button type="submit" class="btn btn-primary btn-lg" style="margin-top: 10px; margin-left: 32rem;">Register</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
