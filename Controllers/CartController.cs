@@ -10,7 +10,7 @@ namespace BookStore2024.Controllers
         private readonly BookStoreContext DBContext;
         public CartController(BookStoreContext DatabaseContext) => DBContext = DatabaseContext;
         
-        public List<CartItem> ListProductsInCart => HttpContext.Session.Get<List<CartItem>>(Constants.SESSION_KEY) ?? new List<CartItem>();
+        public List<CartItemVM> ListProductsInCart => HttpContext.Session.Get<List<CartItemVM>>(Constants.SESSION_KEY) ?? new List<CartItemVM>();
 
         public IActionResult Index()
         {
@@ -31,10 +31,11 @@ namespace BookStore2024.Controllers
                     return Redirect("/404");
                 }
 
-                item = new CartItem { // nếu tồn tại thì tạo mới và thêm vào giỏ hàng
+                item = new CartItemVM { // nếu tồn tại thì tạo mới và thêm vào giỏ hàng
                     BookDetailId = productDetailId,
                     ProductName = product.BookTitle,
                     ProductImg = product.BookImageUrl,
+                    FormatName = product.FormatName,
                     Price = product.Price - product.Discount, //gía được truyền vào view là giá sau khi đã chiết khấu (discount rồi)
                     Quantity = (quantity > 0) ? quantity : 1,
                 };
@@ -87,7 +88,7 @@ namespace BookStore2024.Controllers
 
         public IActionResult ClearCart()
         {
-			var CartList = new List<CartItem>();
+			var CartList = new List<CartItemVM>();
 			HttpContext.Session.Set(Constants.SESSION_KEY, CartList);
 
             return Redirect(Request.Headers["Referer"].ToString());

@@ -11,7 +11,7 @@ namespace BookStore2024.ViewComponents
 		private readonly BookStoreContext DBContext;
 		public MinicartViewComponent(BookStoreContext DatabaseContext) => DBContext = DatabaseContext;
 
-		public List<CartItem> ListProductsInCart => HttpContext.Session.Get<List<CartItem>>(Constants.SESSION_KEY) ?? new List<CartItem>();
+		public List<CartItemVM> ListProductsInCart => HttpContext.Session.Get<List<CartItemVM>>(Constants.SESSION_KEY) ?? new List<CartItemVM>();
 		public IViewComponentResult Invoke()
 		{
 			return View("Default", ListProductsInCart);

@@ -1,7 +1,7 @@
 ﻿@{
     Layout = "_MainLayout";
 }
-@model IEnumerable<BookStore2024.ViewModels.CartItem>
+@model IEnumerable<BookStore2024.ViewModels.CartItemVM>
 
 @section externalCSS {
     <style>
@@ -71,7 +71,7 @@
                                         <img src="@item.ProductImg" class="img-responsive" style="width: 80px; height: 80px;" alt="ProductImg">
                                     </td>
                                     <td style="vertical-align: middle;" class="product-name">
-                                        <p class="mt-4" style="margin-left: 20px;">@item.ProductName</p>
+                                        <p class="mt-4" style="margin-left: 20px;">@item.ProductName|[@item.FormatName]</p>
                                     </td>
                                     <td style="vertical-align: middle;" class="product-price">
                                         <p class="mt-4 product-price-value">$@item.Price</p>
