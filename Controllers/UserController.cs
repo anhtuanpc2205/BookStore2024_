@@ -3,6 +3,7 @@ using BookStore2024.Data;
 using BookStore2024.Helpers;
 using BookStore2024.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.Blazor;
 
 namespace BookStore2024.Controllers
 {
@@ -25,13 +26,19 @@ namespace BookStore2024.Controllers
         {
             if(ModelState.IsValid)
             {
+                var record = DBContext.TblUsers.Where(p => p.Email == regisData.Email).SingleOrDefault();
+                if (record != null)
+                {
+                    TempData["Message"] = $"Email has already been registered previously";
+                    return View();
+                }
                 try { 
                     var User = _mapper.Map<TblUser>(regisData);
 
                     if(ProfileImageUrl != null)
                     {
                         User.ProfileImageUrl = ProjectUtil.UploadImage(ProfileImageUrl, "users");
-                    }
+                    }else { User.ProfileImageUrl = string.Empty; }
 
                     DBContext.Add(User);
                     DBContext.SaveChanges();
@@ -41,10 +48,11 @@ namespace BookStore2024.Controllers
                     //string x = regisData.ShippingAddress;
                     //string y = regisData.UserName;
 
+                    //TempData["Message"] = $"Register Success!";
                     return RedirectToAction("Index","Home");
                 }catch(Exception ex)
                 {
-
+                    TempData["Message"] = $"some information are provided incorrectly";
                 }
             }
             return View();

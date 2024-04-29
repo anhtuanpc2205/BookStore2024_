@@ -85,7 +85,14 @@
 
 <div class="container">
     <div class="Registration">
-        <h1 class="text-center">Registration!</h1>
+        @if (@TempData["Message"] != null){
+            <h3 class="text-center">@TempData["Message"]</h3>
+        }
+        else
+        {
+            <h1 class="text-center">Registration!</h1>
+        }
+        
         <form asp-action="Register" class="form-horizontal" enctype="multipart/form-data">
             <div class="form-group">
                 <label class="control-label col-sm-2 icon"><i class="glyphicon glyphicon-envelope"></i></label>
@@ -137,6 +144,3 @@
         </form>
     </div>
 </div>
-
-
-
