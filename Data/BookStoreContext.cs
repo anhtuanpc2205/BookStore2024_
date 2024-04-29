@@ -290,11 +290,11 @@ public partial class BookStoreContext : DbContext
 
             entity.Property(e => e.UserId).HasColumnName("user_id_");
             entity.Property(e => e.Email)
-                .HasMaxLength(100)
+                .HasMaxLength(255)
                 .IsUnicode(false)
                 .HasColumnName("email");
             entity.Property(e => e.Password)
-                .HasMaxLength(20)
+                .HasMaxLength(255)
                 .IsUnicode(false)
                 .HasColumnName("password_");
             entity.Property(e => e.ProfileImageUrl)

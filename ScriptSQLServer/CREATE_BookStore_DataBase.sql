@@ -73,9 +73,9 @@ CREATE TABLE tbl_Book_Detail (
 -- Bảng lưu thông tin về người dùng
 CREATE TABLE tbl_User(
     user_id_ INT IDENTITY(1,1) PRIMARY KEY, -- Khóa chính: ID của người dùng
-    user_name_ NVARCHAR(50) NOT NULL, -- Tên đăng nhập của người dùng
-    email VARCHAR(100) NOT NULL, -- Địa chỉ email của người dùng
-    password_ VARCHAR(20) NOT NULL, -- Mật khẩu của người dùng
+    user_name_ NVARCHAR(100) NOT NULL, -- Tên đăng nhập của người dùng
+    email VARCHAR(255) NOT NULL, -- Địa chỉ email của người dùng
+    password_ VARCHAR(255) NOT NULL, -- Mật khẩu của người dùng
     shipping_address NVARCHAR(255), -- Địa chỉ giao hàng của người dùng
     role_ TinyInt NOT NULL, -- Vai trò của người dùng (admin, user, ...) 1 cho admin,2 cho khách hàng
     profile_image_url VARCHAR(255) -- Đường dẫn ảnh đại diện của người dùng
@@ -984,7 +984,6 @@ LEFT JOIN
 	tbl_Blog B ON A.author_id = B.author_id
 GROUP BY 
     A.author_id, A.author_name,A.profile_image_url
-ORDER BY num_blogs DESC
 
 
 GO
