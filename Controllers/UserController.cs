@@ -14,8 +14,9 @@ namespace BookStore2024.Controllers
         public UserController(BookStoreContext DatabaseContext, IMapper mapper) {
             DBContext = DatabaseContext;
             _mapper = mapper;
-        } 
+        }
 
+        #region Register
         [HttpGet]
         public IActionResult Register()
         {
@@ -24,7 +25,7 @@ namespace BookStore2024.Controllers
         [HttpPost]
         public IActionResult Register(RegisterVM regisData, IFormFile? ProfileImageUrl)
         {
-            if(ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 var record = DBContext.TblUsers.Where(p => p.Email == regisData.Email).SingleOrDefault();
                 if (record != null)
@@ -32,13 +33,15 @@ namespace BookStore2024.Controllers
                     TempData["Message"] = $"Email has already been registered previously";
                     return View();
                 }
-                try { 
+                try
+                {
                     var User = _mapper.Map<TblUser>(regisData);
 
-                    if(ProfileImageUrl != null)
+                    if (ProfileImageUrl != null)
                     {
                         User.ProfileImageUrl = ProjectUtil.UploadImage(ProfileImageUrl, "users");
-                    }else { User.ProfileImageUrl = string.Empty; }
+                    }
+                    else { User.ProfileImageUrl = string.Empty; }
 
                     DBContext.Add(User);
                     DBContext.SaveChanges();
@@ -49,14 +52,23 @@ namespace BookStore2024.Controllers
                     //string y = regisData.UserName;
 
                     //TempData["Message"] = $"Register Success!";
-                    return RedirectToAction("Index","Home");
-                }catch(Exception ex)
+                    return RedirectToAction("Index", "Home");
+                }
+                catch (Exception ex)
                 {
                     TempData["Message"] = $"some information are provided incorrectly";
                 }
             }
             return View();
         }
+        #endregion
 
+        #region Login
+        [HttpGet]
+        public IActionResult Login()
+        {
+            return View();
+        }
+        #endregion
     }
 }
