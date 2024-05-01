@@ -4224,20 +4224,22 @@ body.tg-comingsoonpage .tg-footerbar{position:static;}
 }
 
 /* The Close Button (x) */
-.form-login .close {
-	position: absolute !important;
-	right: 25px !important;
-	top: 0 !important;
-	color: #000 !important;
-	font-size: 35px !important;
-	font-weight: bold !important;
-}
-
-	.form-login .close:hover,
-	.form-login .close:focus {
-		color: red;
-		cursor: pointer;
+	.form-login .closebtn {
+		background-color: transparent !important;
+		position: absolute !important;
+		right: 1em !important;
+		top: 0 !important;
+		color: #000 !important;
+		width: 5px !important;
+		height: 5px !important;
+		border-radius: 4px;
 	}
+
+		.form-login .closebtn:hover,
+		.form-login .closebtn:focus {
+			color: red !important;
+			cursor: pointer !important;
+		}
 
 /* Add Zoom Animation */
 .form-login .animate {
