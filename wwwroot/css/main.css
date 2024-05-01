@@ -4142,51 +4142,105 @@ body.tg-comingsoonpage .tg-footer{border:0;}
 body.tg-comingsoonpage .tg-footerbar{position:static;}
 .tg-userlogin  figure a img {width: 50px; height: 50px;}
 
-/*--------------------------*/
-/* Dropdown Button */
-.dropbtn-x {
-	background-color: #04AA6D;
-	color: white;
-	padding: 16px;
-	font-size: 16px;
-	border: none;
+/*-----------Form Login---------------*/
+.form-login {
+	width: 30vw;
 }
+	.form-login input[type=text], .form-login input[type=password], .form-login input[type=email] {
+		width: 28vw !important;
+		padding: 12px 20px !important;
+		margin: 8px 0 !important;
+		display: inline-block !important;
+		box-sizing: border-box !important;
+	}
 
-/* The container <div> - needed to position the dropdown content */
-.dropdown-x {
-	position: relative;
-	display: inline-block;
-}
-
-/* Dropdown Content (Hidden by Default) */
-.dropdown-content-x {
-	display: none;
-	position: absolute;
-	background-color: #f1f1f1;
-	min-width: 160px;
-	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-	z-index: 1;
-}
-
-	/* Links inside the dropdown */
-	.dropdown-content-x a {
-		color: black;
-		padding: 12px 16px;
-		text-decoration: none;
+/* Set a style for all buttons */
+	.form-login button {
+		color: white !important;
+		background-color: #77b748;
+		padding: 14px 20px !important;
+		margin: 8px 0 !important;
+		border: none !important;
+		cursor: pointer !important;
+		width: 28vw !important;
 		display: block;
 	}
 
-		/* Change color of dropdown links on hover */
-		.dropdown-content a:hover {
-			background-color: #ddd;
-		}
+	.form-login button:hover {
+		opacity: 0.8 !important;
+	}
 
-/* Show the dropdown menu on hover */
-.dropdown-x:hover .dropdown-content {
-	display: block;
+/* Extra styles for the cancel button */
+	.form-login .cancelbtn {
+		margin-top: 0px !important;
+		width: 9em !important;
+		height: 3em !important;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		background-color: #C0C0C0;
+		border-radius: 4px;
+	}
+
+	.form-login .loginbtn {
+		height: 3.5em !important;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		background-color: #77b748;
+		border-radius: 4px;
+	}
+
+.form-login .container {
+	padding: 16px;
 }
 
-/* Change the background color of the dropdown button when the dropdown content is shown */
-.dropdown-x:hover .dropbtn {
-	background-color: #3e8e41;
+.form-login span.psw {
+	float: right;
+	padding-top: 16px;
+}
+
+/* The Modal (background) */
+.form-login .modal {
+	display: none; /* Hidden by default */
+	position: fixed; /* Stay in place */
+	z-index: 1; /* Sit on top */
+	left: 0;
+	top: 0;
+	width: 100%; /* Full width */
+	height: 100%; /* Full height */
+	overflow: auto; /* Enable scroll if needed */
+	background-color: rgb(0,0,0); /* Fallback color */
+	background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+	padding-top: 60px;
+}
+
+/* Modal Content/Box */
+.form-login .modal-content {
+	background-color: #fefefe;
+	margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+	border: 1px solid #888;
+	width: 30vw; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button (x) */
+.form-login .close {
+	position: absolute !important;
+	right: 25px !important;
+	top: 0 !important;
+	color: #000 !important;
+	font-size: 35px !important;
+	font-weight: bold !important;
+}
+
+	.form-login .close:hover,
+	.form-login .close:focus {
+		color: red;
+		cursor: pointer;
+	}
+
+/* Add Zoom Animation */
+.form-login .animate {
+	-webkit-animation: animatezoom 0.6s;
+	animation: animatezoom 0.6s
 }

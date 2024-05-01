@@ -1,142 +1,181 @@
 ﻿<!--************************************
-				Header Start
+                Header Start
 *************************************-->
 <header id="tg-header" class="tg-header tg-haslayout">
-	<div class="tg-topbar">
-					<div class="container">
-						<div class="row">
-							<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-								<ul class="tg-addnav">
-									<li>
-										<a href="javascript:void(0);">
-											<i class="icon-envelope"></i>
-											<em>Contact</em>
-										</a>
-									</li>
-									<li>
-										<a href="javascript:void(0);">
-											<i class="icon-question-circle"></i>
-											<em>Help</em>
-										</a>
-									</li>
-								</ul>
-								<div class="dropdown tg-themedropdown tg-currencydropdown">
-									<a href="javascript:void(0);" id="tg-currenty" class="tg-btnthemedropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-										<i class="icon-earth"></i>
-										<span>Currency</span>
-									</a>
-									<ul class="dropdown-menu tg-themedropdownmenu" aria-labelledby="tg-currenty">
-										<li>
-											<a href="javascript:void(0);">
-												<i>£</i>
-												<span>British Pound</span>
-											</a>
-										</li>
-										<li>
-											<a href="javascript:void(0);">
-												<i>$</i>
-												<span>Us Dollar</span>
-											</a>
-										</li>
-										<li>
-											<a href="javascript:void(0);">
-												<i>€</i>
-												<span>Euro</span>
-											</a>
-										</li>
-									</ul>
-								</div>
-								<div class="tg-userlogin">
-									<figure><a href="javascript:void(0);"><img src="../images/users/img-01.jpg" alt="image description"></a></figure>
-									<span>Hi, John</span>
-						<div class="dropdown-x">
-							<button class="dropbtn-x">Dropdown</button>
-							<div class="dropdown-content-x">
-								<a href="#">Link 1</a>
-								<a href="#">Link 2</a>
-								<a href="#">Link 3</a>
-							</div>
-						</div>
+    <div class="tg-topbar">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <ul class="tg-addnav">
+                        <li>
+                            <a href="javascript:void(0);">
+                                <i class="icon-envelope"></i>
+                                <em>Contact</em>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0);">
+                                <i class="icon-question-circle"></i>
+                                <em>Help</em>
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="dropdown tg-themedropdown tg-currencydropdown">
+                        <a href="javascript:void(0);" id="tg-currenty" class="tg-btnthemedropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="icon-earth"></i>
+                            <span>Currency</span>
+                        </a>
+                        <ul class="dropdown-menu tg-themedropdownmenu" aria-labelledby="tg-currenty">
+                            <li>
+                                <a href="javascript:void(0);">
+                                    <i>£</i>
+                                    <span>British Pound</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);">
+                                    <i>$</i>
+                                    <span>Us Dollar</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);">
+                                    <i>€</i>
+                                    <span>Euro</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="tg-userlogin">
+                        <div class="dropdown tg-themedropdown tg-currencydropdown">
+                            <a id="tg-userlogin" class="tg-btnthemedropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <figure><img src="../images/users/img-01.jpg" alt="image description" style="height: 3em"></figure>
+                                <span>Hi, John</span>
+                                @* <figure>
+                                    <i class="glyphicon glyphicon-log-in"></i>
+                                </figure>
+                                <span>Log in</span> *@
+                            </a>
+                            <ul class="dropdown-menu tg-themedropdownmenu" aria-labelledby="tg-userlogin">
+                                <li>
+                                    <a href="javascript:void(0);">
+                                        <i class="glyphicon glyphicon-log-out"></i>
+                                        <span>Log out</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a>
+                                        <i class="glyphicon glyphicon-log-in"></i>
+                                        <span onclick="document.getElementById('login-form-id').style.display='block'">Log in</span>
+                                    </a>
+                                    <div class="form-login">
+                                        <div id="login-form-id" class="modal">
+                                            <form class="modal-content animate" action="/action_page.php" method="post">
+                                                <div style="min-height:1.5vh;border-top-left-radius:4px; border-top-right-radius: 4px; background-color:#71AD44;">
+                                                    
+                                                </div>
+                                                <div class="container">
+                                                    <label for="uname"><b>Email</b></label>
+                                                    <input type="email" placeholder="Enter Email" name="uname" required>
 
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-	<div class="tg-middlecontainer">
-					<div class="container">
-						<div class="row">
-							<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-								<strong class="tg-logo"><a asp-action="index" asp-controller="Home"><img src="../images/logo.png" alt="company name here"></a></strong>
-								<div class="tg-wishlistandcart">
-									<div class="dropdown tg-themedropdown tg-wishlistdropdown">
-										<a href="javascript:void(0);" id="tg-wishlisst" class="tg-btnthemedropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-											<span class="tg-themebadge">3</span>
-											<i class="icon-heart"></i>
-											<span>Wishlist</span>
-										</a>
-										<div class="dropdown-menu tg-themedropdownmenu" aria-labelledby="tg-wishlisst">
-											<div class="tg-description"><p>No products were added to the wishlist!</p></div>
-										</div>
-									</div>
-								
-								@await Component.InvokeAsync("Minicart")
-								</div>
-								<div class="tg-searchbox">
-									@await Html.PartialAsync("_Search")
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-	<div class="tg-navigationarea">
-					<div class="container">
-						<div class="row">
-							<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-								<nav id="tg-nav" class="tg-nav">
-									<div class="navbar-header">
-										<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#tg-navigation" aria-expanded="false">
-											<span class="sr-only">Toggle navigation</span>
-											<span class="icon-bar"></span>
-											<span class="icon-bar"></span>
-											<span class="icon-bar"></span>
-										</button>
-									</div>
-									<div id="tg-navigation" class="collapse navbar-collapse tg-navigation">
-										<ul>
-											@await Component.InvokeAsync("MegaMenu")
-											<li>
-												<a asp-action="index" asp-controller="Home">Home</a>
-											</li>
-											<li>
-												<a asp-action="index" asp-controller="Author">Authors</a>
-											</li>
-											<li>
-												<a asp-action="BestSelling" asp-controller="Products">Best Selling</a>
-											</li>
-											<li>
-												<a asp-action="WeeklySale" asp-controller="Products">Weekly Sale</a>
-											</li>
-											<li>
-												<a asp-action="index" asp-controller="Products">All Products</a>
-											</li>
-											<li>
-												<a asp-action="index" asp-controller="Blog">News and Blogs</a>
-											</li>
-										@* 	<li>
-												<a asp-action="Register" asp-controller="User">Test Regis</a>
-											</li> *@
-											<li>
-												<a asp-action="AboutUs" asp-controller="Home">About Us</a>
-											</li>
-										</ul>
-									</div>
-								</nav>
-							</div>
-						</div>
-					</div>
-				</div>
+                                                    <label for="psw"><b>Password</b></label>
+                                                    <input type="password" placeholder="Enter Password" name="psw" required>
+
+                                                    <button type="submit" class="loginbtn">Login</button>
+                                                    <label>
+                                                        <input type="checkbox" checked="checked" name="remember">Remember me
+                                                    </label>
+                                                </div>
+
+                                                <div class="container">
+                                                    <button type="button" onclick="document.getElementById('login-form-id').style.display='none'" class="cancelbtn">Cancel</button>
+                                                    <a href="#"><div class="psw">Forgot password?</div></a>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="tg-middlecontainer">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <strong class="tg-logo"><a asp-action="index" asp-controller="Home"><img src="../images/logo.png" alt="company name here"></a></strong>
+                    <div class="tg-wishlistandcart">
+                        <div class="dropdown tg-themedropdown tg-wishlistdropdown">
+                            <a href="javascript:void(0);" id="tg-wishlisst" class="tg-btnthemedropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="tg-themebadge">3</span>
+                                <i class="icon-heart"></i>
+                                <span>Wishlist</span>
+                            </a>
+                            <div class="dropdown-menu tg-themedropdownmenu" aria-labelledby="tg-wishlisst">
+                                <div class="tg-description"><p>No products were added to the wishlist!</p></div>
+                            </div>
+                        </div>
+
+                        @await Component.InvokeAsync("Minicart")
+                    </div>
+                    <div class="tg-searchbox">
+                        @await Html.PartialAsync("_Search")
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="tg-navigationarea">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <nav id="tg-nav" class="tg-nav">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#tg-navigation" aria-expanded="false">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                        </div>
+                        <div id="tg-navigation" class="collapse navbar-collapse tg-navigation">
+                            <ul>
+                                @await Component.InvokeAsync("MegaMenu")
+                                <li>
+                                    <a asp-action="index" asp-controller="Home">Home</a>
+                                </li>
+                                <li>
+                                    <a asp-action="index" asp-controller="Author">Authors</a>
+                                </li>
+                                <li>
+                                    <a asp-action="BestSelling" asp-controller="Products">Best Selling</a>
+                                </li>
+                                <li>
+                                    <a asp-action="WeeklySale" asp-controller="Products">Weekly Sale</a>
+                                </li>
+                             @*    <li>
+                                    <a asp-action="index" asp-controller="Products">All Products</a>
+                                </li> *@
+                                <li>
+                                    <a asp-action="index" asp-controller="Blog">News and Blogs</a>
+                                </li>
+                                <li>
+                                    <a asp-action="Register" asp-controller="User">Test Regis</a>
+                                </li>
+                                <li>
+                                    <a asp-action="AboutUs" asp-controller="Home">About Us</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
 </header>
 <!--************************************
-				Header End
+                Header End
 *************************************-->
