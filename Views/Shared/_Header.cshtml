@@ -46,34 +46,7 @@
                             </li>
                         </ul>
                     </div>
-                    <div class="tg-userlogin">
-                        <div class="dropdown tg-themedropdown tg-currencydropdown">
-                            <a id="tg-userlogin" class="tg-btnthemedropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <figure><img src="../images/users/img-01.jpg" alt="image description" style="height: 3em"></figure>
-                                <span>Hi, John</span>
-                                @* <figure>
-                                    <i class="glyphicon glyphicon-log-in"></i>
-                                </figure>
-                                <span>Log in</span> *@
-                            </a>
-                            <ul class="dropdown-menu tg-themedropdownmenu">
-                                <li>
-                                    <a href="javascript:void(0);">
-                                        <i class="glyphicon glyphicon-log-out"></i>
-                                        <span>Log out</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a>
-                                        <i class="glyphicon glyphicon-log-in"></i>
-                                        <span onclick="document.getElementById('login-form-id').style.display='block'">Log in</span>
-                                    </a>
-                                    
-                                </li>
-                            </ul>
-                            
-                        </div>
-                    </div>
+                   @await Component.InvokeAsync("UserLogin")
                 </div>
             </div>
         </div>
@@ -152,33 +125,7 @@
         </div>
     </div>
 </header>
-<div class="form-login">
-    <div id="login-form-id" class="modal">
-        <form class="modal-content animate" action="/action_page.php" method="post">
-            <div style="min-height:1.5vh;border-top-left-radius:4px; border-top-right-radius: 4px; background-color:#71AD44;">
-            </div>
-            <div class="container">
-                <label for="uname"><b>Email</b></label>
-                <input type="email" placeholder="Enter Email" name="uname" required>
 
-                <label for="psw"><b>Password</b></label>
-                <input type="password" placeholder="Enter Password" name="psw" required>
-
-                <button type="submit" class="loginbtn">Login</button>
-                <label>
-                    <input type="checkbox" checked="checked" name="remember">Remember me
-                </label>
-            </div>
-
-            <div class="container">
-                <a href="#"><div class="psw">Forgot password?</div></a>
-            </div>
-
-            <button type="button" onclick="document.getElementById('login-form-id').style.display='none'" class="closebtn glyphicon glyphicon-remove"></button>
-            
-        </form>
-    </div>
-</div>
 <!--************************************
                 Header End
 *************************************-->
