@@ -14,5 +14,7 @@ namespace BookStore2024.ViewModels
         [MaxLength(255, ErrorMessage = "maximum is 255 characters.")]
         [DataType(DataType.Password)]
         public string Password { get; set; } = "";
+
+        //public string? ProfileImageUrl { get; set; } = "";
     }
 }

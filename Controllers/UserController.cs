@@ -71,7 +71,8 @@ namespace BookStore2024.Controllers
         [HttpGet]
         public IActionResult Login()
         {
-           return Redirect("../");
+            //return ViewComponent("UserLogin");
+            return View();
         }
         [HttpPost]
         public async Task<IActionResult> Login(LoginVM loginInfo)
@@ -81,17 +82,18 @@ namespace BookStore2024.Controllers
                 var user = DBContext.TblUsers.SingleOrDefault( u => u.Email == loginInfo.Email);
                 if (user == null)
                 {
-                    ModelState.AddModelError("Error", "Invalid user");
-                    await Response.WriteAsync("<script>alert ('Invalid user')</script>");
-                    return Redirect("../");
+                    //ModelState.AddModelError("Error", "Invalid user");
+                    
+                    TempData["Message"] = "Invalid user!";
+                    return RedirectToAction("Login");
                 }
                 else
                 {
                     if(user.Password != loginInfo.Password)
                     {
-                        ModelState.AddModelError("Error", "Incorect password");
-                        await Response.WriteAsync("<script>alert ('Incorect password')</script>");
-                        return Redirect("../");
+                        TempData["Message"] = "Incorect password!";
+                        ViewBag.Msg = Convert.ToString(TempData["Message"]);
+                        return RedirectToAction("Login");
                     }
                     else
                     {
@@ -100,20 +102,23 @@ namespace BookStore2024.Controllers
                             new Claim(ClaimTypes.Email,user.Email),
                             new Claim(ClaimTypes.Name,user.UserName),
                             new Claim("UserID",user.UserId.ToString()),
+                            new Claim("ProfileImageUrl",user.ProfileImageUrl ?? ""),
 
                             new Claim(ClaimTypes.Role,"Customer")
                         };
                         var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
                         var claimsPrincipal = new ClaimsPrincipal(claimsIdentity);
 
+                        //TempData["Message"] = "login success!";
                         await HttpContext.SignInAsync(claimsPrincipal);
-                        await Response.WriteAsync("<script>alert ('Login Sussess!')</script>");
-                        return Redirect(Request.Headers["Referer"].ToString());
+
+                        ViewBag.UserImg = user.ProfileImageUrl ?? "../user/img-01.jpg";
+                        return RedirectToAction("Index","Home");
                     }
                 }
             }
             await Response.WriteAsync("<script>alert ('Invalid user or Incorect Password')</script>");
-            return Redirect("../");
+            return RedirectToAction("Login");
         }
         #endregion
         [Authorize]
@@ -121,6 +126,11 @@ namespace BookStore2024.Controllers
         {
             return View();
         }
-
+        [Authorize]
+        public async Task<IActionResult> LogOut()
+        {
+            await HttpContext.SignOutAsync();
+            return RedirectToAction("Index", "Home");
+        }
     }
 }

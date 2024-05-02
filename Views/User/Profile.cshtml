@@ -2,5 +2,8 @@
 @{
     ViewData["Title"] = "Profile";
 }
-
-<h2>Welcom @Context.User.Identity.Name</h2>
+<div class="container">
+    <h2>Welcom @Context.User.Identity.Name</h2>
+    <figure><img src="@User.FindFirst("ProfileImageUrl").Value" alt="User img"/></figure>
+    <a asp-action="LogOut">LogOut</a>
+</div>

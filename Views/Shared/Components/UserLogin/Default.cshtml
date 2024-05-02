@@ -3,48 +3,68 @@
 <div class="tg-userlogin">
     <div class="dropdown tg-themedropdown tg-currencydropdown">
         <a id="tg-userlogin" class="tg-btnthemedropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <figure><img src="../images/users/img-01.jpg" alt="image description" style="height: 3em"></figure>
-            <span>Hi, John</span>
-            @* <figure>
-            <i class="glyphicon glyphicon-log-in"></i>
-            </figure>
-            <span>Log in</span> *@
+            @if (Context.User.Identity.IsAuthenticated)
+            {
+                <figure><img src="@User.FindFirst("ProfileImageUrl").Value" alt="User img" style="height: 3em"></figure>
+                <span>@Context.User.Identity.Name</span>
+                <ul class="dropdown-menu tg-themedropdownmenu">
+                    <li>
+                        <a asp-action="LogOut" asp-controller="User">
+                            <i class="glyphicon glyphicon-log-out"></i>
+                            <span>Log out</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a asp-action ="Profile" asp-controller="User">
+                            <i class="glyphicon glyphicon-info-sign"></i>
+                            <span>Profile Info</span>
+                        </a>
+
+                    </li>
+                </ul>
+            }
+            else
+            {
+                <figure>
+                    <i class="glyphicon glyphicon-user"></i>
+                </figure>
+                <span>User</span>
+                <ul class="dropdown-menu tg-themedropdownmenu">
+                    <li>
+                        <a>
+                            <i class="glyphicon glyphicon-log-in"></i>
+                            <span onclick="document.getElementById('login-form-id').style.display='block'">Log in</span>
+                        </a>
+
+                    </li>
+                    <li>
+                        <a asp-action="Register" asp-controller="User">
+                            <i class="glyphicon glyphicon-plus"></i>
+                            <span>Register</span>
+                        </a>
+
+                    </li>
+                </ul>
+            }
+
         </a>
-        <ul class="dropdown-menu tg-themedropdownmenu">
-            <li>
-                <a href="javascript:void(0);">
-                    <i class="glyphicon glyphicon-log-out"></i>
-                    <span>Log out</span>
-                </a>
-            </li>
-            <li>
-                <a>
-                    <i class="glyphicon glyphicon-log-in"></i>
-                    <span onclick="document.getElementById('login-form-id').style.display='block'">Log in</span>
-                </a>
-
-            </li>
-        </ul>
-
+       
     </div>
 </div>
 <div class="form-login">
     <div id="login-form-id" class="modal">
-        @* <form class="modal-content animate" asp-action="Login" asp-controller="User">
-        </form> *@
-        @using (Html.BeginForm("Login", "User", FormMethod.Post, new { @class = "modal-content animate" }))
+        
+        @using (Html.BeginForm("Login", "User", FormMethod.Post, new { @class = "modal-content animate", ViewBag.ReturnUrl }))
         {
             
             <div style="min-height:1.5vh;border-top-left-radius:4px; border-top-right-radius: 4px; background-color:#71AD44;"></div>
-                
-                <div class="container">
+
+            <div class="container">
                     <label for="uname"><b>Email</b></label>
-                     @* <input asp-for=Email type="email" placeholder="Email"> *@
                     <span asp-validation-for="Email" class="text-danger"></span>
                     @Html.TextBoxFor(x => x.Email, new { @type = "email", placeholder = "Email" })
 
                     <label for="psw"><b>Password</b></label>
-                    @* <input asp-for=Password type="password" placeholder="Enter Password"> *@
                     @Html.TextBoxFor(x => x.Password, new { @type = "password", placeholder = "Password" })
                     <span asp-validation-for="Password" class="text-danger"></span>
 

@@ -2,6 +2,7 @@
 using BookStore2024.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using BookStore2024.Helpers;
+using Microsoft.AspNetCore.Authorization;
 
 namespace BookStore2024.Controllers
 {
@@ -16,6 +17,7 @@ namespace BookStore2024.Controllers
         {
             return View(ListProductsInCart);
         }
+        [Authorize]
         public IActionResult AddtoCart(int productDetailId, int quantity = 1)
         {
             var CartList = ListProductsInCart;
