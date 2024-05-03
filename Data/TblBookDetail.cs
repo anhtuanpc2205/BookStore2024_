@@ -27,11 +27,11 @@ public partial class TblBookDetail
 
     public virtual TblFormat Format { get; set; } = null!;
 
+    public virtual ICollection<TblBookAlert> TblBookAlerts { get; set; } = new List<TblBookAlert>();
+
+    public virtual ICollection<TblNewReleaseBook> TblNewReleaseBooks { get; set; } = new List<TblNewReleaseBook>();
+
     public virtual ICollection<TblOrderDetail> TblOrderDetails { get; set; } = new List<TblOrderDetail>();
 
     public virtual ICollection<TblUserWishlist> TblUserWishlists { get; set; } = new List<TblUserWishlist>();
-
-    public virtual ICollection<TblBookAlert>  TblBookAlerts { get; set;} = new List<TblBookAlert>();
-
-    public virtual ICollection<tblNewRelease> TblNewReleases { get;set; } = new List<tblNewRelease>();
 }

@@ -13,12 +13,12 @@ namespace BookStore2024.ViewComponents
 
         public IViewComponentResult Invoke(int? pg_num = 1)
         {
-            var data = DBContext.ViewBookAlert.Select(BA => new BookAlertVM
+            var data = DBContext.ViewBookAlerts.Select(BA => new BookAlertVM
             {
                 BookTitle = BA.BookTitle,
                 BookDetailId = BA.BookDetailId,
-                HomeBannerImageUrl = BA.HomeBannerImageUrl,
-                ProductsBannerImageUrl = BA.ProductsBannerImageUrl,
+                HomeBannerImageUrl = BA.ImgHomeBanner,
+                ProductsBannerImageUrl = BA.ImgProductsBanner,
                 AuthorName = BA.AuthorName,
                 Price = BA.Price,
                 Discount = BA.Discount,

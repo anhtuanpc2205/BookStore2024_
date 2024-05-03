@@ -12,7 +12,7 @@ namespace BookStore2024.ViewComponents
 
         public IViewComponentResult Invoke()
         {
-            var data = DBContext.ViewBlogDetail
+            var data = DBContext.ViewBlogDetails
                             .OrderByDescending(Blo => Blo.Views)
                             .Take(4)
                             .Select(Blo => new BlogVM
@@ -22,7 +22,7 @@ namespace BookStore2024.ViewComponents
                                 BlogDescription = Blo.BlogDescription,
                                 Content = Blo.BlogContent,
                                 AuthorId = Blo.AuthorId,
-                                ImgUrl = Blo.BlogImageUrl,
+                                ImgUrl = Blo.ImgUrl,
                                 Views = Blo.Views,
                                 AuthorName = Blo.AuthorName,
                             });

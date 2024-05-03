@@ -10,7 +10,7 @@ namespace BookStore2024.Controllers
 		public BlogController(BookStoreContext DatabaseContext) => DBContext = DatabaseContext;
 		public IActionResult Index()
 		{
-			var BlogQuery = DBContext.ViewBlogDetail.AsQueryable();
+			var BlogQuery = DBContext.ViewBlogDetails.AsQueryable();
 
 			var data = BlogQuery.OrderByDescending(p => p.Views).Take(9).Select(p => new BlogVM
 			{
@@ -19,7 +19,7 @@ namespace BookStore2024.Controllers
 				BlogDescription = p.BlogDescription,
 				Content = p.BlogContent,
 				AuthorId = p.AuthorId,
-				ImgUrl = p.BlogImageUrl,
+				ImgUrl = p.ImgUrl,
 				Views = p.Views,
 				AuthorName = p.AuthorName
 			});
@@ -28,7 +28,7 @@ namespace BookStore2024.Controllers
 		}
 		public IActionResult Detail(int DetailID)
 		{
-			var BlogQuery = DBContext.ViewBlogDetail.AsQueryable().Where(p => p.BlogId == DetailID);
+			var BlogQuery = DBContext.ViewBlogDetails.AsQueryable().Where(p => p.BlogId == DetailID);
 
 			var data = BlogQuery.Select(p => new BlogVM
 			{
@@ -37,7 +37,7 @@ namespace BookStore2024.Controllers
 				BlogDescription = p.BlogDescription,
 				Content = p.BlogContent,
 				AuthorId = p.AuthorId,
-				ImgUrl = p.BlogImageUrl,
+				ImgUrl = p.ImgUrl,
 				Views = p.Views,
 				AuthorName = p.AuthorName
 			}).SingleOrDefault();

@@ -38,7 +38,7 @@ namespace BookStore2024.Controllers
                     ProductName = product.BookTitle,
                     ProductImg = product.BookImageUrl,
                     FormatName = product.FormatName,
-                    Price = product.Price - product.Discount, //gía được truyền vào view là giá sau khi đã chiết khấu (discount rồi)
+                    Price = product.Price - (product.Discount ?? 0), //gía được truyền vào view là giá sau khi đã chiết khấu (discount rồi)
                     Quantity = (quantity > 0) ? quantity : 1,
                 };
 

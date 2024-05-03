@@ -12,7 +12,7 @@ namespace BookStore2024.ViewComponents
         public IViewComponentResult Invoke()
         {
            
-            var data = DBContext.ViewBestSelling.Select(p => new ProductVM
+            var data = DBContext.ViewTop20BestSellingBooks.Select(p => new ProductVM
             {
                 BookDetailId = p.BookDetailId,
                 CategoryId = p.CategoryId,

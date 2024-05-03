@@ -27,7 +27,7 @@ namespace BookStore2024.Controllers
                 AuthorName = p.AuthorName,
                 ProfileImageUrl = p.ProfileImageUrl,
                 AuthorDescription = p.AuthorDescription,
-                PublishedBook = p.PublishedBook
+                PublishedBook = p.PublishedBooks ?? 0
 			});
 			ViewBag.totalAuthor = data.Count();
 			return View(await PaginatedList<AuthorVM>.CreateAsync(data, pageNumber, pageSize));
@@ -47,7 +47,7 @@ namespace BookStore2024.Controllers
 				AuthorName = AuthorQuery.AuthorName,
 				ProfileImageUrl = AuthorQuery.ProfileImageUrl,
 				AuthorDescription = AuthorQuery.AuthorDescription,
-				PublishedBook = AuthorQuery.PublishedBook
+				PublishedBook = AuthorQuery.PublishedBooks ?? 0
 			};
 
 			return View(data);

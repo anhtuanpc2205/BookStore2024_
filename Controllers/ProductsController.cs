@@ -106,7 +106,7 @@ namespace BookStore2024.Controllers
 
         public async Task<IActionResult> BestSelling(int? pageNumber, int? category, int? genre)
         {
-            var Query = DBContext.ViewBestSelling.AsQueryable();
+            var Query = DBContext.ViewTop20BestSellingBooks.AsQueryable();
 
             if (Query == null)
             {
