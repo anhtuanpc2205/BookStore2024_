@@ -99,10 +99,11 @@ namespace BookStore2024.Controllers
                     {
                         var claims = new List<Claim>
                         {
-                            new Claim(ClaimTypes.Email,user.Email),
+                            new Claim("Email",user.Email),
                             new Claim(ClaimTypes.Name,user.UserName),
                             new Claim("UserID",user.UserId.ToString()),
                             new Claim("ProfileImageUrl",user.ProfileImageUrl ?? ""),
+                            new Claim("Address",user.ShippingAddress),
 
                             new Claim(ClaimTypes.Role,"Customer")
                         };
