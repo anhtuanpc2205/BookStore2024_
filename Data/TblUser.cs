@@ -13,7 +13,7 @@ public partial class TblUser
 
     public string Password { get; set; } = null!;
 
-    public string? ShippingAddress { get; set; }
+    public string? UserAddress { get; set; }
 
     public byte Role { get; set; }
 

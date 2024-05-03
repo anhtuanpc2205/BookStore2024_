@@ -20,9 +20,9 @@ namespace BookStore2024.Controllers
         [Authorize]
         public IActionResult AddtoCart(int productDetailId, int quantity = 1)
         {
-            var CartList = ListProductsInCart;
+            var Cart = ListProductsInCart;
 
-            var item = CartList.SingleOrDefault(p => p.BookDetailId == productDetailId);
+            var item = Cart.SingleOrDefault(p => p.BookDetailId == productDetailId);
             
             if (item == null) //nếu chưa có sản phẩm có (id == productDetailId) đó ở trong cart
             {
@@ -42,60 +42,65 @@ namespace BookStore2024.Controllers
                     Quantity = (quantity > 0) ? quantity : 1,
                 };
 
-                CartList.Add(item);
+                Cart.Add(item);
             }
             else { item.Quantity += (quantity > 0) ? quantity : 1; }//nếu tồn tại sp trong giỏ hàng rồi thì cập nhật lại số lượng
-            HttpContext.Session.Set(Constants.SESSION_KEY, CartList);
+            HttpContext.Session.Set(Constants.SESSION_KEY, Cart);
 
             return Redirect(Request.Headers["Referer"].ToString());
             //return NoContent();
         }
 		public ActionResult RemoveItem(int productDetailId)
         {
-            var CartList = ListProductsInCart;
+            var Cart = ListProductsInCart;
 
-            var item = CartList.SingleOrDefault(p => p.BookDetailId == productDetailId);
+            var item = Cart.SingleOrDefault(p => p.BookDetailId == productDetailId);
 
             if (item != null) 
             {
-                CartList.Remove(item);
-                HttpContext.Session.Set(Constants.SESSION_KEY, CartList);
+                Cart.Remove(item);
+                HttpContext.Session.Set(Constants.SESSION_KEY, Cart);
             }
             return NoContent();
         }
-        
         public IActionResult increaseQuantity(int productDetailId)
         {
-            var CartList = ListProductsInCart;
-            var item = CartList.SingleOrDefault(p => p.BookDetailId == productDetailId);
+            var Cart = ListProductsInCart;
+            var item = Cart.SingleOrDefault(p => p.BookDetailId == productDetailId);
             if (item != null)
             {
                 item.Quantity ++;
             }
-            HttpContext.Session.Set(Constants.SESSION_KEY, CartList);
+            HttpContext.Session.Set(Constants.SESSION_KEY, Cart);
             return NoContent();
         }
-
         public IActionResult decreaseQuantity(int productDetailId)
         {
-            var CartList = ListProductsInCart;
-            var item = CartList.SingleOrDefault(p => p.BookDetailId == productDetailId);
+            var Cart = ListProductsInCart;
+            var item = Cart.SingleOrDefault(p => p.BookDetailId == productDetailId);
             if (item != null)
             {
                 if(item.Quantity > 1) { item.Quantity--; }
             }
-            HttpContext.Session.Set(Constants.SESSION_KEY, CartList);
+            HttpContext.Session.Set(Constants.SESSION_KEY, Cart);
             return NoContent();
         }
-
         public IActionResult ClearCart()
         {
-			var CartList = new List<CartItemVM>();
-			HttpContext.Session.Set(Constants.SESSION_KEY, CartList);
+			var Cart = new List<CartItemVM>();
+			HttpContext.Session.Set(Constants.SESSION_KEY, Cart);
 
             return Redirect(Request.Headers["Referer"].ToString());
             //return NoContent();
             //return RedirectToAction("Index");
         }
-	}
+        [Authorize]
+        public IActionResult CheckOut() {
+
+            var Cart = ListProductsInCart;
+            
+
+            return View(Cart);
+        }
+    }
 }

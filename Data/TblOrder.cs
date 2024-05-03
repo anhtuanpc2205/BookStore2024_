@@ -21,6 +21,8 @@ public partial class TblOrder
 
     public decimal? ShippingFee { get; set; }
 
+    public string? ShippingAddress { get; set; }
+
     public virtual ICollection<TblOrderDetail> TblOrderDetails { get; set; } = new List<TblOrderDetail>();
 
     public virtual TblUser User { get; set; } = null!;
