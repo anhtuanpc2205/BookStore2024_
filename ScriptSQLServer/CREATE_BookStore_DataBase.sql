@@ -76,7 +76,7 @@ CREATE TABLE tbl_User(
     user_name_ NVARCHAR(100) NOT NULL, -- Tên đăng nhập của người dùng
     email VARCHAR(255) NOT NULL, -- Địa chỉ email của người dùng
     password_ VARCHAR(255) NOT NULL, -- Mật khẩu của người dùng
-    user_address NVARCHAR(255), -- Địa chỉ của người dùng
+    shipping_address NVARCHAR(255), -- Địa chỉ giao hàng của người dùng
     role_ TinyInt NOT NULL, -- Vai trò của người dùng (admin, user, ...) 1 cho admin,2 cho khách hàng
     profile_image_url VARCHAR(255) -- Đường dẫn ảnh đại diện của người dùng
 );
@@ -87,11 +87,10 @@ CREATE TABLE tbl_Order(
     user_id_ INT NOT NULL, -- Khóa ngoại: ID của người dùng
     order_date DATE NOT NULL, -- Ngày đặt hàng
     total_amount DECIMAL(10, 2) NOT NULL, -- Tổng số tiền của đơn hàng
-    order_status NVARCHAR(20) NOT NULL, -- Trạng thái của đơn hàng
+    order_status VARCHAR(20) NOT NULL, -- Trạng thái của đơn hàng
     shipping_method NVARCHAR(100), -- Phương thức vận chuyển
     payment_method TinyInt NOT NULL, -- Phương thức thanh toán
-    shipping_fee DECIMAL(10, 2), -- Phí vận chuyển
-    shipping_address NVARCHAR(255) -- Địa chỉ giao hàng
+    shipping_fee DECIMAL(10, 2) -- Phí vận chuyển
 );
 
 -- Bảng lưu thông tin về các chi tiết đơn hàng 1-n
@@ -143,7 +142,7 @@ INSERT INTO tbl_Genre(genre_name) VALUES
 ('Architecture'),
 ('Art Form');
 ---User
-INSERT INTO tbl_User(user_name_, email, password_, user_address, role_, profile_image_url)
+INSERT INTO tbl_User(user_name_, email, password_, shipping_address, role_, profile_image_url)
 VALUES (N'Trần Ngọc Anh Tuấn', 'ngocanhtuan2205@gmail.com', '123', N'32 Hải Thượng Lãn Ông, Tp Vinh', 1, '../images/users/img-01.jpg'),
 (N'Nguyễn Văn Hoàng ', 'abc@gmail.com', '123', N'32 Hải Thượng Lãn Ông, Tp Vinh', 2, '../images/users/img-01.jpg'),
 (N'Con Mèo Lem Nhem', 'ng2205@gmail.com', '123', N'32 Hải Thượng Lãn Ông, Tp Vinh', 3, '../images/users/img-01.jpg');
@@ -765,11 +764,11 @@ VALUES
     (@order_id, 1, 2),  -- Đặt 2 cuốn sách có ID là 1 vào đơn hàng
     (@order_id, 3, 1);  -- Đặt 1 cuốn sách có ID là 3 vào đơn hàng
 
-INSERT INTO tbl_Order (user_id_, order_date, total_amount, order_status, shipping_method, payment_method, shipping_fee,shipping_address)
+INSERT INTO tbl_Order (user_id_, order_date, total_amount, order_status, shipping_method, payment_method, shipping_fee)
 VALUES
-(2, '2024-03-28', 150.00, N'Hoàn tất', N'Giao hàng tiêu chuẩn', 1, 5.00,N'32 Hải Thượng Lãn Ông, Tp Vinh'),
-(2, '2024-03-29', 160.00, N'Hoàn tất', N'Giao hàng tiêu chuẩn', 2, 8.00,N'32 Hải Thượng Lãn Ông, Tp Vinh'),
-(2, '2024-03-30', 170.00, N'Hoàn tất', N'Giao hàng tiêu chuẩn', 1, 6.00,N'32 Hải Thượng Lãn Ông, Tp Vinh');
+(2, '2024-03-28', 150.00, N'Hoàn tất', N'Giao hàng tiêu chuẩn', 1, 5.00),
+(2, '2024-03-29', 160.00, N'Hoàn tất', N'Giao hàng tiêu chuẩn', 2, 8.00),
+(2, '2024-03-30', 170.00, N'Hoàn tất', N'Giao hàng tiêu chuẩn', 1, 6.00);
 
 -- Đơn hàng 1
 INSERT INTO tbl_Order_Detail (order_id, book_Detail_id, quantity)
@@ -914,7 +913,7 @@ SELECT
     O.order_id,
     O.user_id_,
     O.order_date,
-	O.shipping_address,
+    U.shipping_address,
     O.total_amount,
     OD.order_detail_id,
     OD.Book_Detail_id,

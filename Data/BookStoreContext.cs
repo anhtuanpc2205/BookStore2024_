@@ -67,7 +67,7 @@ public partial class BookStoreContext : DbContext
     {
         modelBuilder.Entity<TblAuthor>(entity =>
         {
-            entity.HasKey(e => e.AuthorId).HasName("PK__tbl_Auth__86516BCFA1A5325C");
+            entity.HasKey(e => e.AuthorId).HasName("PK__tbl_Auth__86516BCF1D42D209");
 
             entity.ToTable("tbl_Author");
 
@@ -84,7 +84,7 @@ public partial class BookStoreContext : DbContext
 
         modelBuilder.Entity<TblBlog>(entity =>
         {
-            entity.HasKey(e => e.BlogId).HasName("PK__tbl_Blog__2975AA28B704E155");
+            entity.HasKey(e => e.BlogId).HasName("PK__tbl_Blog__2975AA288D2B8C21");
 
             entity.ToTable("tbl_Blog");
 
@@ -113,7 +113,7 @@ public partial class BookStoreContext : DbContext
 
         modelBuilder.Entity<TblBook>(entity =>
         {
-            entity.HasKey(e => e.BookId).HasName("PK__tbl_Book__490D1AE130349450");
+            entity.HasKey(e => e.BookId).HasName("PK__tbl_Book__490D1AE1504D226F");
 
             entity.ToTable("tbl_Book");
 
@@ -155,7 +155,7 @@ public partial class BookStoreContext : DbContext
 
         modelBuilder.Entity<TblBookAlert>(entity =>
         {
-            entity.HasKey(e => e.AlertId).HasName("PK__tbl_book__4B8FB03AC78F1D8E");
+            entity.HasKey(e => e.AlertId).HasName("PK__tbl_book__4B8FB03A38131E1E");
 
             entity.ToTable("tbl_book_alert");
 
@@ -177,7 +177,7 @@ public partial class BookStoreContext : DbContext
 
         modelBuilder.Entity<TblBookDetail>(entity =>
         {
-            entity.HasKey(e => e.BookDetailId).HasName("PK__tbl_Book__6DDA91DFCFC47174");
+            entity.HasKey(e => e.BookDetailId).HasName("PK__tbl_Book__6DDA91DF3A2260A2");
 
             entity.ToTable("tbl_Book_Detail");
 
@@ -219,7 +219,7 @@ public partial class BookStoreContext : DbContext
 
         modelBuilder.Entity<TblCategory>(entity =>
         {
-            entity.HasKey(e => e.CategoryId).HasName("PK__tbl_Cate__D54EE9B4214FB1FF");
+            entity.HasKey(e => e.CategoryId).HasName("PK__tbl_Cate__D54EE9B482269FCC");
 
             entity.ToTable("tbl_Category");
 
@@ -231,7 +231,7 @@ public partial class BookStoreContext : DbContext
 
         modelBuilder.Entity<TblFormat>(entity =>
         {
-            entity.HasKey(e => e.FormatId).HasName("PK__tbl_Form__26B11DF1D76C86D4");
+            entity.HasKey(e => e.FormatId).HasName("PK__tbl_Form__26B11DF1FD1DA249");
 
             entity.ToTable("tbl_Format");
 
@@ -243,7 +243,7 @@ public partial class BookStoreContext : DbContext
 
         modelBuilder.Entity<TblGenre>(entity =>
         {
-            entity.HasKey(e => e.GenreId).HasName("PK__tbl_Genr__18428D42EA718CBC");
+            entity.HasKey(e => e.GenreId).HasName("PK__tbl_Genr__18428D4211EFE90E");
 
             entity.ToTable("tbl_Genre");
 
@@ -255,7 +255,7 @@ public partial class BookStoreContext : DbContext
 
         modelBuilder.Entity<TblNewReleaseBook>(entity =>
         {
-            entity.HasKey(e => e.NewReleaseId).HasName("PK__tbl_new___8258F1F4A5E8FFE1");
+            entity.HasKey(e => e.NewReleaseId).HasName("PK__tbl_new___8258F1F40ABBB570");
 
             entity.ToTable("tbl_new_release_books");
 
@@ -269,7 +269,7 @@ public partial class BookStoreContext : DbContext
 
         modelBuilder.Entity<TblOrder>(entity =>
         {
-            entity.HasKey(e => e.OrderId).HasName("PK__tbl_Orde__46596229ACC2197B");
+            entity.HasKey(e => e.OrderId).HasName("PK__tbl_Orde__46596229350F9C99");
 
             entity.ToTable("tbl_Order");
 
@@ -280,9 +280,6 @@ public partial class BookStoreContext : DbContext
                 .IsUnicode(false)
                 .HasColumnName("order_status");
             entity.Property(e => e.PaymentMethod).HasColumnName("payment_method");
-            entity.Property(e => e.ShippingAddress)
-                .HasMaxLength(255)
-                .HasColumnName("shipping_address");
             entity.Property(e => e.ShippingFee)
                 .HasColumnType("decimal(10, 2)")
                 .HasColumnName("shipping_fee");
@@ -302,7 +299,7 @@ public partial class BookStoreContext : DbContext
 
         modelBuilder.Entity<TblOrderDetail>(entity =>
         {
-            entity.HasKey(e => e.OrderDetailId).HasName("PK__tbl_Orde__3C5A4080CA70C6CA");
+            entity.HasKey(e => e.OrderDetailId).HasName("PK__tbl_Orde__3C5A4080BBFA03B8");
 
             entity.ToTable("tbl_Order_Detail");
 
@@ -324,7 +321,7 @@ public partial class BookStoreContext : DbContext
 
         modelBuilder.Entity<TblUser>(entity =>
         {
-            entity.HasKey(e => e.UserId).HasName("PK__tbl_User__EE50E8ED2B0567BF");
+            entity.HasKey(e => e.UserId).HasName("PK__tbl_User__EE50E8ED4D92A4A1");
 
             entity.ToTable("tbl_User");
 
@@ -342,9 +339,9 @@ public partial class BookStoreContext : DbContext
                 .IsUnicode(false)
                 .HasColumnName("profile_image_url");
             entity.Property(e => e.Role).HasColumnName("role_");
-            entity.Property(e => e.UserAddress)
+            entity.Property(e => e.ShippingAddress)
                 .HasMaxLength(255)
-                .HasColumnName("user_address");
+                .HasColumnName("shipping_address");
             entity.Property(e => e.UserName)
                 .HasMaxLength(100)
                 .HasColumnName("user_name_");
@@ -352,7 +349,7 @@ public partial class BookStoreContext : DbContext
 
         modelBuilder.Entity<TblUserWishlist>(entity =>
         {
-            entity.HasKey(e => e.WishlistId).HasName("PK__tbl_User__6151514EC2292E1A");
+            entity.HasKey(e => e.WishlistId).HasName("PK__tbl_User__6151514ED4B5F800");
 
             entity.ToTable("tbl_User_wishlist");
 

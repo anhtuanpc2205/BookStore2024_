@@ -22,7 +22,7 @@ namespace BookStore2024.ViewModels
 
         [Required(ErrorMessage = "Enter your address")]
         [MaxLength(255, ErrorMessage = "maximum is 255 characters.")]
-        public string UserAddress { get; set; } = "";
+        public string ShippingAddress { get; set; } = "";
 
         public byte Role { get; set; } = 2;
 

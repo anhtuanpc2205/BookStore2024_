@@ -79,17 +79,17 @@ namespace BookStore2024.Controllers
         {
             if(ModelState.IsValid)
             {
-                var _user = DBContext.TblUsers.SingleOrDefault( u => u.Email == loginInfo.Email);
-                if (_user == null)
+                var user = DBContext.TblUsers.SingleOrDefault( u => u.Email == loginInfo.Email);
+                if (user == null)
                 {
-                    //ModelState.AddModelError("Error", "Invalid _user");
+                    //ModelState.AddModelError("Error", "Invalid user");
                     
                     TempData["Message"] = "Invalid user!";
                     return RedirectToAction("Login");
                 }
                 else
                 {
-                    if(_user.Password != loginInfo.Password)
+                    if(user.Password != loginInfo.Password)
                     {
                         TempData["Message"] = "Incorect password!";
                         ViewBag.Msg = Convert.ToString(TempData["Message"]);
@@ -99,11 +99,11 @@ namespace BookStore2024.Controllers
                     {
                         var claims = new List<Claim>
                         {
-                            new Claim("Email",_user.Email),
-                            new Claim(ClaimTypes.Name,_user.UserName),
-                            new Claim("UserID",_user.UserId.ToString()),
-                            new Claim("ProfileImageUrl",_user.ProfileImageUrl ?? ""),
-                            new Claim("Address",_user.UserAddress ?? ""),
+                            new Claim("Email",user.Email),
+                            new Claim(ClaimTypes.Name,user.UserName),
+                            new Claim("UserID",user.UserId.ToString()),
+                            new Claim("ProfileImageUrl",user.ProfileImageUrl ?? ""),
+                            new Claim("Address",user.ShippingAddress),
 
                             new Claim(ClaimTypes.Role,"Customer")
                         };
@@ -113,7 +113,7 @@ namespace BookStore2024.Controllers
                         //TempData["Message"] = "login success!";
                         await HttpContext.SignInAsync(claimsPrincipal);
 
-                        ViewBag.UserImg = _user.ProfileImageUrl ?? "../user/img-01.jpg";
+                        ViewBag.UserImg = user.ProfileImageUrl ?? "../user/img-01.jpg";
                         return RedirectToAction("Index","Home");
                     }
                 }
