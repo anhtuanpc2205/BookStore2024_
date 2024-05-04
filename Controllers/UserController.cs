@@ -103,7 +103,7 @@ namespace BookStore2024.Controllers
                             new Claim(ClaimTypes.Name,user.UserName),
                             new Claim("UserID",user.UserId.ToString()),
                             new Claim("ProfileImageUrl",user.ProfileImageUrl ?? ""),
-                            new Claim("Address",user.ShippingAddress),
+                            new Claim("Address",user.UserAddress ?? "address error"),
 
                             new Claim(ClaimTypes.Role,"Customer")
                         };

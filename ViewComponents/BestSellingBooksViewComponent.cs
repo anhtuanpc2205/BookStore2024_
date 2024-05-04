@@ -15,7 +15,7 @@ namespace BookStore2024.ViewComponents
             var data = DBContext.ViewTop20BestSellingBooks.Select(p => new ProductVM
             {
                 BookDetailId = p.BookDetailId,
-                CategoryId = p.CategoryId,
+                CategoryId = p.CategoryId ?? 0,
                 CategoryName = p.CategoryName,
                 ProductName = p.BookTitle,
                 ProductImg = p.BookImageUrl ?? "",

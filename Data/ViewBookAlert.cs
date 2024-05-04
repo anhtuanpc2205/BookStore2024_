@@ -5,7 +5,7 @@ namespace BookStore2024.Data;
 
 public partial class ViewBookAlert
 {
-    public int BookDetailId { get; set; }
+    public int? BookDetailId { get; set; }
 
     public string BookTitle { get; set; } = null!;
 

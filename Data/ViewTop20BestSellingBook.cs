@@ -35,7 +35,7 @@ public partial class ViewTop20BestSellingBook
 
     public string? GenreName { get; set; }
 
-    public int CategoryId { get; set; }
+    public int? CategoryId { get; set; }
 
     public string? CategoryName { get; set; }
 

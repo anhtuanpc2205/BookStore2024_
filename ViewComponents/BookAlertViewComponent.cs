@@ -16,7 +16,7 @@ namespace BookStore2024.ViewComponents
             var data = DBContext.ViewBookAlerts.Select(BA => new BookAlertVM
             {
                 BookTitle = BA.BookTitle,
-                BookDetailId = BA.BookDetailId,
+                BookDetailId = BA.BookDetailId ?? 0,
                 HomeBannerImageUrl = BA.ImgHomeBanner,
                 ProductsBannerImageUrl = BA.ImgProductsBanner,
                 AuthorName = BA.AuthorName,
