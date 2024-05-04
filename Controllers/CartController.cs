@@ -3,6 +3,7 @@ using BookStore2024.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using BookStore2024.Helpers;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.Blazor;
 
 namespace BookStore2024.Controllers
 {
@@ -98,19 +99,69 @@ namespace BookStore2024.Controllers
             //return RedirectToAction("Index");
         }
 
-        [HttpGet]
-        [Authorize]
-        public IActionResult CheckOut()
-        {
-            return View(ListProductsInCart);
-            return RedirectToAction("Index", "Home");
-        }
+        //[HttpGet]
+        //[Authorize]
+        //public IActionResult CheckOut()
+        //{
+        //    return View(ListProductsInCart);
+        //    return RedirectToAction("Index", "Home");
+        //}
 
         [HttpPost]
         [Authorize]
-        public IActionResult CheckOut(string? s)
+        public IActionResult CheckOut(CheckOutVM formData)
         {
-            return RedirectToAction("BestSelling", "Products");
+            int customerId = int.Parse(User.FindFirst("UserID").Value);
+
+            var customer = new TblUser();
+
+            customer = DBContext.TblUsers.SingleOrDefault(p => p.UserId == customerId);
+
+            var newOrder = new TblOrder
+            {
+                UserId = customerId,
+                OrderDate = DateOnly.FromDateTime(DateTime.Now),
+                TotalAmount = formData.total,
+                OrderStatus = "Đã đặt hàng",
+                ShippingMethod = "Giao hàng tiêu chuẩn",
+                PaymentMethod = 1,
+                ShippingFee = 5,
+                ShippingAddress = formData.address
+            };
+
+            DBContext.Database.BeginTransaction();
+            try
+            {
+                DBContext.Database.CommitTransaction();
+                DBContext.Add(newOrder);
+                DBContext.SaveChanges();
+                
+                var orderDetails = new List<TblOrderDetail>();
+
+                foreach (var item in ListProductsInCart)
+                {
+                    orderDetails.Add(new TblOrderDetail
+                    {
+                        OrderId = newOrder.OrderId,
+                        BookDetailId = item.BookDetailId,
+                        Quantity = item.Quantity
+                    });
+                }
+                DBContext.AddRange(orderDetails);
+                DBContext.SaveChanges();
+
+                var CartList = new List<CartItemVM>();
+                HttpContext.Session.Set(Constants.SESSION_KEY, CartList);
+
+                return View("CheckOutSuccess");
+            }
+            catch
+            {
+                DBContext.Database.RollbackTransaction();
+            }
+
+            ViewBag.customerId = customerId;
+            return View("CheckOut", formData);
         }
 
     }

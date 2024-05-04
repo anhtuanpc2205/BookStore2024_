@@ -130,11 +130,13 @@
                         <button type="button" class="btn btn-primary btn-lg" style="margin-top: 10px;"></button>
                     </a> *@
                     <form asp-action="CheckOut" asp-controller="Cart">
-                        <div class="display-none" @* style="display:none" *@>
+                        <div class="display-none">
                             <label>subTotal-value-toForm:</label>
-                            <input class="subTotal-value-toForm" type="text" name="subtotal1">
+                            <input class="subTotal-value-toForm" type="text" name="subtotal">
                             <label>total-toForm:</label>
-                            <input class="total-toForm" type="text" name="total1">
+                            <input class="total-toForm" type="text" name="total">
+                            <label>Shiping:</label>
+                            <input type="type" name="address" value="@User.FindFirst("Address").Value.ToString()" />
                         </div>
                        
                         <button type="submit" class="btn btn-primary btn-lg" style="margin-top: 10px;">Proceed Checkout</button>
