@@ -87,6 +87,8 @@ function updateCart() {
     total = subTotal + shippingFee
     document.getElementsByClassName("subTotal-value")[0].innerText = '$' + subTotal.toFixed(2)
     document.getElementsByClassName("total")[0].innerText = '$' + total.toFixed(2)
+    document.getElementsByClassName("subTotal-value-toForm")[0].value = subTotal.toFixed(2)
+    document.getElementsByClassName("total-toForm")[0].value = total.toFixed(2)
 }
 function addToCartClick() {
     alert("added to cart!")

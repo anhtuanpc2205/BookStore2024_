@@ -97,5 +97,21 @@ namespace BookStore2024.Controllers
             //return NoContent();
             //return RedirectToAction("Index");
         }
-	}
+
+        [HttpGet]
+        [Authorize]
+        public IActionResult CheckOut()
+        {
+            return View(ListProductsInCart);
+            return RedirectToAction("Index", "Home");
+        }
+
+        [HttpPost]
+        [Authorize]
+        public IActionResult CheckOut(string? s)
+        {
+            return RedirectToAction("BestSelling", "Products");
+        }
+
+    }
 }

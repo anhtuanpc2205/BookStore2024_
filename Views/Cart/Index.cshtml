@@ -119,17 +119,30 @@
                             <h3 style="margin: 0;">Shipping</h3>
                         </div>
                         <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                            <p style="margin: 0;" class="shippingFee">$3.00</p>
+                            <p style="margin: 0;" class="shippingFee">$5.00</p>
                         </div>
                     </div>
-                    <p class="text-right" style="margin: 0;">Shipping to Ukraine.</p>
+                    <p class="text-right" style="margin: 0;"><lable>Shipping to</lable> <input type="type" name="name" value="@User.FindFirst("Address").Value.ToString()" /></p>
                 </div>
                 <div class="text-center" style="margin-top: 10px;">
                     <h2 style="margin: 0;" class="total">Total: $0.00</h2>
-                    <button type="button" class="btn btn-primary btn-lg" style="margin-top: 10px;">Proceed Checkout</button>
+                    @* <a asp-action="CheckOut" asp-controller="Cart">
+                        <button type="button" class="btn btn-primary btn-lg" style="margin-top: 10px;"></button>
+                    </a> *@
+                    <form asp-action="CheckOut" asp-controller="Cart">
+                        <div class="display-none" @* style="display:none" *@>
+                            <label>subTotal-value-toForm:</label>
+                            <input class="subTotal-value-toForm" type="text" name="subtotal1">
+                            <label>total-toForm:</label>
+                            <input class="total-toForm" type="text" name="total1">
+                        </div>
+                       
+                        <button type="submit" class="btn btn-primary btn-lg" style="margin-top: 10px;">Proceed Checkout</button>
+                    </form>
                 </div>
             </div>
         </div>
+        
     }
     else
     {
