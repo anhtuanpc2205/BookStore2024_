@@ -1,0 +1,73 @@
+﻿@model IEnumerable<BookStore2024.ViewModels.ProductVM>
+
+@{
+    ViewData["Title"] = "ProductList";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h1>ProductList</h1>
+
+<main id="main" class="main">
+    <p>
+        <a type="button" class="btn btn-primary" asp-action="Create">Create New</a>
+    </p>
+    <div class="pagetitle">
+        <h1>@ViewData["Title"]</h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                <li class="breadcrumb-item active">@ViewData["Title"]</li>
+            </ol>
+        </nav>
+    </div><!-- End Page Title -->
+
+    <section class="section dashboard">
+        <div class="row">
+
+            <div class="col-12">
+                <div class="card top-selling overflow-auto">
+
+                    <div class="card-body pb-0">
+                        <h5 class="card-title">Product List</span></h5>
+
+                        <table class="table table-borderless">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Preview</th>
+                                    <th scope="col">Product</th>
+                                    <th scope="col">Price</th>
+                                    <th scope="col">Author</th>
+                                    <th scope="col">Discount</th>
+                                    <th scope="col">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <th scope="row"><a href="#"><img src="@item.ProductImg" alt="ProductImg"></a></th>
+                                        <td><a href="#" class="text-primary fw-bold">@item.ProductName|[@item.FormatName]</a></td>
+                                        <td>$@item.Price</td>
+                                        <td class="fw-bold">@item.AuthorName</td>
+                                        <td>$@item.Discount</td>
+                                        <td>
+                                            <a asp-action="Edit" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-original-title="Edit" style="background-color:forestgreen">
+                                                <i class="bi bi-pencil-square"></i>
+                                            </a>
+                                            <a asp-action="Delete" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-original-title="Detete" style="background-color:crimson">
+                                                <i class="bi bi-trash"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+
+                    </div>
+
+                </div>
+            </div><!-- End Top Selling -->
+
+        </div>
+    </section>
+</main>

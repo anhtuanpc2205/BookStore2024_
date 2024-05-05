@@ -28,9 +28,5 @@ namespace BookStore2024.Areas.Admin.Controllers
 
             return View();
         }
-        public IActionResult ProductList() { 
-            var products_ = db.TblBooks.ToList();
-            return View(products_); 
-        }
     }
 }
