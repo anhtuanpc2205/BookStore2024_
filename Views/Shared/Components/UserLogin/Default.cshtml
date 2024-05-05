@@ -13,13 +13,16 @@
                             <i class="glyphicon glyphicon-log-out"></i>
                             <span>Log out</span>
                         </a>
-                    </li>
-                    <li>
-                        <a asp-action ="Profile" asp-controller="User">
+                        <a asp-action="Profile" asp-controller="User">
                             <i class="glyphicon glyphicon-info-sign"></i>
                             <span>Profile Info</span>
                         </a>
-
+                    </li>
+                    <li>
+                        <a asp-area="Admin" asp-action="Index" asp-controller="Home">
+                            <i class="glyphicon glyphicon-briefcase"></i>
+                            <span>Login as admin</span>
+                        </a>
                     </li>
                 </ul>
             }
@@ -35,14 +38,16 @@
                             <i class="glyphicon glyphicon-log-in"></i>
                             <span onclick="document.getElementById('login-form-id').style.display='block'">Log in</span>
                         </a>
-
-                    </li>
-                    <li>
                         <a asp-action="Register" asp-controller="User">
                             <i class="glyphicon glyphicon-plus"></i>
                             <span>Register</span>
                         </a>
-
+                    </li>
+                    <li>
+                        <a asp-area="Admin" asp-action="Index" asp-controller="Home">
+                            <i class="glyphicon glyphicon-briefcase"></i>
+                            <span>Login as admin</span>
+                        </a>
                     </li>
                 </ul>
             }
