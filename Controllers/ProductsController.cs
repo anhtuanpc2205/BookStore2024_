@@ -62,7 +62,7 @@ namespace BookStore2024.Controllers
                 Price = p.Price,
                 Discount = p.Discount,
                 FormatName = p.FormatName
-            });
+            }).ToList();
 
             return View(data);
         }
