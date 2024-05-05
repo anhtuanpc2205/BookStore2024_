@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -43,7 +44,7 @@
     <header id="header" class="header fixed-top d-flex align-items-center">
 
         <div class="d-flex align-items-center justify-content-between">
-            <a href="index.html" class="logo d-flex align-items-center">
+            <a class="logo d-flex align-items-center" asp-area="Admin" asp-controller="Home" asp-action="Index">
                 <img src="~/admin/assets/img/logo.png" alt="">
                 <span class="d-none d-lg-block">NiceAdmin</span>
             </a>
@@ -273,7 +274,7 @@
         <ul class="sidebar-nav" id="sidebar-nav">
 
             <li class="nav-item">
-                <a class="nav-link " href="index.html">
+                <a asp-area="Admin" asp-action="Index" asp-controller="Home" class="nav-link ">
                     <i class="bi bi-grid"></i>
                     <span>Dashboard</span>
                 </a>
