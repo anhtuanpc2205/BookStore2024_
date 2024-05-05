@@ -1,10 +1,8 @@
-﻿@{
+﻿@model BookStore2024.ViewModels.ProductVM
+@{
     ViewData["Title"] = "Create";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
-
-<h1>Create</h1>
-
 
 <main id="main" class="main">
     <div class="pagetitle">
@@ -20,125 +18,111 @@
     <section class="section dashboard">
         <div class="row">
             <h1>Add a new book</h1>
-            
+
             <div class="card">
-                <form>
+                <form asp-action="Create">
                     <div class="row mb-3 mt-4">
-                        <label for="ProductImg" class="col-md-3 col-lg-2 col-form-label">File Upload</label>
+                        <label asp-for="ProductImg" class="col-md-3 col-lg-2 col-form-label">Product Image</label>
                         <div class="col-md-9 col-lg-10">
-                            <input name="ProductImg" type="file" class="form-control" id="ProductImg" placeholder="Profile image">
+                            <input asp-for="ProductImg" type="file" class="form-control" id="ProductImg" placeholder="Profile image">
                         </div>
                     </div>
 
                     <div class="row mb-3">
-                        <label for="ProductName" class="col-md-3 col-lg-2 col-form-label">ProductName</label>
+                        <label asp-for="ProductName" class="col-md-3 col-lg-2 col-form-label">ProductName</label>
                         <div class="col-md-9 col-lg-10">
-                            <input name="ProductName" type="text" class="form-control" id="ProductName">
+                            <input asp-for="ProductName" type="text" class="form-control" id="ProductName">
                         </div>
                     </div>
 
                     <div class="row mb-3">
-                        <label for="ProductDescription" class="col-md-3 col-lg-2 col-form-label">Product Description</label>
+                        <label asp-for="ProductDescription" class="col-md-3 col-lg-2 col-form-label">Product Description</label>
                         <div class="col-md-9 col-lg-10">
-                            <textarea name="ProductDescription" class="form-control" id="ProductDescription" style="height: 100px">Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Tempora libero non est unde veniam est qui dolor. Ut sunt iure rerum quae quisquam autem eveniet perspiciatis odit. Fuga sequi sed ea saepe at unde.</textarea>
+                            <textarea asp-for="ProductDescription" class="form-control" id="ProductDescription" style="height: 100px"></textarea>
                         </div>
                     </div>
 
                     <div class="row mb-3">
-                        <label for="CategoryName" class="col-md-3 col-lg-2 col-form-label">Category</label>
+                        <label asp-for="CategoryId" class="col-md-3 col-lg-2 col-form-label">Category</label>
                         <div class="col-md-9 col-lg-10">
-                            <input name="CategoryName" list="CategoryName" class="form-control">
-                            <datalist id="CategoryName">
-                                <option value="Internet Explorer" />
-                                <option value="Firefox" />
-                                <option value="Chrome" />
-                                <option value="Opera" />
-                                <option value="Safari" />
-                            </datalist>
+                            <select asp-for="CategoryId" class="form-control" asp-items="@(new SelectList(ViewBag.Categories,"Value","Text"))"></select>
                         </div>
                     </div>
 
                     <div class="row mb-3">
-                        <label for="GenreName" class="col-md-3 col-lg-2 col-form-label">Genre</label>
+                        <label asp-for="GenreId" class="col-md-3 col-lg-2 col-form-label">Genre</label>
                         <div class="col-md-9 col-lg-10">
-                            <input name="GenreName" list="GenreName" class="form-control">
-                            <datalist id="GenreName">
-                                <option value="Internet Explorer" />
-                                <option value="Firefox" />
-                                <option value="Chrome" />
-                                <option value="Opera" />
-                                <option value="Safari" />
-                            </datalist>
+                            <select asp-for="GenreId" class="form-control" asp-items="@(new SelectList(ViewBag.Genres,"Value","Text"))"></select>
                         </div>
                     </div>
 
                     <div class="row mb-3">
-                        <label for="Price" class="col-md-3 col-lg-2 col-form-label">Price</label>
+                        <label asp-for="Price" class="col-md-3 col-lg-2 col-form-label">Price</label>
                         <div class="col-md-9 col-lg-10">
-                            <input name="Price" type="number" class="form-control" id="Price">
+                            <input asp-for="Price" type="number" class="form-control" id="Price">
                         </div>
                     </div>
 
                     <div class="row mb-3">
-                        <label for="Price" class="col-md-3 col-lg-2 col-form-label">Discount</label>
+                        <label asp-for="Price" class="col-md-3 col-lg-2 col-form-label">Discount</label>
                         <div class="col-md-9 col-lg-10">
-                            <input name="Discount" type="number" class="form-control" id="Discount">
+                            <input asp-for="Discount" type="number" class="form-control" id="Discount">
                         </div>
                     </div>
 
                     <div class="row mb-3">
-                        <label for="Publisher" class="col-md-3 col-lg-2 col-form-label">Publisher</label>
+                        <label asp-for="Publisher" class="col-md-3 col-lg-2 col-form-label">Publisher</label>
                         <div class="col-md-9 col-lg-10">
-                            <input name="Publisher" type="text" class="form-control" id="Publisher">
+                            <input asp-for="Publisher" type="text" class="form-control" id="Publisher">
                         </div>
                     </div>
 
                     <div class="row mb-3">
-                        <label for="AuthorName" class="col-md-3 col-lg-2 col-form-label">Author Name</label>
+                        <label asp-for="AuthorName" class="col-md-3 col-lg-2 col-form-label">Author Name</label>
                         <div class="col-md-9 col-lg-10">
-                            <input name="AuthorName" type="text" class="form-control" id="AuthorName">
+                            <input asp-for="AuthorName" type="text" class="form-control" id="AuthorName">
                         </div>
                     </div>
 
                     <div class="row mb-3">
-                        <label for="Language" class="col-md-3 col-lg-2 col-form-label">Language</label>
+                        <label asp-for="Language" class="col-md-3 col-lg-2 col-form-label">Language</label>
                         <div class="col-md-9 col-lg-10">
-                            <input name="Language" type="text" class="form-control" id="Language">
+                            <input asp-for="Language" type="text" class="form-control" id="Language">
                         </div>
                     </div>
 
                     <div class="row mb-3">
-                        <label for="Pages" class="col-md-3 col-lg-2 col-form-label">Pages</label>
+                        <label asp-for="Pages" class="col-md-3 col-lg-2 col-form-label">Pages</label>
                         <div class="col-md-9 col-lg-10">
-                            <input name="Pages" type="number" class="form-control" id="Pages">
+                            <input asp-for="Pages" type="number" class="form-control" id="Pages">
                         </div>
                     </div>
 
                     <div class="row mb-3">
-                        <label for="IllustrationsNote" class="col-md-3 col-lg-2 col-form-label">IllustrationsNote</label>
+                        <label asp-for="IllustrationsNote" class="col-md-3 col-lg-2 col-form-label">IllustrationsNote</label>
                         <div class="col-md-9 col-lg-10">
-                            <input name="IllustrationsNote" type="text" class="form-control" id="IllustrationsNote">
+                            <input asp-for="IllustrationsNote" type="text" class="form-control" id="IllustrationsNote">
                         </div>
                     </div>
 
                     <div class="row mb-3">
-                        <label for="Isbn10" class="col-md-3 col-lg-2 col-form-label">Isbn10</label>
+                        <label asp-for="Isbn10" class="col-md-3 col-lg-2 col-form-label">Isbn10</label>
                         <div class="col-md-9 col-lg-10">
-                            <input name="Isbn10" type="text" class="form-control" id="Isbn10">
+                            <input asp-for="Isbn10" type="text" class="form-control" id="Isbn10">
                         </div>
                     </div>
 
                     <div class="row mb-3">
-                        <label for="Isbn13" class="col-md-3 col-lg-2 col-form-label">Isbn13</label>
+                        <label asp-for="Isbn13" class="col-md-3 col-lg-2 col-form-label">Isbn13</label>
                         <div class="col-md-9 col-lg-10">
-                            <input name="Isbn13" type="text" class="form-control" id="Isbn13">
+                            <input asp-for="Isbn13" type="text" class="form-control" id="Isbn13">
                         </div>
                     </div>
 
                     <div class="row mb-3">
-                        <label for="StockQuantity" class="col-md-3 col-lg-2 col-form-label">Stock Quantity</label>
+                        <label asp-for="StockQuantity" class="col-md-3 col-lg-2 col-form-label">Stock Quantity</label>
                         <div class="col-md-9 col-lg-10">
-                            <input name="StockQuantity" type="number" class="form-control" id="StockQuantity">
+                            <input asp-for="StockQuantity" type="number" class="form-control" id="StockQuantity">
                         </div>
                     </div>
 
