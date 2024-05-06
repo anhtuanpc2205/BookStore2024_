@@ -18,7 +18,12 @@
     <section class="section dashboard">
         <div class="row">
             <h1>Add a new book</h1>
-            <h1>@TempData["Message"]</h1>
+            @if (@TempData["Message"] != null)
+            {
+                <div class="alert alert-success bg-success text-light border-0 alert-dismissible fade show" role="alert">
+                    @TempData["Message"]
+                </div>
+            }
             <div class="card">
                 <form asp-action="Create" enctype="multipart/form-data">
                     <div class="row mb-3 mt-4">
@@ -55,6 +60,15 @@
                             <select asp-for="GenreId" class="form-control" asp-items="@(new SelectList(ViewBag.Genres,"Value","Text"))"></select>
                         </div>
                     </div>
+
+                    <div class="row mb-3">
+                        <label asp-for="FormatId" class="col-md-3 col-lg-2 col-form-label">Genre</label>
+                        <div class="col-md-9 col-lg-10">
+                            <select asp-for="FormatId" class="form-control" asp-items="@(new SelectList(ViewBag.Formats,"Value","Text"))"></select>
+                        </div>
+                    </div>
+
+
 
                     <div class="row mb-3">
                         <label asp-for="Price" class="col-md-3 col-lg-2 col-form-label">Price</label>

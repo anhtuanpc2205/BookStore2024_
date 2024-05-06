@@ -154,10 +154,10 @@
                                                 <td class="fw-bold">@item.AuthorName</td>
                                                 <td>$@item.Discount</td>
                                                 <td>
-                                                    <a asp-action="Edit" asp-controller="AdminProducts" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-original-title="Edit" style="background-color:forestgreen">
+                                                    <a asp-action="Edit" asp-controller="AdminProducts" asp-route-detailID="@item.BookDetailId" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-original-title="Edit" style="background-color:forestgreen">
                                                         <i class="bi bi-pencil-square"></i>
                                                     </a>
-                                                    <a asp-action="Delete" asp-controller="AdminProducts" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-original-title="Detete" style="background-color:crimson">
+                                                    <a asp-action="Delete" asp-controller="AdminProducts" asp-route-detailID="@item.BookDetailId" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-original-title="Detete" style="background-color:crimson">
                                                         <i class="bi bi-trash"></i>
                                                     </a>
                                                 </td>

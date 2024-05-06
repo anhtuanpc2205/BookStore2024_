@@ -1,8 +1,150 @@
-﻿
-@{
+﻿@{
     ViewData["Title"] = "Edit";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
+@model BookStore2024.ViewModels.ProductVM
 
-<h1>Edit</h1>
 
+<main id="main" class="main">
+    <div class="pagetitle">
+        <h1>@ViewData["Title"]</h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                <li class="breadcrumb-item active">@ViewData["Title"]</li>
+            </ol>
+        </nav>
+    </div><!-- End Page Title -->
+
+    <section class="section dashboard">
+        <div class="row">
+            <h1>Edit: @Model.ProductName</h1>
+            @if (@TempData["Message"] != null)
+            {
+                <div class="alert alert-success bg-success text-light border-0 alert-dismissible fade show" role="alert">
+                    @TempData["Message"]
+                </div>
+            }
+            <div class="card">
+                <form asp-route-id="@Model.BookDetailId" asp-asp-route- asp-action="Edit" enctype="multipart/form-data">
+                    <img src="@ViewBag.Img" alt="Profile" style="max-height: 20vh; max-width: 15vh;">
+                    <div class="row mb-3 mt-4">
+                        <label for="img" class="col-md-3 col-lg-2 col-form-label">Product Image</label>
+                        <div class="col-md-9 col-lg-10">
+                            <input type="file" class="form-control" name="ProductImg" placeholder="Product image">
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label asp-for="ProductName" class="col-md-3 col-lg-2 col-form-label">ProductName</label>
+                        <div class="col-md-9 col-lg-10">
+                            <input asp-for="ProductName" type="text" class="form-control" id="ProductName">
+                        </div>
+                    </div>
+                    
+                    <div class="row mb-3">
+                        <label asp-for="ProductDescription" class="col-md-3 col-lg-2 col-form-label">Product Description</label>
+                        <div class="col-md-9 col-lg-10">
+                            <textarea asp-for="ProductDescription" class="form-control" id="ProductDescription" style="height: 100px"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label asp-for="CategoryId" class="col-md-3 col-lg-2 col-form-label">Category</label>
+                        <div class="col-md-9 col-lg-10">
+                            <select asp-for="CategoryId" class="form-control" asp-items="@(new SelectList(ViewBag.Categories,"Value","Text"))"></select>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label asp-for="GenreId" class="col-md-3 col-lg-2 col-form-label">Genre</label>
+                        <div class="col-md-9 col-lg-10">
+                            <select asp-for="GenreId" class="form-control" asp-items="@(new SelectList(ViewBag.Genres,"Value","Text"))"></select>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label asp-for="FormatId" class="col-md-3 col-lg-2 col-form-label">Genre</label>
+                        <div class="col-md-9 col-lg-10">
+                            <select asp-for="FormatId" class="form-control" asp-items="@(new SelectList(ViewBag.Formats,"Value","Text"))"></select>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label asp-for="Price" class="col-md-3 col-lg-2 col-form-label">Price</label>
+                        <div class="col-md-9 col-lg-10">
+                            <input asp-for="Price" type="number" class="form-control" id="Price">
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label asp-for="Price" class="col-md-3 col-lg-2 col-form-label">Discount</label>
+                        <div class="col-md-9 col-lg-10">
+                            <input asp-for="Discount" type="number" class="form-control" id="Discount">
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label asp-for="Publisher" class="col-md-3 col-lg-2 col-form-label">Publisher</label>
+                        <div class="col-md-9 col-lg-10">
+                            <input asp-for="Publisher" type="text" class="form-control" id="Publisher">
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label asp-for="AuthorName" class="col-md-3 col-lg-2 col-form-label">Author Name</label>
+                        <div class="col-md-9 col-lg-10">
+                            <input asp-for="AuthorName" type="text" class="form-control" id="AuthorName">
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label asp-for="Language" class="col-md-3 col-lg-2 col-form-label">Language</label>
+                        <div class="col-md-9 col-lg-10">
+                            <input asp-for="Language" type="text" class="form-control" id="Language">
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label asp-for="Pages" class="col-md-3 col-lg-2 col-form-label">Pages</label>
+                        <div class="col-md-9 col-lg-10">
+                            <input asp-for="Pages" type="number" class="form-control" id="Pages">
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label asp-for="IllustrationsNote" class="col-md-3 col-lg-2 col-form-label">IllustrationsNote</label>
+                        <div class="col-md-9 col-lg-10">
+                            <input asp-for="IllustrationsNote" type="text" class="form-control" id="IllustrationsNote">
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label asp-for="Isbn10" class="col-md-3 col-lg-2 col-form-label">Isbn10</label>
+                        <div class="col-md-9 col-lg-10">
+                            <input asp-for="Isbn10" type="text" class="form-control" id="Isbn10">
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label asp-for="Isbn13" class="col-md-3 col-lg-2 col-form-label">Isbn13</label>
+                        <div class="col-md-9 col-lg-10">
+                            <input asp-for="Isbn13" type="text" class="form-control" id="Isbn13">
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label asp-for="StockQuantity" class="col-md-3 col-lg-2 col-form-label">Stock Quantity</label>
+                        <div class="col-md-9 col-lg-10">
+                            <input asp-for="StockQuantity" type="number" class="form-control" id="StockQuantity">
+                        </div>
+                    </div>
+                    
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+</main>
