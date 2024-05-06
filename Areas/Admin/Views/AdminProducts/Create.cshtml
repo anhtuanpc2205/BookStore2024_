@@ -18,13 +18,13 @@
     <section class="section dashboard">
         <div class="row">
             <h1>Add a new book</h1>
-
+            <h1>@TempData["Message"]</h1>
             <div class="card">
-                <form asp-action="Create">
+                <form asp-action="Create" enctype="multipart/form-data">
                     <div class="row mb-3 mt-4">
-                        <label asp-for="ProductImg" class="col-md-3 col-lg-2 col-form-label">Product Image</label>
+                        <label for="img" class="col-md-3 col-lg-2 col-form-label">Product Image</label>
                         <div class="col-md-9 col-lg-10">
-                            <input asp-for="ProductImg" type="file" class="form-control" id="ProductImg" placeholder="Profile image">
+                            <input type="file" class="form-control" name="ProductImg" placeholder="Product image">
                         </div>
                     </div>
 
