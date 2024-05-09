@@ -1,0 +1,13 @@
+Trong thời đại số hóa ngày nay, việc xây dựng và phát triển các ứng dụng web không chỉ là một xu hướng mà còn là một yêu cầu cần thiết cho nhiều tổ chức và doanh nghiệp. Đặc biệt, trong lĩnh vực giáo dục và văn hóa, việc tạo ra các nền tảng trực tuyến để giới thiệu và phân phối sách đã trở thành một phần không thể thiếu trong việc thúc đẩy sự tiện lợi và tiếp cận tri thức. Dự án tốt nghiệp này, với tiêu đề "XÂY DỰNG WEBSITE GIỚI THIỆU VÀ BÁN SÁCH BẰNG ASP.NET CORE 8.0 - MVC", được thực hiện nhằm mục đích giải quyết nhu cầu này.
+
+Trên nền tảng của ASP.NET Core 8.0 - MVC, dự án này nhằm xây dựng một trang web động với mục tiêu giới thiệu và bán sách một cách hiệu quả. Bằng cách sử dụng các công nghệ và kỹ thuật mới nhất, dự án này không chỉ tập trung vào việc cung cấp một giao diện trực quan và thân thiện với người dùng mà còn chú trọng đến việc tối ưu hóa trải nghiệm mua sắm trực tuyến.
+
+Qua quá trình nghiên cứu và phát triển dự án, tôi đã nhận được sự hỗ trợ quý báu từ các giáo viên và cô Phạm Thị Thu Hiền, người đã cung cấp sự chỉ dẫn và định hướng chi tiết. Sự đóng góp của họ không chỉ giúp tôi hoàn thành dự án một cách thành công mà còn mở ra những cơ hội mới trong việc áp dụng kiến thức và kỹ năng vào thực tiễn.
+
+Trong báo cáo này, tôi sẽ trình bày chi tiết về quy trình phát triển dự án, các công nghệ và công cụ được sử dụng, cũng như kết quả đạt được và những học hỏi thu được trong quá trình thực hiện. Hy vọng rằng dự án này sẽ mang lại những thông tin hữu ích và đóng góp vào sự phát triển của cộng đồng người làm web.
+
+
+
+
+
+
