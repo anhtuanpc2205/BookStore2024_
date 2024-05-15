@@ -14,15 +14,7 @@ namespace BookStore2024.Areas.Admin.Controllers
         public HomeController(BookStoreContext DatabaseContext) => db = DatabaseContext;
         public IActionResult Index()
         {
-            //var chartData = new[]
-            //{
-            //    new { value = 1048, name = "Search Engine" },
-            //    new { value = 735, name = "Direct" },
-            //    new { value = 580, name = "Email" },
-            //    new { value = 484, name = "Union Ads" },
-            //    new { value = 700, name = "Video Ads" }
-            //};
-
+            
             var dataX = db.TblCategories.Select(Cate => new CategoriesMenuVM
             {
                 CategoryName = Cate.CategoryName,
@@ -38,9 +30,6 @@ namespace BookStore2024.Areas.Admin.Controllers
 
             // Chuyển đổi dữ liệu thành chuỗi JSON
             string jsonData = JsonConvert.SerializeObject(chartData);
-
-            // Truyền dữ liệu JSON vào view
-            ViewBag.ChartData = jsonData;
 
             var Query = db.ViewTop20BestSellingBooks.AsQueryable();
             if (Query == null)
@@ -60,8 +49,39 @@ namespace BookStore2024.Areas.Admin.Controllers
                 Discount = p.Discount,
                 FormatName = p.FormatName
             }).Take(10).ToList();
-            
+
+            DateOnly today = DateOnly.FromDateTime(DateTime.Today);
+            DateOnly yesterday = DateOnly.FromDateTime(DateTime.Today.AddDays(-1));
+
+            DateOnly lastMonth = DateOnly.FromDateTime(DateTime.Today.AddMonths(-1));
+            int todaySold = db.ViewOrderDetails
+                                       .Where(od => od.OrderDate == today)
+                                       .Sum(od => (int?)od.Quantity) ?? 0;
+
+            float yesterdaySold = db.ViewOrderDetails
+                                       .Where(od => od.OrderDate == yesterday)
+                                       .Sum(od => (int?)od.Quantity) ?? 0;
+
+
+            float todayRevenue = db.ViewOrderDetails
+                                .Where(od => od.OrderDate == today)
+                                       .Sum(od => (float?)od.TotalAmount) ?? 0;
+
             ViewBag.TopSelling = topSelling;
+            // Truyền dữ liệu JSON vào view
+            ViewBag.ChartData = jsonData;
+            ViewBag.toDaySold = todaySold;
+            ViewBag.todayRevenue = todayRevenue;
+            ViewBag.Customer = db.TblUsers.Where(u => u.Role == 2).Count();
+
+            if (yesterdaySold != 0)
+            {
+                ViewBag.increaseSold = ((todaySold - yesterdaySold) / yesterdaySold) * 100;
+            }
+            else
+            {
+                ViewBag.increaseSold = 100;
+            }
 
             return View();
         }
