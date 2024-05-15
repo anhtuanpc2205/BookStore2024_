@@ -1,6 +1,7 @@
 ﻿using BookStore2024.Data;
 using BookStore2024.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 
@@ -13,14 +14,27 @@ namespace BookStore2024.Areas.Admin.Controllers
         public HomeController(BookStoreContext DatabaseContext) => db = DatabaseContext;
         public IActionResult Index()
         {
-            var chartData = new[]
+            //var chartData = new[]
+            //{
+            //    new { value = 1048, name = "Search Engine" },
+            //    new { value = 735, name = "Direct" },
+            //    new { value = 580, name = "Email" },
+            //    new { value = 484, name = "Union Ads" },
+            //    new { value = 700, name = "Video Ads" }
+            //};
+
+            var dataX = db.TblCategories.Select(Cate => new CategoriesMenuVM
             {
-                new { value = 1048, name = "Search Engine" },
-                new { value = 735, name = "Direct" },
-                new { value = 580, name = "Email" },
-                new { value = 484, name = "Union Ads" },
-                new { value = 700, name = "Video Ads" }
-            };
+                CategoryName = Cate.CategoryName,
+                Quantity = db.ViewBookDetails.Where(bookdetail => bookdetail.CategoryId == Cate.CategoryId).Count()
+
+            }).ToList();
+
+            var chartData = dataX.Select(data => new
+            {
+                value = data.Quantity,
+                name = data.CategoryName
+            }).ToArray();
 
             // Chuyển đổi dữ liệu thành chuỗi JSON
             string jsonData = JsonConvert.SerializeObject(chartData);

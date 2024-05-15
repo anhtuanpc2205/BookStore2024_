@@ -167,5 +167,7 @@ namespace BookStore2024.Controllers
 			return View(await PaginatedList<ProductVM>.CreateAsync(data, pageNumber ?? 1, pageSize));
         }
 
+
+
     }
 }

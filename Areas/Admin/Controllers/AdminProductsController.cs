@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.SqlServer.Server;
+using System.Drawing.Printing;
 using System.Net;
 
 namespace BookStore2024.Areas.Admin.Controllers
@@ -35,6 +36,64 @@ namespace BookStore2024.Areas.Admin.Controllers
 
             return View(data);
         }
+
+        public IActionResult Sale(string? searchString)
+        {
+            var Query = DBContext.ViewBookDetails.AsQueryable();
+
+            if (Query == null)
+            {
+                TempData["Message"] = $"Could not find product or product does not exist";
+                return Redirect("/404");
+            }
+            else
+            {
+                Query = Query.Where(p => p.Discount != 0);
+            }
+
+            var data = Query.Select(p => new ProductVM
+            {
+                BookDetailId = p.BookDetailId,
+                CategoryId = p.CategoryId,
+                CategoryName = p.CategoryName,
+                ProductName = p.BookTitle,
+                ProductImg = ("../" + p.BookImageUrl) ?? "",
+                AuthorName = p.AuthorName,
+                Price = p.Price,
+                Discount = p.Discount,
+                FormatName = p.FormatName
+            }).ToList();
+
+            return View(data);
+        }
+
+        public IActionResult BestSelling(int? pageNumber, int? category, int? genre)
+        {
+            var Query = DBContext.ViewTop20BestSellingBooks.AsQueryable();
+
+            if (Query == null)
+            {
+                TempData["Message"] = $"Could not find product or product does not exist";
+                return Redirect("/404");
+            }
+
+            var data = Query.OrderByDescending(p => p.TotalQuantitySold).Take(20).Select(p => new ProductVM
+            {
+                BookDetailId = p.BookDetailId,
+                CategoryId = p.CategoryId ?? 0,
+                CategoryName = p.CategoryName,
+                ProductName = p.BookTitle,
+                ProductImg = ("../" + p.BookImageUrl) ?? "",
+                AuthorName = p.AuthorName,
+                Price = p.Price,
+                Discount = p.Discount,
+                FormatName = p.FormatName,
+                Sold = p.TotalQuantitySold
+            }).ToList();
+
+            return View(data);
+        }
+
         #endregion
 
         #region Create

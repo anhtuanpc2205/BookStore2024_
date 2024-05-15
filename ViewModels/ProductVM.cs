@@ -27,5 +27,7 @@
         public int? Views { get; set; }
         public int BookId { get; set; }
 
+        public int Sold { get; set; } = 0;
+
     }
 }
