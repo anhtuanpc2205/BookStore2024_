@@ -1,0 +1,15 @@
+SELECT *
+FROM tbl_Order
+WHERE order_date = CAST(GETDATE() AS DATE);
+
+SELECT *
+FROM tbl_Order
+WHERE YEAR(order_date) = YEAR(GETDATE()) AND MONTH(order_date) = MONTH(GETDATE());
+
+SELECT sum(quantity)
+FROM ViewOrderDetails
+WHERE order_date = CAST(GETDATE() AS DATE);
+
+SELECT sum(total_amount)
+FROM ViewOrderDetails
+WHERE order_date = CAST(GETDATE() AS DATE);

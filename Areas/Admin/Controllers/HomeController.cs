@@ -63,15 +63,13 @@ namespace BookStore2024.Areas.Admin.Controllers
                                        .Sum(od => (int?)od.Quantity) ?? 0;
 
 
-            float todayRevenue = db.ViewOrderDetails
-                                .Where(od => od.OrderDate == today)
-                                       .Sum(od => (float?)od.TotalAmount) ?? 0;
+            
 
             ViewBag.TopSelling = topSelling;
             // Truyền dữ liệu JSON vào view
             ViewBag.ChartData = jsonData;
             ViewBag.toDaySold = todaySold;
-            ViewBag.todayRevenue = todayRevenue;
+            
             ViewBag.Customer = db.TblUsers.Where(u => u.Role == 2).Count();
 
             if (yesterdaySold != 0)
@@ -82,7 +80,7 @@ namespace BookStore2024.Areas.Admin.Controllers
             {
                 ViewBag.increaseSold = 100;
             }
-
+            
             return View();
         }
     }
