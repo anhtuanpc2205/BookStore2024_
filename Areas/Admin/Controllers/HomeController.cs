@@ -50,36 +50,12 @@ namespace BookStore2024.Areas.Admin.Controllers
                 FormatName = p.FormatName
             }).Take(10).ToList();
 
-            DateOnly today = DateOnly.FromDateTime(DateTime.Today);
-            DateOnly yesterday = DateOnly.FromDateTime(DateTime.Today.AddDays(-1));
-
-            DateOnly lastMonth = DateOnly.FromDateTime(DateTime.Today.AddMonths(-1));
-            int todaySold = db.ViewOrderDetails
-                                       .Where(od => od.OrderDate == today)
-                                       .Sum(od => (int?)od.Quantity) ?? 0;
-
-            float yesterdaySold = db.ViewOrderDetails
-                                       .Where(od => od.OrderDate == yesterday)
-                                       .Sum(od => (int?)od.Quantity) ?? 0;
-
-
-            
-
             ViewBag.TopSelling = topSelling;
             // Truyền dữ liệu JSON vào view
             ViewBag.ChartData = jsonData;
-            ViewBag.toDaySold = todaySold;
-            
+           
             ViewBag.Customer = db.TblUsers.Where(u => u.Role == 2).Count();
 
-            if (yesterdaySold != 0)
-            {
-                ViewBag.increaseSold = ((todaySold - yesterdaySold) / yesterdaySold) * 100;
-            }
-            else
-            {
-                ViewBag.increaseSold = 100;
-            }
             
             return View();
         }

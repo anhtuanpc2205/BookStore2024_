@@ -10,33 +10,91 @@
                     <h6>Filter</h6>
                 </li>
 
-                <li><a class="dropdown-item">Today</a></li>
-                <li><a class="dropdown-item" href="#" onclick="document.getElementById('thisMonth-id').style.display='block'>This Month</a></li>
-                <li><a class="dropdown-item" href="#">This Year</a></li>
+                <li>
+                    <a class="dropdown-item">
+                        <span onclick="document.getElementById('today-revenue').style.display='block';
+                                       document.getElementById('this-month-revenue').style.display='none';
+                                       document.getElementById('this-year-revenue').style.display='none'
+                                       document.getElementById('filter-revenue').innerText='| Today';">
+                            Today
+                        <span>
+                    </a>
+                </li>
+                <li>
+                    <a class="dropdown-item">
+                        <span onclick="document.getElementById('this-month-revenue').style.display='block';
+                                       document.getElementById('today-revenue').style.display='none';
+                                       document.getElementById('this-year-revenue').style.display='none';
+                                       document.getElementById('filter-revenue').innerText='| This Month';">
+                            This month
+                        <span>
+                    </a>
+                </li>
+                <li>
+                    <a class="dropdown-item">
+                        <span onclick="document.getElementById('this-year-revenue').style.display='block';
+                                       document.getElementById('today-revenue').style.display='none';
+                                       document.getElementById('this-month-revenue').style.display='none';
+                                       document.getElementById('filter-revenue').innerText='| This Year';">
+                            This Year
+                        <span>
+                    </a>
             </ul>
         </div>
 
         <div class="card-body">
-            <h5 class="card-title">Revenue</h5>
+            <h5 class="card-title">Revenue<span id="filter-revenue">| Today</span></h5>
 
             <div class="d-flex align-items-center">
                 <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                     <i class="bi bi-currency-dollar"></i>
                 </div>
 
-                    <div class="ps-3 none-dp" id="thisMonth-id">
-                        <h6>$@ViewBag.thisMonthRevenue</h6>
-                        <span class="text-success small pt-1 fw-bold">8%</span> <span class="text-muted small pt-2 ps-1">increase</span>
-                    </div>
-              
-                
-                    <div class="ps-3">
-                        <h6>$@ViewBag.todayRevenue</h6>
-                        <span class="text-success small pt-1 fw-bold">8%</span> <span class="text-muted small pt-2 ps-1">increase</span>
+                    <div class="ps-3" id="today-revenue">
+                        @if (@ViewBag.todayRevenue > 0)
+                        {
+                            <h6>$@ViewBag.todayRevenue</h6>
+                            <span class="text-success small pt-1 fw-bold">@ViewBag.dayRevenueIncrease%</span>
+                            <span class="text-muted small pt-2 ps-1">increase</span>
+                        }
+                        else
+                        {
+                            <h6>$@ViewBag.todayRevenue</h6>
+                            <span class="text-danger small pt-1 fw-bold">@ViewBag.dayRevenueIncrease%</span>
+                            <span class="text-muted small pt-2 ps-1">decrease</span>
+                        }
 
                     </div>
-                
 
+                    <div class="ps-3 none-dp" id="this-month-revenue">
+                         @if (@ViewBag.thisMonthRevenue > 0)
+                        {
+                            <h6>$@ViewBag.thisMonthRevenue</h6>
+                            <span class="text-success small pt-1 fw-bold">@ViewBag.monthRevenueIncrease%</span>
+                            <span class="text-muted small pt-2 ps-1">increase</span>
+                        }
+                        else
+                        {
+                            <h6>$@ViewBag.thisMonthRevenue</h6>
+                            <span class="text-danger small pt-1 fw-bold">@ViewBag.monthRevenueIncrease%</span>
+                            <span class="text-muted small pt-2 ps-1">decrease</span>
+                        }
+                    </div>
+
+                    <div class="ps-3 none-dp" id="this-year-revenue">
+                        @if (@ViewBag.thisYearRevenue > 0)
+                        {
+                            <h6>$@ViewBag.thisYearRevenue</h6>
+                            <span class="text-success small pt-1 fw-bold">@ViewBag.yearRevenueIncrease%</span>
+                            <span class="text-muted small pt-2 ps-1">increase</span>
+                        }
+                        else
+                        {
+                            <h6>$@ViewBag.thisYearRevenue</h6>
+                            <span class="text-danger small pt-1 fw-bold">@ViewBag.yearRevenueIncrease%</span>
+                            <span class="text-muted small pt-2 ps-1">decrease</span>
+                        }
+                </div>
             </div>
         </div>
 

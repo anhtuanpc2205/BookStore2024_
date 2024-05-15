@@ -1,0 +1,101 @@
+﻿<!-- Sales Card -->
+<div class="col-xxl-4 col-md-6">
+    <div class="card info-card sales-card">
+
+        <div class="filter">
+            <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+            <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                <li class="dropdown-header text-start">
+                    <h6>Filter</h6>
+                </li>
+
+                <li>
+                    <a class="dropdown-item">
+                        <span onclick="document.getElementById('today-sold').style.display='block';
+                                       document.getElementById('this-month-sold').style.display='none';
+                                       document.getElementById('this-year-sold').style.display='none'
+                                       document.getElementById('filter-sold').innerText='| Today';">
+                            Today
+                            <span>
+                    </a>
+                </li>
+                <li>
+                    <a class="dropdown-item">
+                        <span onclick="document.getElementById('this-month-sold').style.display='block';
+                                       document.getElementById('today-sold').style.display='none';
+                                       document.getElementById('this-year-sold').style.display='none';
+                                       document.getElementById('filter-sold').innerText='| This Month';">
+                            This month
+                            <span>
+                    </a>
+                </li>
+                <li>
+                    <a class="dropdown-item">
+                        <span onclick="document.getElementById('this-year-sold').style.display='block';
+                                       document.getElementById('today-sold').style.display='none';
+                                       document.getElementById('this-month-sold').style.display='none';
+                                       document.getElementById('filter-sold').innerText='| This Year';">
+                            This Year
+                            <span>
+                    </a>
+            
+            </ul>
+        </div>
+
+        <div class="card-body">
+            <h5 class="card-title">Sold <span id="filter-sold">| Today</span></h5>
+
+            <div class="d-flex align-items-center">
+                <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                    <i class="bi bi-cart"></i>
+                </div>
+                <div class="ps-3" id="today-sold">
+                    @if (@ViewBag.todaySold > 0)
+                    {
+                        <h6>@ViewBag.todaySold</h6>
+                        <span class="text-success small pt-1 fw-bold">@ViewBag.daySoldIncrease%</span>
+                        <span class="text-muted small pt-2 ps-1">increase</span>
+                    }
+                    else
+                    {
+                        <h6>@ViewBag.todaySold</h6>
+                        <span class="text-danger small pt-1 fw-bold">@ViewBag.daySoldIncrease%</span>
+                        <span class="text-muted small pt-2 ps-1">decrease</span>
+                    }
+
+                </div>
+
+                <div class="ps-3 none-dp" id="this-month-sold">
+                    @if (@ViewBag.thisMonthSold > 0)
+                    {
+                        <h6>@ViewBag.thisMonthSold</h6>
+                        <span class="text-success small pt-1 fw-bold">@ViewBag.monthSoldIncrease%</span>
+                        <span class="text-muted small pt-2 ps-1">increase</span>
+                    }
+                    else
+                    {
+                        <h6>@ViewBag.thisMonthSold</h6>
+                        <span class="text-danger small pt-1 fw-bold">@ViewBag.monthSoldIncrease%</span>
+                        <span class="text-muted small pt-2 ps-1">decrease</span>
+                    }
+                </div>
+
+                <div class="ps-3 none-dp" id="this-year-sold">
+                    @if (@ViewBag.thisYearSold > 0)
+                    {
+                        <h6>@ViewBag.thisYearSold</h6>
+                        <span class="text-success small pt-1 fw-bold">@ViewBag.yearSoldIncrease%</span>
+                        <span class="text-muted small pt-2 ps-1">increase</span>
+                    }
+                    else
+                    {
+                        <h6>@ViewBag.thisYearSold</h6>
+                        <span class="text-danger small pt-1 fw-bold">@ViewBag.yearSoldIncrease%</span>
+                        <span class="text-muted small pt-2 ps-1">decrease</span>
+                    }
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div><!-- End Sales Card -->
