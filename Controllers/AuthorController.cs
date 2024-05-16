@@ -10,14 +10,14 @@ namespace BookStore2024.Controllers
 		public AuthorController(BookStoreContext DatabaseContext) => DBContext = DatabaseContext;
 		public async Task<IActionResult> Index(string sortOrder,string currentFilter,string searchString,int pageNumber = 1)
 		{
-			if (searchString != null)
-			{
-				pageNumber = 1;
-			}
-			else
-			{
-				searchString = currentFilter;
-			}
+			//if (searchString != null)
+			//{
+			//	pageNumber = 1;
+			//}
+			//else
+			//{
+			//	searchString = currentFilter;
+			//}
 
 			var AuthorQuery = DBContext.ViewAuthorDetails.AsQueryable();
 			int pageSize = 18;

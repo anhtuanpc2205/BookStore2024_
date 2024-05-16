@@ -21,6 +21,9 @@ namespace BookStore2024.ViewComponents
         static DateOnly firstDayOfNextYear = firstDayOfMonth.AddYears(1);
         static DateOnly firstDayOfLastYear = firstDayOfMonth.AddYears(-1);
 
+        static bool IstodaySoldIncrease = true;
+        static bool IsthisMonthSoldIncrease = true;
+        static bool ISyearSoldIncrease = true;
         public IViewComponentResult Invoke()
         {
 
@@ -38,6 +41,8 @@ namespace BookStore2024.ViewComponents
             }
             else { daySoldIncrease = 100; }
 
+            if (daySoldIncrease < 0) { IstodaySoldIncrease = false;  }
+
             //////////////////////////////month/////////////////////////////////////////////
 
             float thisMonthSold = DBContext.ViewOrderDetails
@@ -53,6 +58,8 @@ namespace BookStore2024.ViewComponents
                 monthSoldIncrease = ((thisMonthSold - lastMonthSold) / lastMonthSold) * 100;
             }
             else { monthSoldIncrease = 100; }
+
+            if(monthSoldIncrease < 0) { IsthisMonthSoldIncrease = false; }
 
             //////////////////////////////year////////////////////////////////////////////
 
@@ -71,13 +78,18 @@ namespace BookStore2024.ViewComponents
             }
             else { yearSoldIncrease = 100; }
 
+            if(yearSoldIncrease < 0) { ISyearSoldIncrease = false; }
+
             ViewBag.todaySold = todaySold;
             ViewBag.thisMonthSold = thisMonthSold;
             ViewBag.thisYearSold = thisYearSold;
             ViewBag.daySoldIncrease = daySoldIncrease;
             ViewBag.monthSoldIncrease = monthSoldIncrease;
             ViewBag.yearSoldIncrease = yearSoldIncrease;
-
+            
+            ViewBag.IstodaySoldIncrease = IstodaySoldIncrease;
+            ViewBag.IsthisMonthSoldIncrease = IsthisMonthSoldIncrease;
+            ViewBag.ISyearSoldIncrease = ISyearSoldIncrease;
 
             return View();
         }

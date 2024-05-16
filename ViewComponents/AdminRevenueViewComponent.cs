@@ -22,6 +22,10 @@ namespace BookStore2024.ViewComponents
         static DateOnly firstDayOfNextYear = firstDayOfMonth.AddYears(1);
         static DateOnly firstDayOfLastYear = firstDayOfMonth.AddYears(-1);
 
+        static bool IstodayRevenueIncrease = true;
+        static bool IsthisMonthRevenueIncrease = true;
+        static bool ISyearRevenueIncrease= true;
+
         public IViewComponentResult Invoke()
         {
             //////////////////////////////day///////////////////////////////////////////////
@@ -38,6 +42,8 @@ namespace BookStore2024.ViewComponents
                 dayRevenueIncrease = ((todayRevenue - yesterdayRevenue) / yesterdayRevenue)*100;
             }
             else { dayRevenueIncrease = 100; }
+
+            if(dayRevenueIncrease < 0) { IstodayRevenueIncrease = false; }
             //////////////////////////////month/////////////////////////////////////////////
 
             float thisMonthRevenue = DBContext.ViewOrderDetails
@@ -54,6 +60,8 @@ namespace BookStore2024.ViewComponents
                 monthRevenueIncrease = ((thisMonthRevenue - lastMonthRevenue) / lastMonthRevenue) * 100;
             }
             else { monthRevenueIncrease = 100; }
+
+            if(monthRevenueIncrease < 0) { IsthisMonthRevenueIncrease = false; }
             //////////////////////////////year////////////////////////////////////////////
 
             float thisYearRevenue = DBContext.ViewOrderDetails
@@ -70,6 +78,7 @@ namespace BookStore2024.ViewComponents
             }
             else { yearRevenueIncrease = 100; }
 
+            if (yearRevenueIncrease < 0) { ISyearRevenueIncrease = false; }
 
             //thisMonthRevenue = 55555;
             ViewBag.todayRevenue = todayRevenue;
@@ -78,6 +87,10 @@ namespace BookStore2024.ViewComponents
             ViewBag.dayRevenueIncrease = dayRevenueIncrease;
             ViewBag.monthRevenueIncrease = monthRevenueIncrease;
             ViewBag.yearRevenueIncrease = yearRevenueIncrease;
+
+            ViewBag.IstodayRevenueIncrease = IstodayRevenueIncrease;
+            ViewBag.IsthisMonthRevenueIncrease = IsthisMonthRevenueIncrease;
+            ViewBag.ISyearRevenueIncrease = ISyearRevenueIncrease;
 
             return View();
         }

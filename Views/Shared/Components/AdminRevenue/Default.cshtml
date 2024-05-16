@@ -51,7 +51,7 @@
                 </div>
 
                     <div class="ps-3" id="today-revenue">
-                        @if (@ViewBag.todayRevenue > 0)
+                        @if (ViewBag.IstodayRevenueIncrease)
                         {
                             <h6>$@ViewBag.todayRevenue</h6>
                             <span class="text-success small pt-1 fw-bold">@ViewBag.dayRevenueIncrease%</span>
@@ -67,7 +67,7 @@
                     </div>
 
                     <div class="ps-3 none-dp" id="this-month-revenue">
-                         @if (@ViewBag.thisMonthRevenue > 0)
+                        @if (ViewBag.IsthisMonthRevenueIncrease)
                         {
                             <h6>$@ViewBag.thisMonthRevenue</h6>
                             <span class="text-success small pt-1 fw-bold">@ViewBag.monthRevenueIncrease%</span>
@@ -82,7 +82,7 @@
                     </div>
 
                     <div class="ps-3 none-dp" id="this-year-revenue">
-                        @if (@ViewBag.thisYearRevenue > 0)
+                        @if (ViewBag.ISyearRevenueIncrease)
                         {
                             <h6>$@ViewBag.thisYearRevenue</h6>
                             <span class="text-success small pt-1 fw-bold">@ViewBag.yearRevenueIncrease%</span>

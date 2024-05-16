@@ -50,7 +50,7 @@
                     <i class="bi bi-cart"></i>
                 </div>
                 <div class="ps-3" id="today-sold">
-                    @if (@ViewBag.todaySold > 0)
+                    @if (ViewBag.IstodaySoldIncrease)
                     {
                         <h6>@ViewBag.todaySold</h6>
                         <span class="text-success small pt-1 fw-bold">@ViewBag.daySoldIncrease%</span>
@@ -66,7 +66,7 @@
                 </div>
 
                 <div class="ps-3 none-dp" id="this-month-sold">
-                    @if (@ViewBag.thisMonthSold > 0)
+                    @if (ViewBag.IsthisMonthSoldIncrease)
                     {
                         <h6>@ViewBag.thisMonthSold</h6>
                         <span class="text-success small pt-1 fw-bold">@ViewBag.monthSoldIncrease%</span>
@@ -81,7 +81,7 @@
                 </div>
 
                 <div class="ps-3 none-dp" id="this-year-sold">
-                    @if (@ViewBag.thisYearSold > 0)
+                    @if (ViewBag.ISyearSoldIncrease)
                     {
                         <h6>@ViewBag.thisYearSold</h6>
                         <span class="text-success small pt-1 fw-bold">@ViewBag.yearSoldIncrease%</span>
