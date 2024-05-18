@@ -1,6 +1,7 @@
 ﻿using BookStore2024.Data;
 using BookStore2024.ViewModels;
 using Humanizer.Localisation;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BookStore2024.Controllers
@@ -167,7 +168,36 @@ namespace BookStore2024.Controllers
 			return View(await PaginatedList<ProductVM>.CreateAsync(data, pageNumber ?? 1, pageSize));
         }
 
+        [Authorize]
+        public IActionResult AddToWishList(int DetailId)
+        {
+            int customerId = int.Parse(User.FindFirst("UserID").Value);
 
+            var wishItem = DBContext.TblUserWishlists.SingleOrDefault(p => p.BookDetailId == DetailId);
+            if (wishItem != null) {
+                return Redirect(Request.Headers["Referer"].ToString());
+            }
+
+            wishItem = new TblUserWishlist
+            {
+                UserId = customerId,
+                BookDetailId = DetailId
+            };
+            DBContext.Database.BeginTransaction();
+            try
+            {
+                DBContext.Database.CommitTransaction();
+                DBContext.Add(wishItem);
+                DBContext.SaveChanges();
+
+                return Redirect(Request.Headers["Referer"].ToString());
+            }
+            catch
+            {
+                DBContext.Database.RollbackTransaction();
+            }
+            return Redirect(Request.Headers["Referer"].ToString());
+        }
 
     }
 }

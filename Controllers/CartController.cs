@@ -112,6 +112,7 @@ namespace BookStore2024.Controllers
         public IActionResult CheckOut(CheckOutVM formData)
         {
             int customerId = int.Parse(User.FindFirst("UserID").Value);
+            int OrderID = 0;
 
             var customer = new TblUser();
 
@@ -128,7 +129,7 @@ namespace BookStore2024.Controllers
                 ShippingFee = 5,
                 ShippingAddress = formData.address
             };
-
+            
             DBContext.Database.BeginTransaction();
             try
             {
@@ -149,7 +150,7 @@ namespace BookStore2024.Controllers
                 }
                 DBContext.AddRange(orderDetails);
                 DBContext.SaveChanges();
-
+                OrderID = newOrder.OrderId;
                 var CartList = new List<CartItemVM>();
                 HttpContext.Session.Set(Constants.SESSION_KEY, CartList);
 
@@ -159,7 +160,7 @@ namespace BookStore2024.Controllers
             {
                 DBContext.Database.RollbackTransaction();
             }
-
+            ViewBag.OrderID = OrderID;
             ViewBag.customerId = customerId;
             return View("CheckOut", formData);
         }
