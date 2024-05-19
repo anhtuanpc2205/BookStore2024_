@@ -9,7 +9,7 @@
                 <div class="tg-backcover"><img src="@Model.ProductImg" alt="ProductImg"></div>
             </div>
         </a>
-        <a class="tg-btnaddtowishlist" asp-action="AddToWishList" asp-controller="Products" asp-route-DetailId="@Model.BookDetailId">
+        <a class="tg-btnaddtowishlist" asp-action="AddToWishList" asp-controller="Products" asp-route-DetailId="@Model.BookDetailId" onclick="alert('added to wish list!')">
             <i class="icon-heart"></i>
             <span>add to wishlist</span>
         </a>
