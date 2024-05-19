@@ -125,7 +125,49 @@ namespace BookStore2024.Controllers
         [Authorize]
         public IActionResult Profile()
         {
-            return View();
+            int userID = int.Parse(User.FindFirst("UserID").Value);
+           
+            var listWishID = DBContext.TblUserWishlists.Where(p => p.UserId == userID).ToList();
+
+            List<ProductVM> products = new List<ProductVM>();
+
+            foreach (var item in listWishID)
+            {
+                var record = DBContext.ViewBookDetails.Where(p => p.BookDetailId == item.BookDetailId).SingleOrDefault();
+                if (record == null)
+                {
+                    TempData["Message"] = $"Could not find product have id or product does not exist";
+                    return Redirect("/404");
+                }
+                var product = new ProductVM
+                {
+                    BookDetailId = record.BookDetailId,
+                    CategoryId = record.CategoryId,
+                    CategoryName = record.CategoryName,
+                    ProductName = record.BookTitle,
+                    ProductImg = record.BookImageUrl ?? "",
+                    AuthorId = record.AuthorId,
+                    AuthorName = record.AuthorName,
+                    ProfileImageUrl = record.ProfileImageUrl,
+                    Price = record.Price,
+                    Discount = record.Discount,
+                    FormatId = record.FormatId,
+                    FormatName = record.FormatName,
+                    GenreName = record.GenreName,
+                    GenreId = record.GenreId,
+                    Publisher = record.Publisher,
+                    ProductDescription = record.BookDescription,
+                    Language = record.Language,
+                    Pages = record.Pages,
+                    IllustrationsNote = record.IllustrationsNote,
+                    Isbn10 = record.Isbn10,
+                    Isbn13 = record.Isbn13,
+                    StockQuantity = record.StockQuantity,
+                    Views = record.Views
+                };
+                products.Add(product);
+            }
+            return View(products);
         }
         [Authorize]
         public async Task<IActionResult> LogOut()
