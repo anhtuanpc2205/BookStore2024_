@@ -23,7 +23,7 @@ namespace BookStore2024.ViewComponents
 				Price = book.Price,
 				Discount = book.Discount,
 				FormatName = book.FormatName
-			});
+			}).ToList();
 			return View("Default",listBookPublished);
 		}
 	}

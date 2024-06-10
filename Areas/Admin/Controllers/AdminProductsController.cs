@@ -399,5 +399,25 @@ namespace BookStore2024.Areas.Admin.Controllers
             return View("ProductList", data);
         }
         #endregion
+
+        #region Delete
+        public IActionResult Delete(int detailID)
+        {
+            var product = DBContext.TblBookDetails.Where(p => p.BookDetailId == detailID).FirstOrDefault();
+
+            var inNewRelease = DBContext.TblNewReleaseBooks.Where(p => p.BookDetailId == detailID).FirstOrDefault();
+            var inBookAlert = DBContext.TblBookAlerts.Where(p => p.BookDetailId == detailID).FirstOrDefault();
+
+            if (inNewRelease != null) {
+                DBContext.TblNewReleaseBooks.Remove(inNewRelease);
+            }
+            if(inBookAlert != null)
+            {
+                DBContext.TblBookAlerts.Remove(inBookAlert);
+            }
+
+            return Redirect(Request.Headers["Referer"].ToString());
+        }
+        #endregion
     }
 }
